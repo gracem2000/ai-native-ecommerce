@@ -22,9 +22,9 @@ build/
 *.swo
 *~
 
-# 数据文件
-data/*.json
-!data/mock_products.json.example
+# 数据文件 - 忽略运行时缓存
+data/hot_topics.json
+data/scenarios.json
 
 # Streamlit
 .streamlit/

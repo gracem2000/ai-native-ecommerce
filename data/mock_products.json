@@ -1,0 +1,274 @@
+{
+  "products": [
+    {
+      "sku_id": "10001",
+      "title": "青岛啤酒经典10度500ml*24听",
+      "category": "酒水饮料",
+      "tags": ["啤酒", "聚会", "世界杯", "看球", "酒精"],
+      "price": 79.9,
+      "stock": 1000,
+      "image_url": "/images/beer.jpg"
+    },
+    {
+      "sku_id": "10002",
+      "title": "乐事薯片原味黄瓜味混合装200g",
+      "category": "休闲零食",
+      "tags": ["薯片", "零食", "看剧", "聚会", "膨化"],
+      "price": 15.9,
+      "stock": 500,
+      "image_url": "/images/chips.jpg"
+    },
+    {
+      "sku_id": "10003",
+      "title": "Swisse 斯维诗 护肝片 180片",
+      "category": "医疗保健",
+      "tags": ["护肝", "熬夜", "解酒", "保健", "维生素"],
+      "price": 128.0,
+      "stock": 300,
+      "image_url": "/images/liver.jpg"
+    },
+    {
+      "sku_id": "10004",
+      "title": "泡泡玛特 Labubu 世界杯系列盲盒",
+      "category": "潮玩手办",
+      "tags": ["盲盒", "拉布布", "世界杯", "收藏", "手办"],
+      "price": 399.0,
+      "stock": 50,
+      "image_url": "/images/labubu.jpg"
+    },
+    {
+      "sku_id": "10005",
+      "title": "哈啤(Harbin) 冰爽啤酒500ml*18罐",
+      "category": "酒水饮料",
+      "tags": ["啤酒", "聚会", "世界杯", "冰爽", "酒精"],
+      "price": 59.9,
+      "stock": 800,
+      "image_url": "/images/harbin.jpg"
+    },
+    {
+      "sku_id": "10006",
+      "title": "可口可乐汽水330ml*24罐",
+      "category": "酒水饮料",
+      "tags": ["可乐", "碳酸", "聚会", "饮料", "冰爽"],
+      "price": 49.9,
+      "stock": 1200,
+      "image_url": "/images/cola.jpg"
+    },
+    {
+      "sku_id": "10007",
+      "title": "三只松鼠坚果大礼包1680g",
+      "category": "休闲零食",
+      "tags": ["坚果", "零食", "聚会", "送礼", "健康"],
+      "price": 89.0,
+      "stock": 400,
+      "image_url": "/images/nuts.jpg"
+    },
+    {
+      "sku_id": "10008",
+      "title": "良品铺子卤鸭脖200g",
+      "category": "休闲零食",
+      "tags": ["卤味", "鸭脖", "零食", "聚会", "辣味"],
+      "price": 29.9,
+      "stock": 600,
+      "image_url": "/images/duck.jpg"
+    },
+    {
+      "sku_id": "10009",
+      "title": "红牛能量饮料250ml*24罐",
+      "category": "酒水饮料",
+      "tags": ["功能饮料", "能量", "熬夜", "提神", "保健"],
+      "price": 138.0,
+      "stock": 700,
+      "image_url": "/images/redbull.jpg"
+    },
+    {
+      "sku_id": "10010",
+      "title": "百草味麻辣小龙虾尾500g",
+      "category": "休闲零食",
+      "tags": ["小龙虾", "零食", "聚会", "麻辣", "海鲜"],
+      "price": 79.9,
+      "stock": 350,
+      "image_url": "/images/crayfish.jpg"
+    },
+    {
+      "sku_id": "10011",
+      "title": "小米65英寸4K智能电视",
+      "category": "数码电器",
+      "tags": ["电视", "4K", "智能", "观赛", "影音"],
+      "price": 2999.0,
+      "stock": 50,
+      "image_url": "/images/tv.jpg"
+    },
+    {
+      "sku_id": "10012",
+      "title": "JBL蓝牙音箱便携式",
+      "category": "数码电器",
+      "tags": ["音箱", "蓝牙", "便携", "音响", "音乐"],
+      "price": 399.0,
+      "stock": 200,
+      "image_url": "/images/speaker.jpg"
+    },
+    {
+      "sku_id": "10013",
+      "title": "泰国进口芒果干500g",
+      "category": "休闲零食",
+      "tags": ["芒果干", "水果", "零食", "健康", "进口"],
+      "price": 39.9,
+      "stock": 450,
+      "image_url": "/images/mango.jpg"
+    },
+    {
+      "sku_id": "10014",
+      "title": "德芙巧克力礼盒756g",
+      "category": "休闲零食",
+      "tags": ["巧克力", "甜品", "送礼", "情人节", "零食"],
+      "price": 88.0,
+      "stock": 300,
+      "image_url": "/images/chocolate.jpg"
+    },
+    {
+      "sku_id": "10015",
+      "title": "康师傅冰红茶500ml*24瓶",
+      "category": "酒水饮料",
+      "tags": ["茶饮料", "冰爽", "饮料", "聚会", "柠檬"],
+      "price": 42.9,
+      "stock": 900,
+      "image_url": "/images/ice_tea.jpg"
+    },
+    {
+      "sku_id": "10016",
+      "title": "星巴克咖啡豆200g",
+      "category": "酒水饮料",
+      "tags": ["咖啡", "提神", "熬夜", "品质", "进口"],
+      "price": 128.0,
+      "stock": 250,
+      "image_url": "/images/coffee.jpg"
+    },
+    {
+      "sku_id": "10017",
+      "title": "奥利奥饼干原味592g",
+      "category": "休闲零食",
+      "tags": ["饼干", "零食", "甜食", "聚会", "牛奶"],
+      "price": 18.9,
+      "stock": 550,
+      "image_url": "/images/oreo.jpg"
+    },
+    {
+      "sku_id": "10018",
+      "title": "百威啤酒500ml*24听",
+      "category": "酒水饮料",
+      "tags": ["啤酒", "聚会", "世界杯", "进口", "酒精"],
+      "price": 99.0,
+      "stock": 600,
+      "image_url": "/images/budweiser.jpg"
+    },
+    {
+      "sku_id": "10019",
+      "title": "自然堂男士护肤套装",
+      "category": "美妆护肤",
+      "tags": ["护肤", "男士", "套装", "保养", "礼物"],
+      "price": 168.0,
+      "stock": 200,
+      "image_url": "/images/skincare.jpg"
+    },
+    {
+      "sku_id": "10020",
+      "title": "冈本避孕安全套10片装",
+      "category": "成人用品",
+      "tags": ["避孕", "安全", "成人", "健康"],
+      "price": 39.9,
+      "stock": 1000,
+      "image_url": "/images/condom.jpg"
+    },
+    {
+      "sku_id": "10021",
+      "title": "医用外科口罩50只",
+      "category": "医疗保健",
+      "tags": ["口罩", "防护", "医疗", "健康", "防疫"],
+      "price": 19.9,
+      "stock": 2000,
+      "image_url": "/images/mask.jpg"
+    },
+    {
+      "sku_id": "10022",
+      "title": "任天堂Switch游戏机",
+      "category": "数码电器",
+      "tags": ["游戏机", "Switch", "娱乐", "聚会", "游戏"],
+      "price": 2099.0,
+      "stock": 80,
+      "image_url": "/images/switch.jpg"
+    },
+    {
+      "sku_id": "10023",
+      "title": "京东京造人体工学椅",
+      "category": "家居生活",
+      "tags": ["椅子", "办公", "健康", "舒适", "家居"],
+      "price": 899.0,
+      "stock": 100,
+      "image_url": "/images/chair.jpg"
+    },
+    {
+      "sku_id": "10024",
+      "title": "加拿大原大冰川矿泉水4L*4桶",
+      "category": "酒水饮料",
+      "tags": ["矿泉水", "健康", "进口", "饮用水", "家庭"],
+      "price": 59.9,
+      "stock": 500,
+      "image_url": "/images/water.jpg"
+    },
+    {
+      "sku_id": "10025",
+      "title": "双汇火腿肠王中王500g",
+      "category": "休闲零食",
+      "tags": ["火腿肠", "零食", "方便", "肉类", "聚会"],
+      "price": 15.9,
+      "stock": 800,
+      "image_url": "/images/sausage.jpg"
+    },
+    {
+      "sku_id": "10026",
+      "title": "六神花露水180ml",
+      "category": "美妆护肤",
+      "tags": ["花露水", "驱蚊", "夏日", "清凉", "传统"],
+      "price": 12.9,
+      "stock": 1500,
+      "image_url": "/images/liushen.jpg"
+    },
+    {
+      "sku_id": "10027",
+      "title": "椰树椰汁245ml*20罐",
+      "category": "酒水饮料",
+      "tags": ["椰汁", "饮料", "聚会", "健康", "植物蛋白"],
+      "price": 49.9,
+      "stock": 600,
+      "image_url": "/images/coconut.jpg"
+    },
+    {
+      "sku_id": "10028",
+      "title": "旺旺大礼包600g",
+      "category": "休闲零食",
+      "tags": ["零食", "旺旺", "礼包", "聚会", "送礼"],
+      "price": 29.9,
+      "stock": 700,
+      "image_url": "/images/wangwang.jpg"
+    },
+    {
+      "sku_id": "10029",
+      "title": "周黑鸭真空锁鲜装500g",
+      "category": "休闲零食",
+      "tags": ["卤味", "鸭脖", "零食", "聚会", "辣味"],
+      "price": 49.9,
+      "stock": 400,
+      "image_url": "/images/zhouheiya.jpg"
+    },
+    {
+      "sku_id": "10030",
+      "title": "喜力啤酒500ml*24听",
+      "category": "酒水饮料",
+      "tags": ["啤酒", "聚会", "世界杯", "进口", "酒精"],
+      "price": 109.0,
+      "stock": 450,
+      "image_url": "/images/heineken.jpg"
+    }
+  ]
+}
