@@ -1,26 +1,22 @@
 # 时空场景自动供给系统 - 依赖包列表
 
 # Web框架
-streamlit==1.31.0
+streamlit
 
 # LLM API客户端
-zai-sdk==0.2.2
+zai-sdk
 
 # 数据采集
-requests==2.31.0
-beautifulsoup4==4.12.0
+requests
+beautifulsoup4
 lxml
 
 # 配置管理
-python-dotenv==1.0.0
+python-dotenv
 
 # 定时任务
-apscheduler==3.10.0
-
-# 可视化
-plotly==5.18.0
-altair==5.2.0
+apscheduler
 
 # 工具库
-pytz==2024.1
-python-dateutil==2.8.2
+pytz
+python-dateutil
