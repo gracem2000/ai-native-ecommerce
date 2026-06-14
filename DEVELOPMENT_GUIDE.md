@@ -39,7 +39,7 @@
 | 层级 | 技术选择 | 说明 |
 |------|----------|------|
 | **后端框架** | Python 3.10+ | 主要开发语言 |
-| **LLM** | 智谱 GLM-4 | 场景理解和推理 |
+| **LLM** | 智谱 GLM-5.1 | 场景理解和推理 |
 | **数据采集** | Requests, BeautifulSoup4 | 热搜抓取 |
 | **数据处理** | Pandas | CSV数据处理 |
 | **数据存储** | JSON | 模拟商品库 |
@@ -63,7 +63,7 @@ smart-scenario-system/
 │   ├── hot_perception.py            # 热点采集模块
 │   ├── scene_mining.py              # 场景挖掘模块 (LLM)
 │   ├── product_matching.py         # 商品匹配模块
-│   ├── llm_client.py                # GLM-4 客户端封装
+│   ├── llm_client.py                # GLM-5.1 客户端封装
 │   └── utils.py                     # 工具函数
 ├── ui/
 │   ├── __init__.py
@@ -208,7 +208,7 @@ class Config:
     HOT_FETCH_LIMIT = 10  # 每个平台获取前N条
 
     # LLM 配置
-    DEFAULT_MODEL = "glm-4"
+    DEFAULT_MODEL = "glm-5.1"
     TEMPERATURE = 0.7
     MAX_TOKENS = 2000
 
@@ -370,7 +370,7 @@ from src.config import Config
 from typing import Dict, Any
 
 class GLMClient:
-    """智谱 GLM-4 客户端封装"""
+    """智谱 GLM-5.1 客户端封装"""
 
     def __init__(self):
         self.client = anthropic.Anthropic(
@@ -749,7 +749,7 @@ pip install -r requirements.txt
    - 实现数据清洗
 
 2. **LLM 集成**
-   - 封装 GLM-4 客户端
+   - 封装 GLM-5.1 客户端
    - 编写场景挖掘 Prompt
 
 3. **场景挖掘模块**

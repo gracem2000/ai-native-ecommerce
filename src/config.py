@@ -32,7 +32,7 @@ class Config:
     HOT_FETCH_LIMIT = 10  # 每个平台获取前N条
 
     # ==================== LLM 配置 ====================
-    DEFAULT_MODEL = os.getenv("DEFAULT_MODEL", "glm-4")
+    DEFAULT_MODEL = os.getenv("DEFAULT_MODEL", "glm-5.1")
     TEMPERATURE = float(os.getenv("TEMPERATURE", "0.7"))
     MAX_TOKENS = int(os.getenv("MAX_TOKENS", "2000"))
 

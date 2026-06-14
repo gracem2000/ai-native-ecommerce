@@ -26,7 +26,7 @@
 │   ├── __init__.py
 │   ├── config.py                    # 配置管理
 │   ├── hot_perception.py            # 热点采集模块
-│   ├── llm_client.py                # GLM-4 客户端封装
+│   ├── llm_client.py                # GLM-5.1 客户端封装
 │   ├── scene_mining.py              # 场景挖掘模块
 │   ├── product_matching.py          # 商品匹配模块
 │   └── service.py                   # 服务层统一入口
@@ -94,7 +94,7 @@
 |--------|------|--------|
 | `ZHIPU_API_KEY` | 智谱 AI API Key（必需） | - |
 | `ZHIPU_BASE_URL` | 智谱 API 地址 | `https://open.bigmodel.cn/api/anthropic` |
-| `DEFAULT_MODEL` | 使用的模型 | `glm-4` |
+| `DEFAULT_MODEL` | 使用的模型 | `glm-5.1` |
 | `TEMPERATURE` | LLM 温度参数 | `0.7` |
 | `MAX_TOKENS` | LLM 最大 Token 数 | `2000` |
 
@@ -166,7 +166,7 @@ python src/product_matching.py
 
 ### 2. 场景挖掘 (SceneMining)
 
-- LLM 驱动：使用 GLM-4 理解热点并生成场景
+- LLM 驱动：使用 GLM-5.1 理解热点并生成场景
 - 结构化输出：场景名称、类型、时间范围、关键词等
 - 数据持久化：自动保存到 `data/scenarios.json`
 
@@ -265,7 +265,7 @@ MIT License
 
 ## 🙏 致谢
 
-- [智谱 AI](https://open.bigmodel.cn/) - 提供 GLM-4 API
+- [智谱 AI](https://open.bigmodel.cn/) - 提供 GLM-5.1 API
 - [Streamlit](https://streamlit.io/) - 前端框架
 - [Anthropic](https://www.anthropic.com/) - Claude API SDK
 

@@ -2,7 +2,7 @@
 
 ## 项目概述
 
-这是一个 **AI-Native 电商场景智能供给系统**，通过引入智谱 GLM-4 大模型，重构传统电商供给链路。将 LLM 作为系统的"感知器官"和"推理大脑"，实现对外部热点的毫秒级响应，自动构建时空场景并完成商品匹配。
+这是一个 **AI-Native 电商场景智能供给系统**，通过引入智谱 GLM-5.1 大模型，重构传统电商供给链路。将 LLM 作为系统的"感知器官"和"推理大脑"，实现对外部热点的毫秒级响应，自动构建时空场景并完成商品匹配。
 
 ### 核心业务流程
 ```
@@ -30,7 +30,7 @@ JD/
 │   ├── config.py                     # 配置管理
 │   ├── hot_perception.py              # 热点采集模块
 │   ├── seasonal_perception.py         # 季节性场景感知
-│   ├── llm_client.py                  # GLM-4 客户端封装
+│   ├── llm_client.py                  # GLM-5.1 客户端封装
 │   ├── scene_mining.py                # 场景挖掘模块 (LLM核心)
 │   ├── product_matching.py            # 商品匹配模块
 │   └── service.py                     # 服务层统一入口
@@ -50,7 +50,7 @@ JD/
 
 | 层级 | 技术选择 | 说明 |
 |------|----------|------|
-| **LLM** | 智谱 GLM-4 | 场景理解和推理 |
+| **LLM** | 智谱 GLM-5.1 | 场景理解和推理 |
 | **Python** | 3.10+ | 主要开发语言 |
 | **前端** | Streamlit | Web 界面 |
 | **数据采集** | Requests, BeautifulSoup4 | 热搜抓取 |
@@ -76,7 +76,7 @@ JD/
 - **数据源**：`data/festivals.json`
 
 ### 4. LLM 客户端 ([src/llm_client.py](src/llm_client.py))
-- **功能**：封装智谱 GLM-4 API 调用
+- **功能**：封装智谱 GLM-5.1 API 调用
 - **关键方法**：`generate_scene()` - 将热点转化为购物场景
 - **Prompt策略**：使用 JSON 格式强制约束输出
 
@@ -168,7 +168,7 @@ ZHIPU_API_KEY=your_zhipu_api_key_here
 
 # 可选配置
 ZHIPU_BASE_URL=https://open.bigmodel.cn/api/anthropic
-DEFAULT_MODEL=glm-4
+DEFAULT_MODEL=glm-5.1
 TEMPERATURE=0.7
 MAX_TOKENS=2000
 ```
