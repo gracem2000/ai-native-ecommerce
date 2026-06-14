@@ -49,3 +49,8 @@ htmlcov/
 
 # Jupyter
 .ipynb_checkpoints/
+
+# 本地文档（不提交到 GitHub）
+CLAUDE.md
+DEVELOPMENT_GUIDE.md
+project.md
