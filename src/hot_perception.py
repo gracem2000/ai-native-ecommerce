@@ -99,43 +99,8 @@ class HotPerception:
             'all_hot': baidu_topics  # 直接使用百度热搜作为全部热点
         }
 
-        # 保存到文件
-        self._save_to_file(result)
-
         print(f"📊 共抓取 {len(baidu_topics)} 条热点信息")
         return result
-
-    def _save_to_file(self, data: Dict):
-        """保存热搜数据到文件
-
-        Args:
-            data: 要保存的数据
-        """
-        try:
-            # 确保目录存在
-            import os
-            os.makedirs(os.path.dirname(Config.HOT_TOPICS_PATH), exist_ok=True)
-
-            with open(Config.HOT_TOPICS_PATH, 'w', encoding='utf-8') as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
-            print(f"💾 热搜数据已保存到 {Config.HOT_TOPICS_PATH}")
-        except Exception as e:
-            print(f"⚠️  保存文件失败: {e}")
-
-    def load_cached_topics(self) -> Dict:
-        """加载缓存的热搜数据
-
-        Returns:
-            缓存的热搜数据，如果没有则返回空字典
-        """
-        try:
-            with open(Config.HOT_TOPICS_PATH, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except FileNotFoundError:
-            return {}
-        except Exception as e:
-            print(f"⚠️  加载缓存失败: {e}")
-            return {}
 
 
 if __name__ == "__main__":

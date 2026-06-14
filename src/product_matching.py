@@ -33,16 +33,18 @@ class ProductMatching:
     def match_products(
         self,
         keywords: List[str],
-        top_k: Optional[int] = None
+        top_k: Optional[int] = None,
+        group_by_category: bool = True
     ) -> List[Dict]:
         """基于关键词匹配商品
 
         Args:
             keywords: 场景关键词列表
             top_k: 返回商品数量，默认使用配置值
+            group_by_category: 是否按品类分组
 
         Returns:
-            匹配的商品列表，按相关性排序
+            匹配的商品列表，按相关性排序（如启用分组则返回品类分组结构）
         """
         if top_k is None:
             top_k = Config.MAX_MATCH_PRODUCTS
@@ -68,8 +70,44 @@ class ProductMatching:
         # 按相关性排序
         scored_products.sort(key=lambda x: x['relevance_score'], reverse=True)
 
-        result = scored_products[:top_k]
-        print(f"   🎯 匹配到 {len(result)} 个商品 (关键词: {', '.join(keywords[:3])}...)")
+        if group_by_category:
+            # 按品类分组
+            result = self._group_products_by_category(scored_products[:top_k])
+            print(f"   🎯 匹配到 {len(scored_products[:top_k])} 个商品，分为 {len(result)} 个品类")
+        else:
+            result = scored_products[:top_k]
+            print(f"   🎯 匹配到 {len(result)} 个商品 (关键词: {', '.join(keywords[:3])}...)")
+
+        return result
+
+    def _group_products_by_category(self, products: List[Dict]) -> List[Dict]:
+        """将商品按品类分组
+
+        Args:
+            products: 商品列表
+
+        Returns:
+            按品类分组的商品列表
+        """
+        category_groups = {}
+
+        for product in products:
+            category = product.get('category', '未分类')
+            if category not in category_groups:
+                category_groups[category] = []
+            category_groups[category].append(product)
+
+        # 转换为结构化格式
+        result = []
+        for category, category_products in sorted(category_groups.items()):
+            result.append({
+                'category': category,
+                'product_count': len(category_products),
+                'products': category_products
+            })
+
+        # 按商品数量排序（商品数多的品类排前面）
+        result.sort(key=lambda x: x['product_count'], reverse=True)
 
         return result
 

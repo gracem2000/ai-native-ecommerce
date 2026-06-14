@@ -250,6 +250,143 @@ class GLMClient:
         """
         return self.client is not None
 
+    def generate_multiple_scenes(self, topic: str, count: int = 5) -> list:
+        """基于一个主题生成多个不同的购物场景
+
+        Args:
+            topic: 主题（如"端午节"、"春节"）
+            count: 需要生成的场景数量
+
+        Returns:
+            场景列表
+        """
+        if not self.client:
+            print("⚠️  LLM 客户端未初始化，返回空列表")
+            return []
+
+        from datetime import datetime
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        current_year = datetime.now().year
+
+        prompt = f"""你是一个电商场景挖掘专家。请基于"{topic}"这个主题，生成 {count} 个不同角度的购物场景。
+
+当前日期: {current_date}
+主题: {topic}
+
+请从不同角度分析这个主题可能引发的购物需求，例如：
+- 礼品赠送场景
+- 家庭聚会/出游场景
+- DIY/自制场景
+- 服饰穿搭场景
+- 美食/餐饮场景
+- 祈福/文化活动场景
+
+请以 JSON 数组格式输出 {count} 个场景，每个场景包含:
+- scene_name: 场景名称（简洁明了，4-8个字）
+- scene_type: 场景类型（节日/热点/生活/文化等）
+- trigger_event: 触发事件（简短描述）
+- temporal_scope: 时间范围（注意：必须是{current_year}年的日期，格式如"{current_date} 至 {current_year}-07-15"）
+- geo_scope: 地理范围（如"全国"或具体城市）
+- user_intent: 用户意图描述（1-2句话）
+- potential_keywords: 潜在商品关键词列表（5-8个关键词，用逗号分隔）
+- target_population: 目标人群
+
+重要提示：
+1. 时间范围必须使用当前年份（{current_year}）的日期
+2. 每个场景要有明显的区分度，避免重复
+3. 场景名称要体现不同角度，如"端午礼品馈赠"、"端午家庭出游"、"端午粽子DIY"等
+
+只返回JSON数组内容，不要其他说明文字。
+
+示例输出格式:
+[
+  {{
+    "scene_name": "端午礼品馈赠",
+    "scene_type": "节日",
+    "trigger_event": "端午节临近，走亲访友需备礼",
+    "temporal_scope": "{current_date} 至 {current_year}-06-22",
+    "geo_scope": "全国",
+    "user_intent": "端午节期间需要准备体面的礼品送给长辈、朋友，表达心意与祝福",
+    "potential_keywords": ["粽子礼盒", "咸鸭蛋", "茶叶礼盒", "滋补保健品", "端午香囊"],
+    "target_population": "探亲访友人群、职场送礼人群"
+  }},
+  ... 更多场景
+]"""
+
+        messages = [
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+
+        try:
+            print(f"🤖 正在为「{topic}」生成 {count} 个场景...")
+
+            # 增加max_tokens以支持多个场景
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                max_tokens=self.max_tokens * 3,  # 增加token限制
+                temperature=0.8,  # 稍微提高温度以增加多样性
+            )
+
+            # 获取回复内容
+            content = response.choices[0].message.content
+
+            # 解析JSON数组
+            scenes_data = self._parse_json_array_response(content)
+
+            if scenes_data and len(scenes_data) > 0:
+                # 修正每个场景的时间范围年份
+                scenes_data = [self._fix_temporal_scope_year(scene) for scene in scenes_data]
+                print(f"✅ 成功生成 {len(scenes_data)} 个场景")
+                for idx, scene in enumerate(scenes_data, 1):
+                    print(f"   [{idx}] {scene.get('scene_name', 'Unknown')}")
+                return scenes_data
+            else:
+                print(f"⚠️  JSON 解析失败")
+                return []
+
+        except Exception as e:
+            print(f"❌ LLM 调用失败: {e}")
+            import traceback
+            traceback.print_exc()
+            return []
+
+    def _parse_json_array_response(self, content: str) -> list:
+        """解析 LLM 返回的 JSON 数组
+
+        Args:
+            content: LLM 返回的文本
+
+        Returns:
+            解析后的列表
+        """
+        try:
+            # 清理可能的 markdown 标记
+            content = content.strip()
+            if content.startswith('```json'):
+                content = content[7:]
+            if content.startswith('```'):
+                content = content[3:]
+            if content.endswith('```'):
+                content = content[:-3]
+
+            content = content.strip()
+            return json.loads(content)
+
+        except (json.JSONDecodeError, ValueError):
+            # 尝试从内容中提取JSON数组
+            import re
+            array_match = re.search(r'\[.*\]', content, re.DOTALL)
+            if array_match:
+                try:
+                    return json.loads(array_match.group())
+                except:
+                    pass
+            return []
+
 
 if __name__ == "__main__":
     # 测试代码

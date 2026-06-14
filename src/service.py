@@ -109,7 +109,8 @@ class ScenarioService:
         self,
         hot_limit: int = None,
         scene_limit: int = None,
-        progress_callback: Optional[Callable] = None
+        progress_callback: Optional[Callable] = None,
+        auto_save: bool = True
     ) -> Dict:
         """运行完整管道，支持进度回调
 
@@ -117,16 +118,17 @@ class ScenarioService:
             hot_limit: 每个平台获取的热点数量
             scene_limit: 最多生成多少个场景
             progress_callback: 进度回调函数，签名为 callback(event_type, *args)
+            auto_save: 是否自动保存场景（启用智能去重）
 
         Returns:
-            完整的处理结果
+            完整的处理结果，包含去重信息
         """
         if hot_limit is None:
             hot_limit = Config.HOT_FETCH_LIMIT
         if scene_limit is None:
             scene_limit = 5
 
-        results = {'hot_topics': {}, 'scenes': [], 'summary': {}}
+        results = {'hot_topics': {}, 'scenes': [], 'summary': {}, 'saved': 0, 'skipped': 0, 'skipped_scenes': []}
 
         # 步骤1: 抓取热点
         if progress_callback:
@@ -171,7 +173,7 @@ class ScenarioService:
 
             scene_data = self.scene_mining.llm.generate_scene(topic)
             if scene_data and scene_data.get('scene_name'):
-                scene = self.scene_mining._create_scene_object(topic, scene_data)
+                scene = self.scene_mining._create_scene_object(topic, scene_data, source='hotspot', source_detail=topic)
                 results['scenes'].append(scene)
                 print(f"   ✅ 场景: {scene['scene_name']}")
 
@@ -200,23 +202,55 @@ class ScenarioService:
             if progress_callback:
                 progress_callback('matching_start', scene['scene_name'], len(keywords))
 
-            matched = self.product_matching.match_products(keywords)
+            matched = self.product_matching.match_products(keywords, group_by_category=True)
+
+            # 构建结构化的商品关联
             scene['matched_products'] = matched
+            scene['product_summary'] = {
+                'total_count': sum(group['product_count'] for group in matched),
+                'category_count': len(matched),
+                'categories': [group['category'] for group in matched]
+            }
 
             if progress_callback:
-                progress_callback('matching_done', scene['scene_name'], len(matched))
+                progress_callback('matching_done', scene['scene_name'], scene['product_summary']['total_count'])
 
-        # 步骤4: 完成
+        # 步骤4: 自动保存场景（智能去重）
         if progress_callback:
-            progress_callback('step', 4, 4, '【步骤 4/4】处理完成!')
-            progress_callback('complete', '✅ 所有处理已完成!')
+            progress_callback('step', 4, 4, '【步骤 4/4】保存场景并完成...')
+
+        print(f"\n【步骤 4/4】保存场景...")
+
+        if auto_save and results['scenes']:
+            save_result = self.scene_mining._save_scenes(results['scenes'], auto_deduplicate=True)
+            results['saved'] = save_result['saved']
+            results['skipped'] = save_result['skipped']
+            results['skipped_scenes'] = save_result['skipped_scenes']
+
+            if progress_callback:
+                progress_callback('info', f"💾 保存结果: 新增 {save_result['saved']} 个场景，跳过 {save_result['skipped']} 个重复场景")
+
+            # 打印跳过的场景详情
+            if results['skipped_scenes']:
+                print(f"\n⚠️  跳过的重复场景:")
+                for skipped in results['skipped_scenes']:
+                    print(f"   - {skipped['scene_name']} (与「{skipped['duplicate_of']}」重复: {skipped['reason']})")
+        else:
+            results['saved'] = 0
+            results['skipped'] = len(results['scenes'])
+
+        # 完成
+        if progress_callback:
+            progress_callback('complete', f'✅ 所有处理已完成! 新增 {results["saved"]} 个场景，跳过 {results["skipped"]} 个重复场景')
 
         # 汇总结果
         results['summary'] = {
             'baidu_count': len(hot_data.get('baidu_hot', [])),
             'total_hot': len(hot_data.get('all_hot', [])),
             'scenes_generated': len(results['scenes']),
-            'products_matched': sum(len(s.get('matched_products', [])) for s in results['scenes'])
+            'products_matched': sum(s.get('product_summary', {}).get('total_count', 0) for s in results['scenes']),
+            'scenes_saved': results['saved'],
+            'scenes_skipped': results['skipped']
         }
 
         results['success'] = True
@@ -229,49 +263,116 @@ class ScenarioService:
         print(f"   - 热点信息: {results['summary']['total_hot']} 条")
         print(f"   - 生成场景: {results['summary']['scenes_generated']} 个")
         print(f"   - 匹配商品: {results['summary']['products_matched']} 个")
+        print(f"   - 新增场景: {results['saved']} 个")
+        print(f"   - 跳过重复: {results['skipped']} 个")
         print("=" * 50 + "\n")
 
         return results
 
-    def submit_scene(self, scene_name: str) -> Dict:
+    def submit_scene(self, scene_name: str, generate_multiple: bool = False, scene_count: int = 5) -> Dict:
         """人工提报场景并自动补全
 
         Args:
-            scene_name: 场景名称
+            scene_name: 场景名称/主题
+            generate_multiple: 是否生成多个场景
+            scene_count: 生成场景的数量
 
         Returns:
             包含生成场景或错误信息的字典
         """
         print(f"\n✍️ 人工提报场景: {scene_name}")
 
-        # 使用 LLM 生成完整场景
-        scene_data = self.scene_mining.llm.generate_scene(scene_name)
+        if generate_multiple:
+            # 使用 LLM 生成多个场景
+            scenes_data = self.scene_mining.llm.generate_multiple_scenes(scene_name, count=scene_count)
 
-        if not scene_data or not scene_data.get('scene_name'):
-            print("❌ 场景生成失败")
-            return {'success': False, 'error': '场景生成失败，请稍后重试'}
+            if not scenes_data:
+                print("❌ 场景生成失败")
+                return {'success': False, 'error': '场景生成失败，请稍后重试'}
 
-        # 创建场景对象
-        scene = self.scene_mining._create_scene_object(
-            source_topic=f"人工提报: {scene_name}",
-            scene_data=scene_data,
-            source='manual',
-            source_detail=scene_name
-        )
+            scenes = []
+            for scene_data in scenes_data:
+                # 创建场景对象
+                scene = self.scene_mining._create_scene_object(
+                    source_topic=f"人工提报: {scene_name}",
+                    scene_data=scene_data,
+                    source='manual',
+                    source_detail=scene_name
+                )
 
-        print(f"✅ 场景生成成功: {scene['scene_name']}")
+                # 匹配商品（按品类分组）
+                keywords = scene.get('potential_keywords', [])
+                matched = self.product_matching.match_products(keywords, group_by_category=True)
 
-        # 匹配商品
-        keywords = scene.get('potential_keywords', [])
-        matched = self.product_matching.match_products(keywords)
-        scene['matched_products'] = matched
+                # 构建结构化的商品关联
+                scene['matched_products'] = matched
+                scene['product_summary'] = {
+                    'total_count': sum(group['product_count'] for group in matched),
+                    'category_count': len(matched),
+                    'categories': [group['category'] for group in matched]
+                }
 
-        print(f"🛍️ 匹配到 {len(matched)} 个相关商品")
+                scenes.append(scene)
+                print(f"   ✅ {scene['scene_name']}")
 
-        return {
-            'success': True,
-            'scene': scene
-        }
+            print(f"✅ 成功生成 {len(scenes)} 个场景")
+
+            return {
+                'success': True,
+                'scenes': scenes,
+                'total': len(scenes)
+            }
+        else:
+            # 使用 LLM 生成单个场景
+            scene_data = self.scene_mining.llm.generate_scene(scene_name)
+
+            if not scene_data or not scene_data.get('scene_name'):
+                print("❌ 场景生成失败")
+                return {'success': False, 'error': '场景生成失败，请稍后重试'}
+
+            # 创建场景对象
+            scene = self.scene_mining._create_scene_object(
+                source_topic=f"人工提报: {scene_name}",
+                scene_data=scene_data,
+                source='manual',
+                source_detail=scene_name
+            )
+
+            print(f"✅ 场景生成成功: {scene['scene_name']}")
+
+            # 匹配商品（按品类分组）
+            keywords = scene.get('potential_keywords', [])
+            matched = self.product_matching.match_products(keywords, group_by_category=True)
+
+            # 构建结构化的商品关联
+            scene['matched_products'] = matched
+            scene['product_summary'] = {
+                'total_count': sum(group['product_count'] for group in matched),
+                'category_count': len(matched),
+                'categories': [group['category'] for group in matched]
+            }
+
+            print(f"🛍️ 匹配到 {scene['product_summary']['total_count']} 个相关商品，{scene['product_summary']['category_count']} 个品类")
+
+            return {
+                'success': True,
+                'scene': scene
+            }
+
+    def save_scenes_batch(self, scenes: List[Dict]) -> Dict:
+        """批量保存场景到场景库
+
+        Args:
+            scenes: 场景列表
+
+        Returns:
+            保存结果字典
+        """
+        if not scenes:
+            return {'saved': 0, 'skipped': 0, 'skipped_scenes': []}
+
+        result = self.scene_mining._save_scenes(scenes, auto_deduplicate=True)
+        return result
 
     def save_scene(self, scene: Dict) -> bool:
         """保存单个场景到场景库
@@ -356,16 +457,104 @@ class ScenarioService:
 
         return stats
 
-    def generate_seasonal_scenes(self, progress_callback=None) -> List[Dict]:
+    def generate_seasonal_scenes(
+        self,
+        progress_callback=None,
+        auto_save: bool = True,
+        scenes_per_event: int = 5,
+        start_date=None,
+        end_date=None
+    ) -> Dict:
         """生成时节场景
 
         Args:
             progress_callback: 进度回调函数
+            auto_save: 是否自动保存（启用智能去重）
+            scenes_per_event: 每个时节事件生成的场景数量
+            start_date: 开始日期（datetime 对象），如果不指定则使用默认范围
+            end_date: 结束日期（datetime 对象），如果不指定则使用默认范围
 
         Returns:
-            生成的场景列表
+            包含场景和去重信息的字典
         """
-        return self.seasonal_perception.generate_seasonal_scenes(progress_callback)
+        print("\n📅 开始时节场景生成...")
+
+        # 获取时节事件
+        if start_date and end_date:
+            # 使用用户指定的日期范围
+            events = self.seasonal_perception.get_events_in_range(start_date, end_date)
+            print(f"📅 使用自定义日期范围: {start_date.strftime('%Y-%m-%d')} 至 {end_date.strftime('%Y-%m-%d')}")
+        else:
+            # 使用默认范围（当前时间附近）
+            events = self.seasonal_perception.get_current_seasonal_events()
+
+        if not events:
+            print("⚠️  当前时节无相关事件")
+            return {'scenes': [], 'saved': 0, 'skipped': 0, 'skipped_scenes': []}
+
+        scenes = []
+        total_events = len(events)
+
+        for idx, event in enumerate(events, 1):
+            event_name = event['name']
+            days_until = event['days_until']
+
+            print(f"[{idx}/{total_events}] 处理时节事件: {event_name}（生成 {scenes_per_event} 个场景）")
+
+            if progress_callback:
+                progress_callback('processing', idx, total_events, event_name)
+
+            # 使用LLM生成多个场景
+            scenes_data = self.scene_mining.llm.generate_multiple_scenes(event_name, count=scenes_per_event)
+
+            if scenes_data:
+                event_date = event['date_obj']
+                temporal_scope_base = self.seasonal_perception._calculate_temporal_scope(event_date, days_until)
+
+                # 为每个场景数据创建场景对象
+                for scene_data in scenes_data:
+                    scene = self.scene_mining._create_scene_object(
+                        source_topic=f"时节事件: {event_name}",
+                        scene_data=scene_data,
+                        source='seasonal',
+                        source_detail=event_name
+                    )
+
+                    # 覆盖时节相关字段
+                    # 如果LLM生成的时间范围看起来不合理，使用时节的默认范围
+                    if '全年' in scene_data.get('temporal_scope', '') or '未知' in scene_data.get('temporal_scope', ''):
+                        scene['temporal_scope'] = temporal_scope_base
+
+                    scene['seasonal_event'] = {
+                        'name': event_name,
+                        'date': event['date'],
+                        'days_until': days_until,
+                        'type': event.get('type', 'traditional')
+                    }
+
+                    # 匹配商品
+                    keywords = scene.get('potential_keywords', [])
+                    matched = self.product_matching.match_products(keywords)
+                    scene['matched_products'] = matched
+
+                    scenes.append(scene)
+                    print(f"   ✅ {scene['scene_name']}")
+            else:
+                print(f"   ⚠️  场景生成失败")
+
+        print(f"\n📊 时节场景生成完成: {len(scenes)}/{total_events * scenes_per_event}")
+
+        # 自动保存（启用智能去重）
+        save_result = {'saved': 0, 'skipped': 0, 'skipped_scenes': []}
+        if scenes and auto_save:
+            save_result = self.scene_mining._save_scenes(scenes, auto_deduplicate=True)
+            print(f"💾 保存结果: 新增 {save_result['saved']} 个场景，跳过 {save_result['skipped']} 个重复场景")
+
+        return {
+            'scenes': scenes,
+            'total': len(scenes),
+            **save_result
+        }
 
     def get_seasonal_statistics(self) -> Dict:
         """获取时节统计信息
@@ -411,23 +600,6 @@ class ScenarioService:
             limit = Config.HOT_FETCH_LIMIT
 
         return self.hot_perception.fetch_all_hot_topics(limit=limit)
-
-    def get_cached_result(self) -> Dict:
-        """获取缓存的处理结果
-
-        Returns:
-            缓存的结果数据
-        """
-        import json
-        import os
-
-        result = {
-            'hot_topics': self.hot_perception.load_cached_topics(),
-            'scenes': self.scene_mining.load_scenes(),
-            'products': self.product_matching.products
-        }
-
-        return result
 
     def health_check(self) -> Dict:
         """系统健康检查

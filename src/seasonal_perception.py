@@ -37,20 +37,17 @@ class SeasonalPerception:
             print(f"⚠️  加载节日数据失败: {e}")
             return {'traditional_festivals': [], 'modern_festivals': [], 'solar_terms': []}
 
-    def get_current_seasonal_events(self, days_before: int = 7, days_after: int = 30) -> List[Dict]:
-        """获取当前时节相关的所有事件（节日、节气）
+    def get_events_in_range(self, start_date: datetime, end_date: datetime) -> List[Dict]:
+        """获取指定日期范围内的时节事件（节日、节气）
 
         Args:
-            days_before: 向前查找天数
-            days_after: 向后查找天数
+            start_date: 开始日期
+            end_date: 结束日期
 
         Returns:
             时节事件列表
         """
         today = datetime.now()
-        start_date = today - timedelta(days=days_before)
-        end_date = today + timedelta(days=days_after)
-
         events = []
 
         # 合并所有节日和节气
@@ -68,6 +65,28 @@ class SeasonalPerception:
                     'date_obj': event_date,
                     'days_until': (event_date - today).days
                 })
+
+        # 按日期排序
+        events.sort(key=lambda x: x['date_obj'])
+
+        return events
+
+    def get_current_seasonal_events(self, days_before: int = 7, days_after: int = 30) -> List[Dict]:
+        """获取当前时节相关的所有事件（节日、节气）
+
+        Args:
+            days_before: 向前查找天数
+            days_after: 向后查找天数
+
+        Returns:
+            时节事件列表
+        """
+        today = datetime.now()
+        start_date = today - timedelta(days=days_before)
+        end_date = today + timedelta(days=days_after)
+
+        # 复用 get_events_in_range 方法
+        events = self.get_events_in_range(start_date, end_date)
 
         # 按距离天数排序
         events.sort(key=lambda x: abs(x['days_until']))

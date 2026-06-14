@@ -51,6 +51,8 @@ htmlcov/
 .ipynb_checkpoints/
 
 # 本地文档（不提交到 GitHub）
+CHANGELOG.md
 CLAUDE.md
 DEVELOPMENT_GUIDE.md
 project.md
+INTERVIEW_GUIDE.md

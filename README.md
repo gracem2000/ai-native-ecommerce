@@ -1,12 +1,16 @@
 # ⚡ 时空场景自动供给系统
 
+[![Version](https://img.shields.io/badge/version-1.1.0-blue)](CHANGELOG.md)
+[![Python](https://img.shields.io/badge/python-3.10+-green)](https://python.org)
+[![License](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
+
 > 基于 LLM 的电商场景智能供给系统，展示从"热点感知"到"交易闭环"的 AI-Native 能力
 
 ---
 
 ## 📋 项目简介
 
-本项目是一个 AI-Native 演示系统，通过引入 GLM 大模型，重构传统电商供给链路。将 LLM 作为系统的"感知器官"和"推理大脑"，实现对外部热点的毫秒级响应，自动构建时空场景并完成商品匹配。
+本项目是一个 AI-Native 演示系统，通过引入智谱 GLM 大模型，重构传统电商供给链路。将 LLM 作为系统的"感知器官"和"推理大脑"，实现对外部热点的毫秒级响应，自动构建时空场景并完成商品匹配。
 
 ### 核心能力
 
@@ -14,6 +18,8 @@
 - **📅 季节感知**: 基于时间、节日自动生成季节性购物场景
 - **🎯 场景挖掘**: LLM 将非结构化的新闻转化为结构化的购物场景
 - **🛍️ 商品匹配**: 基于场景关键词自动关联商品库
+- **🔄 智能去重**: 基于内容相似度自动过滤重复场景
+- **📚 场景管理**: 统一的场景库管理界面
 
 ---
 
@@ -112,29 +118,34 @@
 
 应用首页展示三大场景来源入口：
 
-- **📅 时节场景** - 基于传统节日、二十四节气自动生成周期性购物场景
-- **🔥 热点追踪** - 实时抓取百度热搜，LLM 自动转化为购物场景
-- **✍️ 人工提报** - 运营人员手动提报场景，系统自动补全完整信息
+- **📅 时节场景** - 基于传统节日、二十四节气自动生成周期性购物场景（支持多场景生成）
+- **🔥 热点追踪** - 实时抓取百度热搜，LLM 自动转化为购物场景（自动保存）
+- **✍️ 人工提报** - 手动提报场景主题，系统自动生成多个场景（如端午送礼、端午出游等）
+- **📚 场景库管理** - 统一管理所有场景，支持编辑、删除、筛选
 
 ### 时节场景
 
-选择日期范围，系统自动生成覆盖到的所有节日、节气相关场景。每个场景可预览、编辑、重新生成或跳过。
+- 选择日期范围和每个节日生成场景数（1-15个）
+- 系统为每个节日/节气生成多个不同角度的购物场景
+- 例如：端午节可生成 → 端午送礼、端午出游、自制粽子、端午祈福等多个场景
+- 智能去重后自动保存，可直接在场景库管理中编辑
 
 ### 热点追踪
 
-设置热点数量和生成场景数量，点击"开始抓取"自动：
-1. 抓取百度实时热搜
-2. LLM 生成购物场景
-3. 匹配相关商品
-4. 进入审核流程
+- 设置热点数量和生成场景数量
+- 点击"开始抓取"自动：
+  1. 抓取百度实时热搜
+  2. LLM 生成购物场景
+  3. 匹配相关商品
+  4. 智能去重后自动保存
+- 显示生成结果：新增场景数、跳过重复数
 
 ### 人工提报
 
-输入场景名称（如"世界杯观赛"），系统自动补全：
-- 场景描述和用户意图
-- 时间和空间范围
-- 目标人群和潜在商品
-- 关键词
+- 输入场景主题（如"端午节"、"春节"）
+- 勾选"生成多个场景"并设置数量（3-15个）
+- 系统自动生成多个不同角度的场景并保存
+- 例如：输入"世界杯"可生成 → 观赛零食、球队周边、聚会用品等场景
 
 ### 场景库管理
 
@@ -152,14 +163,26 @@ from src.service import get_service
 # 获取服务实例
 service = get_service()
 
-# 生成时节场景
-seasonal_scenes = service.generate_seasonal_scenes()
+# 生成时节场景（每个事件生成多个场景）
+result = service.generate_seasonal_scenes(auto_save=True, scenes_per_event=5)
+print(f"新增: {result['saved']}, 跳过: {result['skipped']}")
 
-# 运行热点追踪管道
-result = service.run_full_pipeline(hot_limit=10, scene_limit=5)
+# 运行热点追踪管道（自动保存）
+result = service.run_full_pipeline_with_progress(
+    hot_limit=10,
+    scene_limit=5,
+    auto_save=True
+)
 
-# 人工提报场景
-result = service.submit_scene("春节年货采购")
+# 人工提报场景（生成多个场景）
+result = service.submit_scene(
+    scene_name="端午节",
+    generate_multiple=True,
+    scene_count=5
+)
+
+# 批量保存场景
+save_result = service.save_scenes_batch(scenes)
 
 # 获取统计数据
 source_stats = service.get_source_statistics()
@@ -184,9 +207,15 @@ seasonal_stats = service.get_seasonal_statistics()
 
 ### 3. 场景挖掘 (SceneMining)
 
-- LLM 驱动：使用 GLM-5.1 理解热点并生成场景
-- 结构化输出：场景名称、类型、时间范围、关键词等
-- 数据持久化：自动保存到 `data/scenarios.json`
+- **多场景生成**: 一个主题可生成多个不同角度的场景
+- **智能去重**: 基于内容相似度自动过滤重复场景
+  - 场景名称相似度（75%）
+  - 触发事件相似度（75%）
+  - 关键词重叠度（60%）
+  - 时间窗口判断（24小时内）
+- **LLM 驱动**: 使用 GLM-5.1 理解热点并生成场景
+- **结构化输出**: 场景名称、类型、时间范围、关键词等
+- **数据持久化**: 自动保存到 `data/scenarios.json`
 
 ### 4. 商品匹配 (ProductMatching)
 
@@ -278,6 +307,10 @@ A: 可以使用 APScheduler 或系统 cron 任务定时调用服务。
 ## 📝 License
 
 MIT License
+
+## 📋 更新日志
+
+查看 [CHANGELOG.md](CHANGELOG.md) 了解版本更新历史。
 
 ---
 

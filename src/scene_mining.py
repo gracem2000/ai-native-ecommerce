@@ -3,8 +3,11 @@
 使用 LLM 将热点话题转化为购物场景
 """
 import json
-from datetime import datetime
-from typing import List, Dict, Optional
+from datetime import datetime, timedelta
+from typing import List, Dict, Optional, Tuple
+from difflib import SequenceMatcher
+import random
+import string
 from src.llm_client import GLMClient
 from src.config import Config
 
@@ -20,6 +23,137 @@ class SceneMining:
         """
         self.llm = llm_client or GLMClient()
         self.scenes = []
+        # 去重阈值配置
+        self.SIMILARITY_THRESHOLD = 0.75  # 相似度阈值
+        self.TIME_WINDOW_HOURS = 24  # 时间窗口（小时）
+        # 场景计数器，用于生成唯一ID
+        self._scene_counter = 0
+
+    def _generate_unique_scene_id(self) -> str:
+        """生成唯一的场景ID
+
+        Returns:
+            唯一的场景ID
+        """
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        # 使用毫秒级时间戳 + 随机字符串确保唯一性
+        microseconds = datetime.now().microsecond
+        random_str = ''.join(random.choices(string.ascii_lowercase + string.digits, k=4))
+        self._scene_counter += 1
+        return f"scene_{timestamp}_{microseconds}_{random_str}_{self._scene_counter}"
+
+    def _calculate_text_similarity(self, text1: str, text2: str) -> float:
+        """计算两个文本的相似度
+
+        Args:
+            text1: 第一个文本
+            text2: 第二个文本
+
+        Returns:
+            相似度分数 (0-1)
+        """
+        if not text1 or not text2:
+            return 0.0
+        return SequenceMatcher(None, text1.lower(), text2.lower()).ratio()
+
+    def _calculate_keyword_overlap(self, keywords1: List[str], keywords2: List[str]) -> float:
+        """计算关键词重叠度
+
+        Args:
+            keywords1: 第一个关键词列表
+            keywords2: 第二个关键词列表
+
+        Returns:
+            重叠度分数 (0-1)
+        """
+        if not keywords1 or not keywords2:
+            return 0.0
+
+        set1 = set(kw.lower() for kw in keywords1)
+        set2 = set(kw.lower() for kw in keywords2)
+
+        intersection = set1 & set2
+        union = set1 | set2
+
+        return len(intersection) / len(union) if union else 0.0
+
+    def _is_within_time_window(self, scene1: Dict, scene2: Dict) -> bool:
+        """检查两个场景是否在时间窗口内
+
+        Args:
+            scene1: 第一个场景
+            scene2: 第二个场景
+
+        Returns:
+            是否在时间窗口内
+        """
+        try:
+            time1 = datetime.fromisoformat(scene1.get('created_at', ''))
+            time2 = datetime.fromisoformat(scene2.get('created_at', ''))
+            time_diff = abs(time1 - time2)
+            return time_diff <= timedelta(hours=self.TIME_WINDOW_HOURS)
+        except:
+            return True  # 如果无法解析时间，保守处理
+
+    def _is_scene_similar(self, new_scene: Dict, existing_scene: Dict) -> Tuple[bool, str]:
+        """检查两个场景是否相似
+
+        Args:
+            new_scene: 新场景
+            existing_scene: 已存在的场景
+
+        Returns:
+            (是否相似, 相似原因)
+        """
+        # 1. 检查场景名称相似度
+        name_similarity = self._calculate_text_similarity(
+            new_scene.get('scene_name', ''),
+            existing_scene.get('scene_name', '')
+        )
+
+        if name_similarity >= self.SIMILARITY_THRESHOLD:
+            return True, f"场景名称相似 ({name_similarity:.2%})"
+
+        # 2. 检查触发事件相似度
+        trigger_similarity = self._calculate_text_similarity(
+            new_scene.get('trigger_event', ''),
+            existing_scene.get('trigger_event', '')
+        )
+
+        if trigger_similarity >= self.SIMILARITY_THRESHOLD:
+            return True, f"触发事件相似 ({trigger_similarity:.2%})"
+
+        # 3. 检查关键词重叠度（高权重）
+        keyword_overlap = self._calculate_keyword_overlap(
+            new_scene.get('potential_keywords', []),
+            existing_scene.get('potential_keywords', [])
+        )
+
+        if keyword_overlap >= 0.6:  # 关键词重叠60%以上认为相似
+            return True, f"关键词重叠度高 ({keyword_overlap:.2%})"
+
+        # 4. 综合判断：如果名称+触发事件都中等相似，且在时间窗口内
+        if (name_similarity >= 0.5 and trigger_similarity >= 0.5 and
+            self._is_within_time_window(new_scene, existing_scene)):
+            return True, f"综合相似且时间相近 (名称:{name_similarity:.2%}, 事件:{trigger_similarity:.2%})"
+
+        return False, ""
+
+    def _check_duplicate_scene(self, new_scene: Dict, existing_scenes: List[Dict]) -> Tuple[bool, Optional[Dict], str]:
+        """检查新场景是否与已有场景重复
+
+        Args:
+            new_scene: 新场景
+            existing_scenes: 已有场景列表
+
+        Returns:
+            (是否重复, 重复的场景对象, 原因)
+        """
+        for existing_scene in existing_scenes:
+            is_similar, reason = self._is_scene_similar(new_scene, existing_scene)
+            if is_similar:
+                return True, existing_scene, reason
+        return False, None, ""
 
     def mine_from_hot_topics(
         self,
@@ -73,8 +207,6 @@ class SceneMining:
         Returns:
             完整的场景对象
         """
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-
         # 来源映射到中文
         source_type_map = {
             'seasonal': '时节',
@@ -83,7 +215,7 @@ class SceneMining:
         }
 
         return {
-            'scene_id': f"scene_{timestamp}",
+            'scene_id': self._generate_unique_scene_id(),
             'source': source,
             'source_type': source_type_map.get(source, '热点'),
             'source_detail': source_detail or source_topic,
@@ -100,12 +232,25 @@ class SceneMining:
             'confidence': 0.8  # 默认置信度
         }
 
-    def _save_scenes(self, scenes: List[Dict]):
-        """保存场景到文件
+    def _save_scenes(self, scenes: List[Dict], auto_deduplicate: bool = True) -> Dict[str, any]:
+        """保存场景到文件（支持智能去重）
 
         Args:
             scenes: 要保存的场景列表
+            auto_deduplicate: 是否启用智能去重
+
+        Returns:
+            保存结果字典，包含：
+            - saved: 成功保存的场景数量
+            - skipped: 跳过的场景数量
+            - skipped_scenes: 跳过的场景详情列表
         """
+        result = {
+            'saved': 0,
+            'skipped': 0,
+            'skipped_scenes': []
+        }
+
         try:
             import os
             os.makedirs(os.path.dirname(Config.SCENARIOS_PATH), exist_ok=True)
@@ -118,10 +263,39 @@ class SceneMining:
             except FileNotFoundError:
                 pass
 
-            # 合并场景（去重）
-            existing_scene_ids = {s['scene_id'] for s in existing_scenes}
-            new_scenes = [s for s in scenes if s['scene_id'] not in existing_scene_ids]
+            # 过滤要保存的场景
+            new_scenes = []
 
+            for scene in scenes:
+                if auto_deduplicate:
+                    # 智能去重检查
+                    is_duplicate, duplicate_scene, reason = self._check_duplicate_scene(scene, existing_scenes)
+
+                    if is_duplicate:
+                        result['skipped'] += 1
+                        result['skipped_scenes'].append({
+                            'scene_name': scene.get('scene_name', 'Unknown'),
+                            'duplicate_of': duplicate_scene.get('scene_name', 'Unknown'),
+                            'reason': reason
+                        })
+                        print(f"⚠️  跳过重复场景: {scene.get('scene_name')} - {reason}")
+                        continue
+
+                # 检查 scene_id 去重（最后的防线）
+                existing_scene_ids = {s['scene_id'] for s in existing_scenes + new_scenes}
+                if scene['scene_id'] not in existing_scene_ids:
+                    new_scenes.append(scene)
+                else:
+                    # scene_id 重复，计入跳过统计
+                    result['skipped'] += 1
+                    result['skipped_scenes'].append({
+                        'scene_name': scene.get('scene_name', 'Unknown'),
+                        'duplicate_of': '已有场景（ID重复）',
+                        'reason': '场景ID已存在（可能是同时生成导致）'
+                    })
+                    print(f"⚠️  跳过重复场景: {scene.get('scene_name')} - 场景ID已存在")
+
+            # 保存新场景
             if new_scenes:
                 merged_scenes = existing_scenes + new_scenes
 
@@ -129,11 +303,18 @@ class SceneMining:
                     json.dump(merged_scenes, f, ensure_ascii=False, indent=2)
 
                 print(f"💾 场景数据已保存 ({len(new_scenes)} 条新增)")
+                result['saved'] = len(new_scenes)
             else:
-                print("💾 所有场景已存在，无需保存")
+                print("💾 所有场景已存在或重复，无需保存")
+
+            # 如果有跳过的场景，打印汇总
+            if result['skipped'] > 0:
+                print(f"📊 去重汇总: 跳过 {result['skipped']} 个重复场景")
 
         except Exception as e:
             print(f"⚠️  保存场景失败: {e}")
+
+        return result
 
     def load_scenes(self) -> List[Dict]:
         """加载所有已保存的场景

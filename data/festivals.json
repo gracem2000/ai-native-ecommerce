@@ -50,10 +50,10 @@
       "target_population": "老年人、登山爱好者"
     },
     {
-      "name": "除夕",
-      "date": "12-30",
-      "description": "农历年末，团圆聚餐",
-      "keywords": ["年货", "年夜饭", "春联", "烟花"],
+      "name": "春节",
+      "date": "01-29",
+      "description": "农历新年，传统最重要的节日",
+      "keywords": ["年货", "年夜饭", "春联", "红包", "烟花"],
       "target_population": "全体家庭成员"
     }
   ],

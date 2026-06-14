@@ -21,7 +21,6 @@ class Config:
 
     # 数据文件路径
     PRODUCT_DB_PATH = os.path.join(DATA_DIR, "mock_products.json")
-    HOT_TOPICS_PATH = os.path.join(DATA_DIR, "hot_topics.json")
     SCENARIOS_PATH = os.path.join(DATA_DIR, "scenarios.json")
     FESTIVALS_PATH = os.path.join(DATA_DIR, "festivals.json")
 

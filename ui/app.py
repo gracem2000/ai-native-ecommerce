@@ -1,5 +1,6 @@
 """
 时空场景自动供给系统 - Streamlit 前端应用
+参考智谱AI开放平台设计风格
 """
 import streamlit as st
 import sys
@@ -10,86 +11,26 @@ from typing import Dict
 
 # 设置页面配置 - 在所有其他内容之前
 st.set_page_config(
-    page_title="时空场景自动供给系统",
-    page_icon="⚡",
+    page_title="AI场景供给系统",
+    page_icon="🎯",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="expanded"
 )
 
 # 添加项目根目录到路径
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# 自定义CSS
-st.markdown("""
-<style>
-    .main-header {
-        font-size: 2.5rem;
-        font-weight: bold;
-        text-align: center;
-        color: #1f77b4;
-        padding: 1rem;
-    }
-    .metric-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1rem;
-        border-radius: 0.5rem;
-        color: white;
-    }
-    .scene-card {
-        border: 1px solid #ddd;
-        border-radius: 0.5rem;
-        padding: 1rem;
-        margin: 0.5rem 0;
-        background: #f8f9fa;
-    }
-    .product-card {
-        border: 1px solid #e0e0e0;
-        border-radius: 0.5rem;
-        padding: 1rem;
-        margin: 0.5rem 0;
-        background: white;
-        transition: box-shadow 0.3s;
-    }
-    .product-card:hover {
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .keyword-tag {
-        display: inline-block;
-        background: #e3f2fd;
-        color: #1976d2;
-        padding: 0.25rem 0.75rem;
-        border-radius: 1rem;
-        margin: 0.25rem;
-        font-size: 0.875rem;
-    }
-    .hero-card {
-        background: white;
-        border-radius: 1rem;
-        padding: 2rem;
-        margin: 1rem 0;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        transition: transform 0.3s, box-shadow 0.3s;
-        cursor: pointer;
-        border: 1px solid #f0f0f0;
-    }
-    .hero-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-    }
-    .feature-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-    }
-    .stat-box {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-radius: 1rem;
-        padding: 1.5rem;
-        color: white;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-    }
-</style>
-""", unsafe_allow_html=True)
+# 加载外部CSS样式
+def load_css():
+    css_path = os.path.join(os.path.dirname(__file__), "style.css")
+    try:
+        with open(css_path, 'r', encoding='utf-8') as f:
+            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    except:
+        # 如果CSS文件不存在，使用内联样式
+        pass
+
+load_css()
 
 
 @st.cache_resource
@@ -103,217 +44,323 @@ def render_homepage():
     """渲染高端首页展示"""
     service = get_service()
 
-    # 主标题区域
-    st.markdown("""
-    <div style="text-align: center; padding: 2rem 0;">
-        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚡ 时空场景自动供给系统</h1>
-        <p style="font-size: 1.2rem; color: #666;">从热点感知到交易闭环的 AI-Native 场景供给平台</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("---")
-
     # 获取统计数据
     source_stats = service.get_source_statistics()
     seasonal_stats = service.get_seasonal_statistics()
+    health = service.health_check()
+    product_count = health['details']['products_loaded']
+    total_scenes = source_stats['seasonal']['count'] + source_stats['hotspot']['count'] + source_stats['manual']['count']
 
-    # 数据概览
-    col1, col2, col3, col4 = st.columns(4)
+    # 主标题区域 - 紧凑设计
+    st.markdown("""
+    <div style="text-align: center; padding: 2rem 0 1.5rem 0;">
+        <h1 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #1f2937; font-weight: 600;">电商场景智能供给系统</h1>
+        <p style="font-size: 0.95rem; color: #6b7280; max-width: 500px; margin: 0 auto; line-height: 1.5;">
+            将 LLM 作为"感知大脑"，自动完成从场景识别到商品推荐的智能闭环
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
-    with col1:
-        st.markdown(f"""
-        <div class="stat-box">
-            <div style="font-size: 2rem;">📅</div>
-            <div style="font-size: 1.5rem; font-weight: bold;">{source_stats['seasonal']['count']}</div>
-            <div style="font-size: 0.9rem; opacity: 0.9;">时节场景</div>
+    # 统计数据卡片 - 紧凑设计
+    st.markdown(f'''
+    <div style="
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1rem auto 2rem auto;
+        max-width: 900px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    ">
+        <div style="display: flex; justify-content: space-around; text-align: center;">
+            <div>
+                <div style="font-size: 0.75rem; color: #6b7280;">场景总数</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{total_scenes}</div>
+            </div>
+            <div style="width: 1px; background: #e5e7eb;"></div>
+            <div>
+                <div style="font-size: 0.75rem; color: #6b7280;">时节场景</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{source_stats['seasonal']['count']}</div>
+            </div>
+            <div style="width: 1px; background: #e5e7eb;"></div>
+            <div>
+                <div style="font-size: 0.75rem; color: #6b7280;">热点场景</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{source_stats['hotspot']['count']}</div>
+            </div>
+            <div style="width: 1px; background: #e5e7eb;"></div>
+            <div>
+                <div style="font-size: 0.75rem; color: #6b7280;">人工提报</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{source_stats['manual']['count']}</div>
+            </div>
+            <div style="width: 1px; background: #e5e7eb;"></div>
+            <div>
+                <div style="font-size: 0.75rem; color: #6b7280;">商品库</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{product_count}</div>
+            </div>
         </div>
-        """, unsafe_allow_html=True)
+    </div>
+    ''', unsafe_allow_html=True)
 
-    with col2:
-        st.markdown(f"""
-        <div class="stat-box">
-            <div style="font-size: 2rem;">🔥</div>
-            <div style="font-size: 1.5rem; font-weight: bold;">{source_stats['hotspot']['count']}</div>
-            <div style="font-size: 0.9rem; opacity: 0.9;">热点场景</div>
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown('<h2 style="text-align: center; margin: 1rem 0 1.5rem 0; font-size: 1.5rem;">三大场景来源</h2>', unsafe_allow_html=True)
 
-    with col3:
-        st.markdown(f"""
-        <div class="stat-box">
-            <div style="font-size: 2rem;">✍️</div>
-            <div style="font-size: 1.5rem; font-weight: bold;">{source_stats['manual']['count']}</div>
-            <div style="font-size: 0.9rem; opacity: 0.9;">人工场景</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col4:
-        st.markdown(f"""
-        <div class="stat-box">
-            <div style="font-size: 2rem;">📦</div>
-            <div style="font-size: 1.5rem; font-weight: bold;">30</div>
-            <div style="font-size: 0.9rem; opacity: 0.9;">商品库</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.markdown("---")
-    st.markdown('<div style="text-align: center; font-size: 1.5rem; font-weight: bold; margin: 2rem 0;">🎯 三大场景来源</div>', unsafe_allow_html=True)
-
-    # 三大来源入口卡片
+    # 三大来源入口卡片 - 现代化设计
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.markdown(f"""
-        <div class="hero-card" onclick="document.querySelector('[data-testid=\\"stButton\\"]').click()">
-            <div class="feature-icon">📅</div>
-            <h3 style="color: #667eea; margin-bottom: 0.5rem;">时节场景</h3>
-            <p style="color: #666; margin-bottom: 1rem;">
+        st.markdown(f'''
+        <div class="hero-card">
+            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">📅</div>
+            <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">时节场景</h3>
+            <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.85rem;">
                 基于传统节日、二十四节气<br/>
                 自动生成周期性购物场景
             </p>
-            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #999;">
+            <div style="display: flex; gap: 1rem; font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem;">
                 <span>📊 {seasonal_stats['total_festivals']} 个节日</span>
                 <span>📊 {seasonal_stats['total_solar_terms']} 个节气</span>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        ''', unsafe_allow_html=True)
 
-        if st.button("进入时节场景", key="seasonal_entry", type="primary", use_container_width=True):
+        if st.button("→ 进入时节场景", key="seasonal_entry", use_container_width=True):
             st.session_state.current_page = 'seasonal'
             st.rerun()
 
     with col2:
-        st.markdown(f"""
+        st.markdown(f'''
         <div class="hero-card">
-            <div class="feature-icon">🔥</div>
-            <h3 style="color: #f56565; margin-bottom: 0.5rem;">热点追踪</h3>
-            <p style="color: #666; margin-bottom: 1rem;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🔥</div>
+            <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">热点追踪</h3>
+            <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.85rem;">
                 实时抓取百度热搜<br/>
                 LLM 自动转化为购物场景
             </p>
-            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #999;">
+            <div style="display: flex; gap: 1rem; font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem;">
                 <span>🔄 实时更新</span>
                 <span>🤖 AI 生成</span>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        ''', unsafe_allow_html=True)
 
-        if st.button("进入热点追踪", key="hotspot_entry", type="primary", use_container_width=True):
+        if st.button("→ 进入热点追踪", key="hotspot_entry", use_container_width=True):
             st.session_state.current_page = 'hotspot'
             st.rerun()
 
     with col3:
-        st.markdown(f"""
+        st.markdown(f'''
         <div class="hero-card">
-            <div class="feature-icon">✍️</div>
-            <h3 style="color: #48bb78; margin-bottom: 0.5rem;">人工提报</h3>
-            <p style="color: #666; margin-bottom: 1rem;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">✍️</div>
+            <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">人工提报</h3>
+            <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.85rem;">
                 运营人员手动提报场景<br/>
                 系统自动补全完整信息
             </p>
-            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #999;">
+            <div style="display: flex; gap: 1rem; font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem;">
                 <span>📝 灵活提报</span>
                 <span>🤖 智能补全</span>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        ''', unsafe_allow_html=True)
 
-        if st.button("进入人工提报", key="manual_entry", type="primary", use_container_width=True):
+        if st.button("→ 进入人工提报", key="manual_entry", use_container_width=True):
             st.session_state.current_page = 'manual'
             st.rerun()
 
-    st.markdown("---")
+    st.markdown('<div style="height: 1px; background: linear-gradient(90deg, transparent, #e5e7eb, transparent); margin: 2rem 0;"></div>', unsafe_allow_html=True)
 
-    # 系统特性
-    st.markdown('<div style="text-align: center; font-size: 1.3rem; font-weight: bold; margin: 2rem 0;">🚀 核心能力</div>', unsafe_allow_html=True)
+    # 系统特性 - 现代化卡片设计
+    st.markdown('<h2 style="text-align: center; margin: 2rem 0; font-size: 1.5rem;">核心能力</h2>', unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.markdown("""
-        <div style="text-align: center; padding: 1rem;">
-            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🧠</div>
-            <h4>智能场景生成</h4>
-            <p style="color: #666; font-size: 0.9rem;">基于 LLM 的场景理解和生成</p>
+        st.markdown('''
+        <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h4 style="color: #1f2937; margin: 0.5rem 0; font-size: 1.3rem;">智能场景生成</h4>
+            <p style="color: #6b7280; font-size: 0.875rem; margin: 0;">基于 LLM 的场景理解和生成</p>
         </div>
-        """, unsafe_allow_html=True)
+        ''', unsafe_allow_html=True)
 
     with col2:
-        st.markdown("""
-        <div style="text-align: center; padding: 1rem;">
-            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎯</div>
-            <h4>精准商品匹配</h4>
-            <p style="color: #666; font-size: 0.9rem;">关键词驱动的智能商品推荐</p>
+        st.markdown('''
+        <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h4 style="color: #1f2937; margin: 0.5rem 0; font-size: 1.3rem;">精准商品匹配</h4>
+            <p style="color: #6b7280; font-size: 0.875rem; margin: 0;">关键词驱动的智能商品推荐</p>
         </div>
-        """, unsafe_allow_html=True)
+        ''', unsafe_allow_html=True)
 
     with col3:
-        st.markdown("""
-        <div style="text-align: center; padding: 1rem;">
-            <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
-            <h4>实时数据更新</h4>
-            <p style="color: #666; font-size: 0.9rem;">热点数据实时抓取和更新</p>
+        st.markdown('''
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h4 style="color: #1f2937; margin: 0.5rem 0; font-size: 1.3rem;">实时数据更新</h4>
+            <p style="color: #6b7280; font-size: 0.875rem; margin: 0;">热点数据实时抓取和更新</p>
         </div>
-        """, unsafe_allow_html=True)
+        ''', unsafe_allow_html=True)
+
+    # 底部技术信息
+    st.markdown('<div style="height: 1px; background: linear-gradient(90deg, transparent, #e5e7eb, transparent); margin: 2rem 0;"></div>', unsafe_allow_html=True)
+
+    st.markdown('''
+    <div style="text-align: center; padding: 1rem 0;">
+        <p style="color: #9ca3af; font-size: 0.875rem;">
+            Powered by <span style="font-weight: 600; color: #3b82f6;">智谱 GLM-5.1</span> · AI-Native 场景供给平台
+        </p>
+    </div>
+    ''', unsafe_allow_html=True)
 
 
 def render_header():
     """渲染页面标题（用于非首页）"""
-    st.markdown('<div class="main-header">⚡ 时空场景自动供给系统</div>', unsafe_allow_html=True)
-    st.markdown("---")
-    st.markdown("**从热点感知到交易闭环的 AI-Native 演示**")
+    st.markdown('''
+    <div style="text-align: center; padding: 0 0 0.5rem 0;">
+        <h1 style="
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        ">AI场景供给系统</h1>
+    </div>
+    ''', unsafe_allow_html=True)
 
 
 def render_sidebar():
-    """渲染侧边栏"""
+    """渲染侧边栏 - 现代化导航设计"""
     with st.sidebar:
-        st.header("⚙️ 系统控制")
+        # 品牌区域
+        st.markdown('''
+        <div style="
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: -1rem -1rem 1.5rem -1rem;
+            color: white;
+        ">
+            <div style="font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+                <span>🎯</span>
+                <span>场景供给</span>
+            </div>
+            <div style="font-size: 0.8rem; opacity: 0.8; margin-top: 0.5rem;">
+                AI-Native 演示系统
+            </div>
+        </div>
+        ''', unsafe_allow_html=True)
 
         # 返回首页按钮
-        if st.button("🏠 返回首页", use_container_width=True):
+        if st.button("🏠 首页", use_container_width=True, key="nav_home"):
             if 'current_page' in st.session_state:
                 del st.session_state.current_page
             st.rerun()
 
         st.markdown("---")
 
-        # 快速导航
-        st.subheader("📍 快速导航")
-        if st.button("📅 时节场景", use_container_width=True):
-            st.session_state.current_page = 'seasonal'
-            st.rerun()
-        if st.button("🔥 热点追踪", use_container_width=True):
-            st.session_state.current_page = 'hotspot'
-            st.rerun()
-        if st.button("✍️ 人工提报", use_container_width=True):
-            st.session_state.current_page = 'manual'
-            st.rerun()
-        if st.button("📚 场景库管理", use_container_width=True):
-            st.session_state.current_page = 'library'
-            st.rerun()
+        # 导航菜单
+        st.markdown('<div style="color: #6b7280; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase;">功能导航</div>', unsafe_allow_html=True)
+
+        nav_items = [
+            ("📅 时节场景", "seasonal"),
+            ("🔥 热点追踪", "hotspot"),
+            ("✍️ 人工提报", "manual"),
+            ("📚 场景库", "library"),
+        ]
+
+        current_page = st.session_state.get('current_page', '')
+
+        for icon, page in nav_items:
+            is_active = current_page == page
+            button_style = """
+                background: """ + ("linear-gradient(135deg, #3b82f6, #8b5cf6)" if is_active else "#f9fafb") + """;
+                color: """ + ("white" if is_active else "#1f2937") + """;
+                border: 1px solid """ + ("transparent" if is_active else "#e5e7eb") + """;
+                padding: 0.75rem 1rem;
+                border-radius: 8px;
+                margin: 0.25rem 0;
+                font-weight: 500;
+            """
+            if st.button(icon, use_container_width=True, key=f"nav_{page}"):
+                st.session_state.current_page = page
+                st.rerun()
 
         st.markdown("---")
 
         # 系统状态
-        st.subheader("📊 系统状态")
+        st.markdown('<div style="color: #6b7280; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase;">系统状态</div>', unsafe_allow_html=True)
+
         try:
             service = get_service()
             health = service.health_check()
 
-            if health['healthy']:
-                st.success("✅ 系统正常运行")
-            else:
-                st.warning("⚠️ 部分功能异常")
+            # 状态指示器
+            status_color = "#10b981" if health['healthy'] else "#f59e0b"
+            status_text = "正常运行" if health['healthy'] else "部分异常"
+            st.markdown(f'''
+            <div style="
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.75rem;
+                background: {"#d1fae5" if health['healthy'] else "#fef3c7"};
+                border-radius: 8px;
+                margin-bottom: 0.5rem;
+            ">
+                <span style="
+                    width: 8px;
+                    height: 8px;
+                    background: {status_color};
+                    border-radius: 50%;
+                    animation: pulse 2s infinite;
+                "></span>
+                <span style="font-size: 0.875rem; font-weight: 500;">{status_text}</span>
+            </div>
+            ''', unsafe_allow_html=True)
 
-            st.metric("商品库", f"{health['details']['products_loaded']} 个商品")
-            st.metric("LLM模型", health['details']['llm_model'])
+            # 统计卡片
+            st.markdown(f'''
+            <div style="
+                background: white;
+                border: 1px solid #e5e7eb;
+                border-radius: 8px;
+                padding: 0.75rem;
+                margin: 0.25rem 0;
+            ">
+                <div style="font-size: 0.75rem; color: #6b7280;">商品库</div>
+                <div style="font-size: 1.25rem; font-weight: 600; color: #1f2937;">{health['details']['products_loaded']} 个</div>
+            </div>
+            <div style="
+                background: white;
+                border: 1px solid #e5e7eb;
+                border-radius: 8px;
+                padding: 0.75rem;
+                margin: 0.25rem 0;
+            ">
+                <div style="font-size: 0.75rem; color: #6b7280;">LLM模型</div>
+                <div style="font-size: 0.875rem; font-weight: 600; color: #1f2937;">{health['details']['llm_model']}</div>
+            </div>
+            ''', unsafe_allow_html=True)
 
         except Exception as e:
             st.error(f"❌ 系统异常: {e}")
 
+        # 底部信息
+        st.markdown("---")
+        st.markdown('''
+        <div style="
+            text-align: center;
+            font-size: 0.75rem;
+            color: #9ca3af;
+            padding: 1rem 0;
+        ">
+            Powered by<br/>
+            <span style="font-weight: 600;">智谱 GLM-5.1</span>
+        </div>
+        ''', unsafe_allow_html=True)
+
 
 def run_pipeline(hot_limit: int, scene_limit: int):
-    """运行完整管道（带详细进度展示）"""
+    """运行完整管道（带详细进度展示，自动保存场景）"""
     try:
         service = get_service()
 
@@ -421,11 +468,12 @@ def run_pipeline(hot_limit: int, scene_limit: int):
                 progress_logs.append(f"❌ **错误**: {message}")
                 render_progress()
 
-        # 执行带进度的管道
+        # 执行带进度的管道（自动保存）
         results = service.run_full_pipeline_with_progress(
             hot_limit=hot_limit,
             scene_limit=scene_limit,
-            progress_callback=handle_progress
+            progress_callback=handle_progress,
+            auto_save=True  # 自动保存场景
         )
 
         # 清空展示区域
@@ -433,46 +481,45 @@ def run_pipeline(hot_limit: int, scene_limit: int):
         scene_area.empty()
 
         # 显示最终摘要
-        st.success(f"✅ 处理完成! 共生成 {results['total_scenes']} 个场景，准备进入审核流程")
+        saved = results.get('saved', 0)
+        skipped = results.get('skipped', 0)
+        skipped_scenes = results.get('skipped_scenes', [])
 
-        # 将场景保存到待审核列表，不直接保存到场景库
-        scenes = results.get('scenes', [])
-        if scenes:
-            st.session_state.pending_hotspot_scenes = []
-            for idx, scene in enumerate(scenes):
-                scene['scene_key'] = f"hotspot_{idx}_{scene.get('scene_name', 'unknown')}"
-                st.session_state.pending_hotspot_scenes.append(scene)
+        st.success(f"✅ 处理完成! 新增 {saved} 个场景，跳过 {skipped} 个重复场景")
 
-            st.session_state.current_hotspot_index = 0
-            st.session_state.total_hotspot_scenes = len(scenes)
-            st.session_state.show_hotspot_review_mode = True
+        # 显示去重详情
+        if skipped_scenes:
+            with st.expander(f"🔍 查看跳过的重复场景 ({len(skipped_scenes)}个)", expanded=False):
+                for skipped in skipped_scenes:
+                    st.markdown(f"**{skipped['scene_name']}**")
+                    st.caption(f"与「{skipped['duplicate_of']}」重复: {skipped['reason']}")
 
-            st.info(f"📋 即将进入审核模式，共有 {len(scenes)} 个场景待审核")
-
-            # 短暂延迟后进入审核模式
-            import time
-            time.sleep(1)
-            st.rerun()
+        # 显示新增场景列表
+        if saved > 0:
+            with st.expander(f"📋 查看新增的场景 ({saved}个)", expanded=True):
+                for scene in results.get('scenes', []):
+                    # 检查场景是否被保存（通过检查是否在skipped_scenes中）
+                    is_saved = not any(s['scene_name'] == scene['scene_name'] for s in skipped_scenes)
+                    if is_saved:
+                        st.markdown(f"**📌 {scene.get('scene_name')}**")
+                        col_a, col_b = st.columns(2)
+                        with col_a:
+                            st.caption(f"类型: {scene.get('scene_type', '未知')}")
+                        with col_b:
+                            st.caption(f"时间: {scene.get('temporal_scope', '未知')}")
+                        st.write(f"**用户意图**: {scene.get('user_intent', '暂无')[:100]}...")
+                        keywords = scene.get('potential_keywords', [])
+                        if keywords:
+                            st.write("**关键词**:", ", ".join(keywords[:5]))
+                        st.markdown("---")
         else:
-            st.warning("⚠️ 没有生成任何场景")
+            st.info("📋 所有生成的场景都与已有场景重复，未新增场景")
 
     except Exception as e:
         st.error(f"❌ 执行失败: {e}")
         import traceback
         traceback.print_exc()
 
-
-def load_cached_data():
-    """加载缓存数据"""
-    try:
-        service = get_service()
-        cached = service.get_cached_result()
-
-        st.session_state.cached_data = cached
-        st.success("✅ 缓存数据已加载")
-
-    except Exception as e:
-        st.error(f"❌ 加载失败: {e}")
 
 
 def render_summary(result: dict):
@@ -605,18 +652,29 @@ def render_scene_submission():
     st.subheader("✍️ 人工提报场景")
 
     st.markdown("""
-    输入场景名称，系统将自动补全完整信息，包括：
+    输入场景名称/主题，系统将自动补全完整信息，包括：
     - 场景描述和用户意图
     - 时间和空间范围
     - 目标人群和潜在商品
+
+    💡 支持一次生成多个场景，如输入"端午节"可生成：端午送礼、端午出游、自制粽子等多个场景
     """)
 
     with st.form("scene_submission_form"):
         scene_name = st.text_input(
-            "场景名称",
-            placeholder="例如：世界杯观赛、春节年货采购、高考季...",
-            help="输入场景名称，系统将自动补全完整信息"
+            "场景名称/主题",
+            placeholder="例如：端午节、春节、世界杯观赛、高考季...",
+            help="输入场景主题，可生成多个不同角度的场景"
         )
+
+        # 多场景选项
+        col1, col2 = st.columns(2)
+        with col1:
+            generate_multiple = st.checkbox("生成多个场景", value=True, help="勾选后将为该主题生成多个不同角度的购物场景")
+
+        with col2:
+            scene_count = st.slider("场景数量", min_value=3, max_value=15, value=5,
+                                   help="生成场景的数量，每个场景从不同角度切入")
 
         col1, col2 = st.columns(2)
         with col1:
@@ -625,19 +683,49 @@ def render_scene_submission():
             example = st.form_submit_button("📝 示例", use_container_width=True)
 
         if example:
-            st.info("示例：世界杯观赛、高考季、春节年货采购、夏季降温、双十一购物")
+            st.info("示例主题：端午节、春节、世界杯观赛、高考季、双十一购物")
 
         if submitted and scene_name:
-            with st.spinner("🤖 正在生成场景信息..."):
+            with st.spinner(f"🤖 正在生成场景信息..."):
                 try:
                     service = get_service()
-                    result = service.submit_scene(scene_name)
+                    result = service.submit_scene(scene_name, generate_multiple=generate_multiple, scene_count=scene_count)
 
                     if result['success']:
-                        st.session_state.pending_scene = result['scene']
-                        st.session_state.show_edit_mode = True
-                        st.success("✅ 场景生成成功！请查看并编辑后保存")
-                        st.rerun()
+                        if generate_multiple and 'scenes' in result:
+                            # 多场景模式：批量保存
+                            scenes = result['scenes']
+                            save_result = service.save_scenes_batch(scenes)
+
+                            st.success(f"✅ 成功生成 {len(scenes)} 个场景！")
+                            st.info(f"💾 保存结果: 新增 {save_result['saved']} 个场景，跳过 {save_result['skipped']} 个重复场景")
+
+                            # 显示生成的场景
+                            with st.expander("📋 查看生成的场景", expanded=True):
+                                for scene in scenes:
+                                    st.markdown(f"**📌 {scene.get('scene_name')}**")
+                                    col_a, col_b = st.columns(2)
+                                    with col_a:
+                                        st.caption(f"类型: {scene.get('scene_type', '未知')}")
+                                    with col_b:
+                                        st.caption(f"时间: {scene.get('temporal_scope', '未知')}")
+                                    keywords = scene.get('potential_keywords', [])
+                                    if keywords:
+                                        st.write("**关键词**:", ", ".join(keywords[:5]))
+                                    st.markdown("---")
+
+                            # 显示去重信息
+                            if save_result['skipped_scenes']:
+                                with st.expander(f"🔍 查看跳过的重复场景 ({len(save_result['skipped_scenes'])}个)", expanded=False):
+                                    for skipped in save_result['skipped_scenes']:
+                                        st.markdown(f"**{skipped['scene_name']}**")
+                                        st.caption(f"与「{skipped['duplicate_of']}」重复: {skipped['reason']}")
+                        else:
+                            # 单场景模式：进入编辑
+                            st.session_state.pending_scene = result['scene']
+                            st.session_state.show_edit_mode = True
+                            st.success("✅ 场景生成成功！请查看并编辑后保存")
+                            st.rerun()
                     else:
                         st.error(f"❌ {result.get('error', '生成失败')}")
                 except Exception as e:
@@ -823,7 +911,12 @@ def render_scene_card(scene: Dict, expanded: bool = False):
         keywords = scene.get('potential_keywords', [])
         if keywords:
             st.markdown("**🔑 关键词:**")
-            keyword_tags = " ".join([f'<span class="keyword-tag">{keyword}</span>' for keyword in keywords])
+            # 处理关键词：可能是字符串（逗号分隔）或列表
+            if isinstance(keywords, str):
+                keywords = [k.strip() for k in keywords.split(',') if k.strip()]
+            # 清理关键词中的空格
+            clean_keywords = [k.replace(' ', '') for k in keywords if k]
+            keyword_tags = " ".join([f'<span class="keyword-tag">{keyword}</span>' for keyword in clean_keywords])
             st.markdown(keyword_tags, unsafe_allow_html=True)
 
         # 来源信息
@@ -835,6 +928,38 @@ def render_scene_card(scene: Dict, expanded: bool = False):
         if scene.get('seasonal_event'):
             event = scene['seasonal_event']
             st.caption(f"时节事件: {event.get('name')} - {event.get('days_until', 0)}天后")
+
+        # 匹配的商品（按品类分组显示）
+        matched_products = scene.get('matched_products', [])
+        if matched_products:
+            st.markdown("---")
+            product_summary = scene.get('product_summary', {})
+            if product_summary:
+                st.markdown(f"**🛍️ 关联商品**: 共 {product_summary.get('total_count', 0)} 个商品，{product_summary.get('category_count', 0)} 个品类")
+
+            # 检测数据格式：按品类分组 vs 简单列表
+            if matched_products and isinstance(matched_products, list) and len(matched_products) > 0:
+                # 检查是否是分组格式（有 category 和 product_count 字段）
+                is_grouped = 'category' in matched_products[0] and 'product_count' in matched_products[0]
+
+                if is_grouped:
+                    # 按品类显示商品（新格式）
+                    for category_group in matched_products:
+                        st.markdown(f"**📦 {category_group['category']}** ({category_group['product_count']} 个)")
+                        for product in category_group['products'][:5]:  # 每个品类最多显示5个
+                            st.markdown(f"  - **{product['title']}** ¥{product['price']} (相关度: {product.get('relevance_score', 'N/A')})")
+                        if category_group['product_count'] > 5:
+                            st.caption(f"  ... 还有 {category_group['product_count'] - 5} 个商品")
+                else:
+                    # 简单商品列表（旧格式），直接显示
+                    st.markdown("**🛍️ 关联商品**:")
+                    for product in matched_products[:10]:
+                        st.markdown(f"  - **{product['title']}** ¥{product['price']} (相关度: {product.get('relevance_score', 'N/A')})")
+                    if len(matched_products) > 10:
+                        st.caption(f"  ... 还有 {len(matched_products) - 10} 个商品")
+        else:
+            # 没有匹配到商品
+            st.caption("🛍️ 暂无关联商品（商品库中无匹配商品）")
 
 
 def render_scene_review_mode():
@@ -1142,11 +1267,18 @@ def render_scene_edit_review(scene: Dict):
                 'potential_keywords': [k.strip() for k in edited_keywords.split(',') if k.strip()]
             }
 
-            # 重新匹配商品
+            # 重新匹配商品（按品类分组）
             keywords = updated_scene.get('potential_keywords', [])
             service = get_service()
-            matched = service.product_matching.match_products(keywords)
+            matched = service.product_matching.match_products(keywords, group_by_category=True)
+
+            # 构建结构化的商品关联
             updated_scene['matched_products'] = matched
+            updated_scene['product_summary'] = {
+                'total_count': sum(group['product_count'] for group in matched),
+                'category_count': len(matched),
+                'categories': [group['category'] for group in matched]
+            }
 
             # 更新待审核列表
             pending_scenes = st.session_state.get('pending_seasonal_scenes', [])
@@ -1310,14 +1442,32 @@ def render_seasonal_scenes():
     seasonal_stats = service.get_seasonal_statistics()
     source_stats = service.get_source_statistics()['seasonal']
 
-    # 第一行：时节场景数和临近事件
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.metric("时节场景", source_stats['count'])
-
-    with col2:
-        st.metric("临近事件", seasonal_stats['upcoming_count'])
+    # 统计概览 - 白色卡片
+    st.markdown(f'''
+    <div class="white-container">
+        <div style="display: flex; justify-content: space-around; text-align: center;">
+            <div>
+                <div style="font-size: 0.8rem; color: #6b7280;">时节场景</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{source_stats['count']}</div>
+            </div>
+            <div style="width: 1px; background: #e5e7eb;"></div>
+            <div>
+                <div style="font-size: 0.8rem; color: #6b7280;">临近事件</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{seasonal_stats['upcoming_count']}</div>
+            </div>
+            <div style="width: 1px; background: #e5e7eb;"></div>
+            <div>
+                <div style="font-size: 0.8rem; color: #6b7280;">节日</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{seasonal_stats['total_festivals']}</div>
+            </div>
+            <div style="width: 1px; background: #e5e7eb;"></div>
+            <div>
+                <div style="font-size: 0.8rem; color: #6b7280;">节气</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{seasonal_stats['total_solar_terms']}</div>
+            </div>
+        </div>
+    </div>
+    ''', unsafe_allow_html=True)
 
     # 第二行：节日和节气总数（可展开查看详情）
     # 获取节日和节气数据
@@ -1353,89 +1503,148 @@ def render_seasonal_scenes():
                         st.caption(f"{term.get('description', '')[:20]}...")
 
     # 生成时节场景区域
-    st.markdown("---")
-    with st.expander("🔄 生成时节场景", expanded=True):
-        st.info("📅 选择日期范围，自动生成覆盖到的所有节日、节气相关场景")
+    st.markdown('''
+    <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">🔄 生成时节场景</h3>
+    ''', unsafe_allow_html=True)
+    st.caption("📅 选择日期范围，自动生成覆盖到的所有节日、节气相关场景（智能去重后直接保存）")
+    st.caption("💡 每个节日/节气可生成多个场景，如：端午送礼、端午出游、自制粽子等")
 
-        from datetime import datetime, timedelta
+    from datetime import datetime, timedelta
 
-        # 日期范围选择
-        col1, col2 = st.columns(2)
+    # 日期范围选择
+    col1, col2 = st.columns(2)
 
-        with col1:
-            start_date = st.date_input(
-                "开始日期",
-                value=datetime.now().date(),
-                max_value=datetime.now().date() + timedelta(days=365),
-                key="seasonal_start_date"
-            )
+    with col1:
+        start_date = st.date_input(
+            "开始日期",
+            value=datetime.now().date(),
+            max_value=datetime.now().date() + timedelta(days=365),
+            key="seasonal_start_date"
+        )
 
-        with col2:
-            end_date = st.date_input(
-                "结束日期",
-                value=datetime.now().date() + timedelta(days=90),
-                max_value=datetime.now().date() + timedelta(days=365),
-                key="seasonal_end_date"
-            )
+    with col2:
+        end_date = st.date_input(
+            "结束日期",
+            value=datetime.now().date() + timedelta(days=90),
+            max_value=datetime.now().date() + timedelta(days=365),
+            key="seasonal_end_date"
+        )
 
-        # 显示将会生成的时节事件预览
-        if start_date and end_date:
-            from src.seasonal_perception import SeasonalPerception
-            seasonal = SeasonalPerception()
+    # 显示将会生成的时节事件预览
+    events = []
+    if start_date and end_date:
+        from src.seasonal_perception import SeasonalPerception
+        seasonal = SeasonalPerception()
 
-            # 获取日期范围内的时节事件
-            start = datetime.combine(start_date, datetime.min.time())
-            end = datetime.combine(end_date, datetime.min.time())
+        # 获取日期范围内的时节事件
+        start = datetime.combine(start_date, datetime.min.time())
+        end = datetime.combine(end_date, datetime.min.time())
 
-            events = []
-            all_events = (
-                seasonal.festivals_data.get('traditional_festivals', []) +
-                seasonal.festivals_data.get('modern_festivals', []) +
-                seasonal.festivals_data.get('solar_terms', [])
-            )
+        all_events = (
+            seasonal.festivals_data.get('traditional_festivals', []) +
+            seasonal.festivals_data.get('modern_festivals', []) +
+            seasonal.festivals_data.get('solar_terms', [])
+        )
 
-            for event in all_events:
-                event_date = seasonal._parse_event_date(event['date'])
-                if start <= event_date <= end:
-                    events.append({
-                        'name': event['name'],
-                        'date': event['date'],
-                        'date_obj': event_date,
-                        'days_until': (event_date - datetime.now()).days,
-                        'description': event.get('description', '')
-                    })
+        for event in all_events:
+            event_date = seasonal._parse_event_date(event['date'])
+            if start <= event_date <= end:
+                events.append({
+                    'name': event['name'],
+                    'date': event['date'],
+                    'date_obj': event_date,
+                    'days_until': (event_date - datetime.now()).days,
+                    'description': event.get('description', '')
+                })
 
-            if events:
-                st.caption(f"📋 将生成 {len(events)} 个时节场景：")
-                # 按时间排序显示预览
-                events.sort(key=lambda x: x['date_obj'])
+        if events:
+            st.caption(f"📋 将生成 {len(events)} 个时节场景：")
+            # 按时间排序显示预览
+            events.sort(key=lambda x: x['date_obj'])
 
-                preview_cols = st.columns(3)
-                for idx, event in enumerate(events[:9]):  # 最多显示9个预览
-                    with preview_cols[idx % 3]:
-                        st.caption(f"**{event['name']}** ({event['date']})")
+            preview_cols = st.columns(3)
+            for idx, event in enumerate(events[:9]):  # 最多显示9个预览
+                with preview_cols[idx % 3]:
+                    st.caption(f"**{event['name']}** ({event['date']})")
 
-                if len(events) > 9:
-                    st.caption(f"... 还有 {len(events) - 9} 个事件")
+            if len(events) > 9:
+                st.caption(f"... 还有 {len(events) - 9} 个事件")
 
-        # 生成按钮
-        if st.button("🚀 批量生成时节场景", type="primary", use_container_width=True, key="batch_generate_seasonal"):
-            if events:
-                st.session_state.pending_seasonal_scenes = []
-                st.session_state.current_event_index = 0
-                st.session_state.total_events = len(events)
-                st.session_state.seasonal_events = events
-                st.session_state.show_review_mode = True
-                st.rerun()
+    # 场景数量设置
+    col1, col2 = st.columns(2)
+    with col1:
+        scenes_per_event = st.slider(
+            "每个节日生成场景数",
+            min_value=1,
+            max_value=15,
+            value=5,
+            help="每个节日/节气会生成多个不同角度的购物场景"
+        )
+    with col2:
+        st.metric("预计场景数", f"~{len(events) * scenes_per_event} 个")
+
+    # 生成按钮
+    if st.button("🚀 批量生成时节场景", type="primary", use_container_width=True, key="batch_generate_seasonal"):
+        if events:
+            # 直接生成并自动保存，不进入审核模式
+            total_expected = len(events) * scenes_per_event
+            # 将日期转换为 datetime 对象
+            start_datetime = datetime.combine(start_date, datetime.min.time())
+            end_datetime = datetime.combine(end_date, datetime.min.time())
+            with st.spinner(f"🔄 正在为 {len(events)} 个时节事件生成场景（预计 {total_expected} 个）..."):
+                result = service.generate_seasonal_scenes(
+                    auto_save=True,
+                    scenes_per_event=scenes_per_event,
+                    start_date=start_datetime,
+                    end_date=end_datetime
+                )
+
+            saved = result.get('saved', 0)
+            skipped = result.get('skipped', 0)
+            skipped_scenes = result.get('skipped_scenes', [])
+
+            st.success(f"✅ 生成完成! 新增 {saved} 个场景，跳过 {skipped} 个重复场景")
+
+            # 显示去重详情
+            if skipped_scenes:
+                with st.expander(f"🔍 查看跳过的重复场景 ({len(skipped_scenes)}个)", expanded=False):
+                    for skipped in skipped_scenes:
+                        st.markdown(f"**{skipped['scene_name']}**")
+                        st.caption(f"与「{skipped['duplicate_of']}」重复: {skipped['reason']}")
+
+            # 显示新增场景列表
+            if saved > 0:
+                with st.expander(f"📋 查看新增的场景 ({saved}个)", expanded=True):
+                    for scene in result.get('scenes', []):
+                        # 检查场景是否被保存
+                        is_saved = not any(s['scene_name'] == scene['scene_name'] for s in skipped_scenes)
+                        if is_saved:
+                            st.markdown(f"**📌 {scene.get('scene_name')}**")
+                            col_a, col_b = st.columns(2)
+                            with col_a:
+                                st.caption(f"类型: {scene.get('scene_type', '未知')}")
+                            with col_b:
+                                st.caption(f"时间: {scene.get('temporal_scope', '未知')}")
+                            st.write(f"**用户意图**: {scene.get('user_intent', '暂无')[:100]}...")
+                            keywords = scene.get('potential_keywords', [])
+                            if keywords:
+                                st.write("**关键词**:", ", ".join(keywords[:5]))
+                            st.markdown("---")
             else:
-                st.warning("⚠️  选择的时间范围内没有时节事件")
+                st.info("📋 所有生成的场景都与已有场景重复，未新增场景")
+
+            st.info("💡 场景已保存到场景库，可在「场景库管理」中进行编辑和删除")
+        else:
+            st.warning("⚠️  选择的时间范围内没有时节事件")
 
     # 显示临近时节事件
     if seasonal_stats.get('upcoming_events'):
-        st.markdown("---")
-        st.markdown("### 📆 临近时节事件")
+        st.markdown('''
+        <h3 style="color: #1f2937; margin: 1.5rem 0 0.5rem 0; font-size: 1.3rem;">📆 临近时节事件</h3>
+        ''', unsafe_allow_html=True)
 
         events = seasonal_stats['upcoming_events'][:6]
+
         cols = st.columns(3)
 
         for idx, event in enumerate(events):
@@ -1449,17 +1658,18 @@ def render_seasonal_scenes():
                     status = f"{days_until}天后"
 
                 st.markdown(f"""
-                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1rem; border-radius: 0.5rem; color: white;">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1rem; border-radius: 12px; color: white; margin: 0.5rem 0;">
                     <div style="font-size: 1.1rem; font-weight: bold;">{event['name']}</div>
                     <div style="font-size: 0.9rem; opacity: 0.9;">{status}</div>
                 </div>
                 """, unsafe_allow_html=True)
 
     # 场景列表
-    st.markdown("---")
-    st.markdown("### 📋 时节场景列表")
-
     scenes = service.get_scenes_by_source('seasonal')
+
+    st.markdown('''
+    <h3 style="color: #1f2937; margin: 1.5rem 0 0.5rem 0; font-size: 1.3rem;">📋 时节场景列表</h3>
+    ''', unsafe_allow_html=True)
 
     if scenes:
         for scene in scenes:
@@ -1476,33 +1686,47 @@ def render_hotspot_scenes():
 
     # 热点统计
     source_stats = service.get_source_statistics()['hotspot']
-    cached_data = service.get_cached_result()
-    hot_count = len(cached_data.get('hot_topics', {}).get('baidu_hot', []))
+    # 获取实时热搜（使用默认10条）
+    hot_data = service.get_hot_topics_only(limit=10)
+    hot_count = len(hot_data.get('baidu_hot', []))
 
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.metric("热点场景", source_stats['count'])
-
-    with col2:
-        st.metric("实时热搜", hot_count)
+    # 统计概览 - 白色卡片
+    st.markdown(f'''
+    <div class="white-container">
+        <div style="display: flex; justify-content: space-around; text-align: center;">
+            <div>
+                <div style="font-size: 0.8rem; color: #6b7280;">热点场景</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{source_stats['count']}</div>
+            </div>
+            <div style="width: 1px; background: #e5e7eb;"></div>
+            <div>
+                <div style="font-size: 0.8rem; color: #6b7280;">实时热搜</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{hot_count}</div>
+            </div>
+        </div>
+    </div>
+    ''', unsafe_allow_html=True)
 
     # 热点抓取区域
-    with st.expander("🔍 抓取实时热点", expanded=True):
-        st.info("抓取百度实时热搜，自动生成购物场景")
+    st.markdown("---")
+    st.markdown("### 🔍 抓取实时热点")
+    st.info("抓取百度实时热搜，自动生成购物场景（智能去重后直接保存）")
 
+    col1, col2 = st.columns(2)
+    with col1:
         hot_limit = st.slider("热点数量", 5, 20, 10)
+    with col2:
         scene_limit = st.slider("生成场景", 3, 10, 5)
 
-        if st.button("🚀 开始抓取", type="primary", use_container_width=True):
-            run_pipeline(hot_limit, scene_limit)
+    if st.button("🚀 开始抓取", type="primary", use_container_width=True):
+        run_pipeline(hot_limit, scene_limit)
 
     # 展示实时热搜
-    if cached_data.get('hot_topics'):
+    if hot_data.get('baidu_hot'):
         st.markdown("---")
         st.markdown("### 🔴 实时热搜 Top 10")
 
-        baidu_topics = cached_data['hot_topics'].get('baidu_hot', [])[:10]
+        baidu_topics = hot_data.get('baidu_hot', [])[:10]
 
         cols_per_row = 2
         for idx in range(0, len(baidu_topics), cols_per_row):
@@ -1539,14 +1763,24 @@ def render_manual_scenes():
 
     # 人工提报统计
     source_stats = service.get_source_statistics()['manual']
+    total_scenes = len(service.scene_mining.load_scenes())
 
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.metric("人工场景", source_stats['count'])
-
-    with col2:
-        st.metric("场景库总数", len(service.scene_mining.load_scenes()))
+    # 统计概览 - 白色卡片
+    st.markdown(f'''
+    <div class="white-container">
+        <div style="display: flex; justify-content: space-around; text-align: center;">
+            <div>
+                <div style="font-size: 0.8rem; color: #6b7280;">人工场景</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{source_stats['count']}</div>
+            </div>
+            <div style="width: 1px; background: #e5e7eb;"></div>
+            <div>
+                <div style="font-size: 0.8rem; color: #6b7280;">场景库总数</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{total_scenes}</div>
+            </div>
+        </div>
+    </div>
+    ''', unsafe_allow_html=True)
 
     # 提报表单
     st.markdown("---")
@@ -1574,25 +1808,40 @@ def render_scene_library():
 
     st.markdown("### 📚 场景库管理")
 
+    st.info("💡 所有时节场景和热点追踪生成的场景已自动保存（智能去重）。您可以在此处统一编辑、删除或管理场景。")
+
     # 统计信息
     all_scenes = service.scene_mining.load_scenes()
+    seasonal_count = len([s for s in all_scenes if s.get('source') == 'seasonal'])
+    hotspot_count = len([s for s in all_scenes if s.get('source') == 'hotspot'])
+    manual_count = len([s for s in all_scenes if s.get('source') == 'manual'])
 
-    col1, col2, col3, col4 = st.columns(4)
-
-    with col1:
-        st.metric("场景总数", len(all_scenes))
-
-    with col2:
-        seasonal_count = len([s for s in all_scenes if s.get('source') == 'seasonal'])
-        st.metric("时节场景", seasonal_count)
-
-    with col3:
-        hotspot_count = len([s for s in all_scenes if s.get('source') == 'hotspot'])
-        st.metric("热点场景", hotspot_count)
-
-    with col4:
-        manual_count = len([s for s in all_scenes if s.get('source') == 'manual'])
-        st.metric("人工场景", manual_count)
+    # 统计概览 - 白色卡片
+    st.markdown(f'''
+    <div class="white-container">
+        <div style="display: flex; justify-content: space-around; text-align: center;">
+            <div>
+                <div style="font-size: 0.75rem; color: #6b7280;">场景总数</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{len(all_scenes)}</div>
+            </div>
+            <div style="width: 1px; background: #e5e7eb;"></div>
+            <div>
+                <div style="font-size: 0.75rem; color: #6b7280;">时节</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{seasonal_count}</div>
+            </div>
+            <div style="width: 1px; background: #e5e7eb;"></div>
+            <div>
+                <div style="font-size: 0.75rem; color: #6b7280;">热点</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{hotspot_count}</div>
+            </div>
+            <div style="width: 1px; background: #e5e7eb;"></div>
+            <div>
+                <div style="font-size: 0.75rem; color: #6b7280;">人工</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #1f2937;">{manual_count}</div>
+            </div>
+        </div>
+    </div>
+    ''', unsafe_allow_html=True)
 
     # 筛选选项
     st.markdown("---")
@@ -1656,6 +1905,13 @@ def render_scene_library():
         st.info("暂无符合条件的场景")
         return
 
+    # 批量操作
+    st.markdown("---")
+    if st.button("🗑️ 批量删除（筛选结果）", use_container_width=True):
+        st.session_state.batch_delete_mode = True
+        st.session_state.batch_delete_scenes = filtered_scenes
+        st.rerun()
+
     # 场景列表（带操作按钮）
     st.markdown("---")
 
@@ -1670,10 +1926,14 @@ def render_scene_library():
             with col1:
                 st.caption(f"ID: {scene_id[:20]}...")
                 st.caption(f"类型: {scene.get('scene_type', '未知')}")
-                st.caption(f"来源: {scene.get('source', '未知')}")
+                source_icon = {'seasonal': '📅', 'hotspot': '🔥', 'manual': '✍️'}.get(scene.get('source', ''), '')
+                st.caption(f"来源: {source_icon} {scene.get('source_type', '未知')}")
 
             with col2:
-                st.caption(f"创建时间: {scene.get('created_at', '未知')[:10]}")
+                created_time = scene.get('created_at', '未知')
+                if created_time and len(created_time) > 10:
+                    created_time = created_time[:10].replace('T', ' ')
+                st.caption(f"创建时间: {created_time}")
                 st.caption(f"时间范围: {scene.get('temporal_scope', '未知')}")
 
             # 用户意图和关键词
@@ -1685,10 +1945,37 @@ def render_scene_library():
                 keyword_tags = " ".join([f'<span class="keyword-tag">{keyword}</span>' for keyword in keywords])
                 st.markdown(keyword_tags, unsafe_allow_html=True)
 
-            # 匹配的商品
+            # 匹配的商品（按品类分组显示）
             matched_products = scene.get('matched_products', [])
             if matched_products:
-                st.markdown(f"**🛍️ 匹配商品**: {len(matched_products)} 个")
+                product_summary = scene.get('product_summary', {})
+                if product_summary:
+                    st.markdown(f"**🛍️ 关联商品**: 共 {product_summary.get('total_count', 0)} 个商品，{product_summary.get('category_count', 0)} 个品类")
+
+                # 检测数据格式：按品类分组 vs 简单列表
+                if matched_products and isinstance(matched_products, list) and len(matched_products) > 0:
+                    # 检查是否是分组格式（有 category 和 product_count 字段）
+                    is_grouped = 'category' in matched_products[0] and 'product_count' in matched_products[0]
+
+                    if is_grouped:
+                        # 按品类显示商品（新格式）
+                        for category_group in matched_products:
+                            # 使用标题而非 expander，避免嵌套
+                            st.markdown(f"**📦 {category_group['category']}** ({category_group['product_count']} 个)")
+                            for product in category_group['products'][:5]:  # 每个品类最多显示5个
+                                st.markdown(f"  - **{product['title']}** ¥{product['price']} (相关度: {product.get('relevance_score', 'N/A')})")
+                            if category_group['product_count'] > 5:
+                                st.caption(f"  ... 还有 {category_group['product_count'] - 5} 个商品")
+                    else:
+                        # 简单商品列表（旧格式），直接显示
+                        st.markdown("**🛍️ 关联商品**:")
+                        for product in matched_products[:10]:
+                            st.markdown(f"- **{product['title']}** ¥{product['price']} (相关度: {product.get('relevance_score', 'N/A')})")
+                        if len(matched_products) > 10:
+                            st.caption(f"... 还有 {len(matched_products) - 10} 个商品")
+            else:
+                # 没有匹配到商品
+                st.caption("🛍️ 暂无关联商品（商品库中无匹配商品）")
 
             # 操作按钮
             st.markdown("---")
@@ -1756,22 +2043,66 @@ def main():
 
         return
 
-    # 检查是否有待编辑的场景
+    # 检查是否在批量删除模式
+    if st.session_state.get('batch_delete_mode'):
+        batch_scenes = st.session_state.get('batch_delete_scenes', [])
+
+        st.markdown("### 🗑️ 批量删除确认")
+        st.warning(f"确定要删除 **{len(batch_scenes)}** 个场景吗？此操作不可恢复。")
+
+        # 显示要删除的场景列表
+        st.markdown("**将要删除的场景：**")
+        for i, scene in enumerate(batch_scenes[:10], 1):
+            st.markdown(f"{i}. {scene.get('scene_name', '未命名')} ({scene.get('source', 'unknown')})")
+        if len(batch_scenes) > 10:
+            st.caption(f"... 还有 {len(batch_scenes) - 10} 个场景")
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            if st.button("确认批量删除", type="primary", use_container_width=True):
+                try:
+                    service = get_service()
+                    deleted_count = 0
+                    failed_count = 0
+
+                    for scene in batch_scenes:
+                        scene_id = scene.get('scene_id', '')
+                        if service.delete_scene(scene_id):
+                            deleted_count += 1
+                        else:
+                            failed_count += 1
+
+                    if deleted_count > 0:
+                        st.success(f"✅ 成功删除 {deleted_count} 个场景")
+                    if failed_count > 0:
+                        st.warning(f"⚠️ {failed_count} 个场景删除失败")
+
+                    # 清除批量删除状态
+                    st.session_state.batch_delete_mode = False
+                    st.session_state.batch_delete_scenes = []
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"❌ 删除异常: {e}")
+
+        with col2:
+            if st.button("取消", use_container_width=True):
+                st.session_state.batch_delete_mode = False
+                st.session_state.batch_delete_scenes = []
+                st.rerun()
+
+        return
+
+    # 检查是否有待编辑的场景（人工提报或复制）
     if st.session_state.get('show_edit_mode') and st.session_state.get('pending_scene'):
         render_header()
         render_scene_editor(st.session_state.pending_scene)
         return
 
-    # 检查是否在审核模式
-    if st.session_state.get('show_review_mode'):
+    # 检查是否在场景库编辑模式
+    if st.session_state.get('scene_library_mode') and st.session_state.get('editing_scene'):
         render_header()
-        render_scene_review_mode()
-        return
-
-    # 检查是否在热点审核模式
-    if st.session_state.get('show_hotspot_review_mode'):
-        render_header()
-        render_hotspot_review_mode()
+        render_library_scene_editor(st.session_state.editing_scene)
         return
 
     # 根据 current_page 决定显示内容
@@ -1800,6 +2131,127 @@ def main():
     else:
         # 首页展示
         render_homepage()
+
+
+def render_library_scene_editor(scene: Dict):
+    """渲染场景库场景编辑页面"""
+    st.subheader("✏️ 编辑场景")
+
+    st.markdown("---")
+    st.markdown(f"### 📌 {scene.get('scene_name', '未命名场景')}")
+
+    # 显示匹配的商品预览
+    matched_products = scene.get('matched_products', [])
+    if matched_products:
+        st.markdown(f"**已匹配 {len(matched_products)} 个相关商品**")
+        cols = st.columns(min(4, len(matched_products)))
+        for idx, product in enumerate(matched_products[:8]):
+            with cols[idx % 4]:
+                st.caption(f"{product.get('title', 'Unknown')[:15]}... ¥{product.get('price', 0)}")
+
+    st.markdown("---")
+
+    with st.form("library_edit_scene_form"):
+        st.markdown("#### 📝 编辑场景信息")
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            edited_scene_name = st.text_input("场景名称", scene.get('scene_name', ''))
+            edited_scene_type = st.text_input("场景类型", scene.get('scene_type', ''))
+            edited_trigger = st.text_input("触发事件", scene.get('trigger_event', ''))
+
+        with col2:
+            edited_temporal = st.text_input("时间范围", scene.get('temporal_scope', ''))
+            edited_geo = st.text_input("地理范围", scene.get('geo_scope', ''))
+            edited_target = st.text_input("目标人群", scene.get('target_population', ''))
+
+        edited_intent = st.text_area("用户意图", scene.get('user_intent', ''), height=100)
+
+        edited_keywords = st.text_input(
+            "关键词（逗号分隔）",
+            ','.join(scene.get('potential_keywords', [])),
+            help="用逗号分隔多个关键词"
+        )
+
+        st.markdown("---")
+
+        btn_col1, btn_col2, btn_col3 = st.columns(3)
+
+        with btn_col1:
+            save = st.form_submit_button("💾 保存修改", type="primary", use_container_width=True)
+
+        with btn_col2:
+            cancel = st.form_submit_button("❌ 取消", use_container_width=True)
+
+        with btn_col3:
+            delete = st.form_submit_button("🗑️ 删除场景", use_container_width=True)
+
+        if save:
+            # 更新场景数据
+            updated_scene = {
+                **scene,
+                'scene_name': edited_scene_name,
+                'scene_type': edited_scene_type,
+                'trigger_event': edited_trigger,
+                'temporal_scope': edited_temporal,
+                'geo_scope': edited_geo,
+                'user_intent': edited_intent,
+                'target_population': edited_target,
+                'potential_keywords': [k.strip() for k in edited_keywords.split(',') if k.strip()]
+            }
+
+            # 重新匹配商品（按品类分组）
+            keywords = updated_scene.get('potential_keywords', [])
+            service = get_service()
+            matched = service.product_matching.match_products(keywords, group_by_category=True)
+
+            # 构建结构化的商品关联
+            updated_scene['matched_products'] = matched
+            updated_scene['product_summary'] = {
+                'total_count': sum(group['product_count'] for group in matched),
+                'category_count': len(matched),
+                'categories': [group['category'] for group in matched]
+            }
+
+            # 保存到文件
+            try:
+                import json
+                from src.config import Config
+
+                # 加载所有场景
+                all_scenes = service.scene_mining.load_scenes()
+
+                # 更新对应的场景
+                scene_id = scene.get('scene_id')
+                for idx, s in enumerate(all_scenes):
+                    if s.get('scene_id') == scene_id:
+                        all_scenes[idx] = updated_scene
+                        break
+
+                # 保存
+                with open(Config.SCENARIOS_PATH, 'w', encoding='utf-8') as f:
+                    json.dump(all_scenes, f, ensure_ascii=False, indent=2)
+
+                st.success("✅ 场景已更新!")
+                st.session_state.scene_library_mode = False
+                st.session_state.editing_scene = None
+
+                st.rerun()
+            except Exception as e:
+                st.error(f"❌ 保存异常: {e}")
+
+        elif cancel:
+            st.session_state.scene_library_mode = False
+            st.session_state.editing_scene = None
+            st.rerun()
+
+        elif delete:
+            st.session_state.deleting_scene_id = scene.get('scene_id')
+            st.session_state.deleting_scene = scene
+            st.session_state.scene_library_mode = False
+            st.session_state.editing_scene = None
+            st.rerun()
 
 
 if __name__ == "__main__":
