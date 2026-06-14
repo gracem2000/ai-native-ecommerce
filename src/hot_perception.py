@@ -146,7 +146,3 @@ if __name__ == "__main__":
     print("\n=== 百度热搜 ===")
     for topic in result['baidu_hot']:
         print(f"#{topic['rank']} {topic['title']} (热度: {topic['heat']})")
-
-    print("\n=== 知乎热榜 ===")
-    for topic in result['zhihu_hot']:
-        print(f"#{topic['rank']} {topic['title']} (热度: {topic['heat']})")

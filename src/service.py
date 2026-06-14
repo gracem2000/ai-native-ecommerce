@@ -88,7 +88,6 @@ class ScenarioService:
             'total_scenes': len(scenes),
             'summary': {
                 'baidu_count': len(hot_data.get('baidu_hot', [])),
-                'zhihu_count': len(hot_data.get('zhihu_hot', [])),
                 'total_hot': len(hot_data.get('all_hot', [])),
                 'scenes_generated': len(scenes),
                 'products_matched': sum(len(s.get('matched_products', [])) for s in scenes)
@@ -392,7 +391,6 @@ class ScenarioService:
             'total_scenes': 0,
             'summary': {
                 'baidu_count': 0,
-                'zhihu_count': 0,
                 'total_hot': 0,
                 'scenes_generated': 0,
                 'products_matched': 0

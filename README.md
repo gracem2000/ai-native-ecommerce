@@ -11,6 +11,7 @@
 ### 核心能力
 
 - **🔥 热点感知**: 自动抓取百度热搜等外部热点信息
+- **📅 季节感知**: 基于时间、节日自动生成季节性购物场景
 - **🎯 场景挖掘**: LLM 将非结构化的新闻转化为结构化的购物场景
 - **🛍️ 商品匹配**: 基于场景关键词自动关联商品库
 
@@ -21,11 +22,15 @@
 ```
 .
 ├── data/
-│   └── mock_products.json          # 模拟商品库
+│   ├── mock_products.json          # 模拟商品库
+│   ├── hot_topics.json              # 热搜数据缓存
+│   ├── scenarios.json               # 生成的场景数据
+│   └── festivals.json               # 节日数据
 ├── src/
 │   ├── __init__.py
 │   ├── config.py                    # 配置管理
 │   ├── hot_perception.py            # 热点采集模块
+│   ├── seasonal_perception.py       # 季节性感知模块
 │   ├── llm_client.py                # GLM-5.1 客户端封装
 │   ├── scene_mining.py              # 场景挖掘模块
 │   ├── product_matching.py          # 商品匹配模块
@@ -34,7 +39,6 @@
 │   ├── __init__.py
 │   └── app.py                       # Streamlit 前端应用
 ├── requirements.txt
-├── .env.example
 └── README.md
 ```
 
@@ -68,11 +72,8 @@
    ```
 
 4. **配置环境变量**
-   ```bash
-   cp .env.example .env
-   ```
 
-   编辑 `.env` 文件，填入你的 API Key:
+   创建 `.env` 文件，填入你的 API Key:
    ```
    ZHIPU_API_KEY=your_zhipu_api_key_here
    ```
@@ -107,19 +108,43 @@
 
 ## 📖 使用指南
 
-### 方式 1: 使用 Web 界面
+### 界面功能
 
-1. 启动应用后，在侧边栏点击 **"🔄 运行完整管道"**
-2. 系统将自动：
-   - 抓取最新热点信息
-   - 使用 LLM 生成购物场景
-   - 匹配相关商品
-3. 在三个标签页中查看结果：
-   - **🔥 热点监控**: 查看抓取的热搜榜单
-   - **🎯 场景挖掘**: 查看 AI 生成的购物场景
-   - **🛍️ 商品匹配**: 查看匹配的商品推荐
+应用首页展示三大场景来源入口：
 
-### 方式 2: 使用 Python API
+- **📅 时节场景** - 基于传统节日、二十四节气自动生成周期性购物场景
+- **🔥 热点追踪** - 实时抓取百度热搜，LLM 自动转化为购物场景
+- **✍️ 人工提报** - 运营人员手动提报场景，系统自动补全完整信息
+
+### 时节场景
+
+选择日期范围，系统自动生成覆盖到的所有节日、节气相关场景。每个场景可预览、编辑、重新生成或跳过。
+
+### 热点追踪
+
+设置热点数量和生成场景数量，点击"开始抓取"自动：
+1. 抓取百度实时热搜
+2. LLM 生成购物场景
+3. 匹配相关商品
+4. 进入审核流程
+
+### 人工提报
+
+输入场景名称（如"世界杯观赛"），系统自动补全：
+- 场景描述和用户意图
+- 时间和空间范围
+- 目标人群和潜在商品
+- 关键词
+
+### 场景库管理
+
+统一管理所有场景，支持：
+- 按来源筛选（时节/热点/人工）
+- 关键词搜索
+- 多种排序方式
+- 编辑、复制、删除操作
+
+### Python API 使用
 
 ```python
 from src.service import get_service
@@ -127,30 +152,18 @@ from src.service import get_service
 # 获取服务实例
 service = get_service()
 
-# 运行完整管道
+# 生成时节场景
+seasonal_scenes = service.generate_seasonal_scenes()
+
+# 运行热点追踪管道
 result = service.run_full_pipeline(hot_limit=10, scene_limit=5)
 
-# 查看结果
-print(f"生成了 {result['total_scenes']} 个场景")
-for scene in result['scenes']:
-    print(f"- {scene['scene_name']}")
-    print(f"  关键词: {', '.join(scene['potential_keywords'])}")
-```
+# 人工提报场景
+result = service.submit_scene("春节年货采购")
 
-### 方式 3: 单独测试各模块
-
-```bash
-# 测试热点采集
-python src/hot_perception.py
-
-# 测试 LLM 客户端
-python src/llm_client.py
-
-# 测试场景挖掘
-python src/scene_mining.py
-
-# 测试商品匹配
-python src/product_matching.py
+# 获取统计数据
+source_stats = service.get_source_statistics()
+seasonal_stats = service.get_seasonal_statistics()
 ```
 
 ---
@@ -163,13 +176,19 @@ python src/product_matching.py
 - 数据清洗：去除重复、格式化热度值
 - 数据缓存：自动保存到 `data/hot_topics.json`
 
-### 2. 场景挖掘 (SceneMining)
+### 2. 季节感知 (SeasonalPerception)
+
+- 基于当前时间、季节自动生成场景
+- 支持节日场景（春节、国庆、中秋等）
+- 数据来源：`data/festivals.json`
+
+### 3. 场景挖掘 (SceneMining)
 
 - LLM 驱动：使用 GLM-5.1 理解热点并生成场景
 - 结构化输出：场景名称、类型、时间范围、关键词等
 - 数据持久化：自动保存到 `data/scenarios.json`
 
-### 3. 商品匹配 (ProductMatching)
+### 4. 商品匹配 (ProductMatching)
 
 - 多维度匹配：标题、标签、类别
 - 相关性排序：按匹配度排序返回结果
