@@ -1,0 +1,268 @@
+"""
+LLM 客户端模块
+使用智谱 AI 原生 SDK (zai-sdk)
+"""
+from zai import ZhipuAiClient
+import json
+from typing import Dict, Any, Optional
+from src.config import Config
+
+
+class GLMClient:
+    """智谱 GLM 客户端封装
+
+    使用智谱 AI 原生 SDK 调用 GLM 模型
+    """
+
+    def __init__(self, api_key: Optional[str] = None):
+        """初始化客户端
+
+        Args:
+            api_key: API密钥，如果不提供则从配置中读取
+        """
+        self.api_key = api_key or Config.ZHIPU_API_KEY
+        self.model = Config.DEFAULT_MODEL
+        self.temperature = Config.TEMPERATURE
+        self.max_tokens = Config.MAX_TOKENS
+
+        if not self.api_key:
+            raise ValueError("API Key 未设置，请在配置中提供 ZHIPU_API_KEY")
+
+        try:
+            self.client = ZhipuAiClient(api_key=self.api_key)
+            print(f"✅ LLM 客户端初始化成功 (模型: {self.model})")
+        except Exception as e:
+            print(f"❌ LLM 客户端初始化失败: {e}")
+            self.client = None
+
+    def generate_scene(self, hot_topic: str, custom_prompt: Optional[str] = None) -> Dict[str, Any]:
+        """将热点话题转化为购物场景
+
+        Args:
+            hot_topic: 热点话题标题
+            custom_prompt: 可选的自定义提示，用于重新生成场景
+
+        Returns:
+            结构化的场景数据
+        """
+        if not self.client:
+            print("⚠️  LLM 客户端未初始化，返回空场景")
+            return self._empty_scene(hot_topic)
+
+        # 使用自定义提示或默认提示
+        prompt = custom_prompt if custom_prompt else self._build_scene_prompt(hot_topic)
+
+        messages = [
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+
+        try:
+            print(f"🤖 正在处理热点: {hot_topic[:30]}...")
+
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                max_tokens=self.max_tokens,
+                temperature=self.temperature,
+            )
+
+            # 获取回复内容
+            content = response.choices[0].message.content
+            scene_data = self._parse_json_response(content)
+
+            if scene_data:
+                # 修正时间范围的年份
+                scene_data = self._fix_temporal_scope_year(scene_data)
+                print(f"✅ 场景生成成功: {scene_data.get('scene_name', 'Unknown')}")
+                return scene_data
+            else:
+                print(f"⚠️  JSON 解析失败，使用原始响应")
+                return self._fallback_scene(hot_topic, content)
+
+        except Exception as e:
+            print(f"❌ LLM 调用失败: {e}")
+            import traceback
+            traceback.print_exc()
+            return self._empty_scene(hot_topic)
+
+    def _build_scene_prompt(self, hot_topic: str) -> str:
+        """构建场景挖掘的 Prompt
+
+        Args:
+            hot_topic: 热点话题
+
+        Returns:
+            完整的 Prompt
+        """
+        # 获取当前日期
+        from datetime import datetime
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        current_year = datetime.now().year
+
+        return f"""你是一个电商场景挖掘专家。请将以下热点话题转化为购物场景。
+
+当前日期: {current_date}
+热点话题: {hot_topic}
+
+请分析这个热点话题可能引发的购物需求，并以 JSON 格式输出，包含以下字段:
+- scene_name: 场景名称（简洁明了，4-8个字）
+- scene_type: 场景类型（赛事/热点/节日/季节/生活等）
+- trigger_event: 触发事件（简短描述）
+- temporal_scope: 时间范围（注意：必须是{current_year}年的日期，格式如"{current_date} 至 {current_year}-07-15"，如果是持续性场景可写"全年"）
+- geo_scope: 地理范围（如"全国"或具体城市）
+- user_intent: 用户意图描述（1-2句话）
+- potential_keywords: 潜在商品关键词列表（5-8个关键词，用逗号分隔）
+- target_population: 目标人群（如"男性球迷、聚会人群"）
+
+重要提示：
+1. 时间范围必须使用当前年份（{current_year}）的日期
+2. 如果是热点事件，时间范围从今天开始，持续1-4周
+3. 如果是季节性场景，使用当前年份的相关季节
+
+只返回JSON内容，不要其他说明文字。
+
+示例输出:
+{{
+  "scene_name": "世界杯球迷零食补给站",
+  "scene_type": "赛事/热点",
+  "trigger_event": "世界杯小组赛开赛",
+  "temporal_scope": "{current_date} 至 {current_year}-07-15",
+  "geo_scope": "全国",
+  "user_intent": "看球时需要边吃边喝，避免饿肚子影响观赛体验",
+  "potential_keywords": ["啤酒", "薯片", "小龙虾", "护肝片", "熬夜能量"],
+  "target_population": "男性球迷、聚会人群"
+}}"""
+
+    def _fix_temporal_scope_year(self, scene_data: Dict[str, Any]) -> Dict[str, Any]:
+        """修正时间范围的年份为当前年份
+
+        Args:
+            scene_data: 场景数据
+
+        Returns:
+            修正后的场景数据
+        """
+        from datetime import datetime
+        import re
+
+        current_year = datetime.now().year
+        temporal_scope = scene_data.get('temporal_scope', '')
+
+        # 如果时间范围为"全年"或类似，直接返回
+        if not temporal_scope or '全年' in temporal_scope or '长期' in temporal_scope:
+            return scene_data
+
+        # 使用正则表达式替换所有4位年份为当前年份
+        # 匹配格式：YYYY-MM-DD 或 YYYY/MM/DD 等
+        def replace_year(match):
+            return f"{current_year}-{match.group(2)}-{match.group(3)}" if len(match.groups()) >= 3 else f"{current_year}"
+
+        # 匹配 2024-04-01 格式
+        pattern = r'(\d{4})[-/](\d{1,2})[-/](\d{1,2})'
+        fixed_scope = re.sub(pattern, f'{current_year}-\\2-\\3', temporal_scope)
+
+        # 匹配 2024年4月 格式
+        pattern_cn = r'(\d{4})年(\d{1,2})月'
+        fixed_scope = re.sub(pattern_cn, f'{current_year}年\\2月', fixed_scope)
+
+        # 如果修正后的时间范围与原范围不同，更新它
+        if fixed_scope != temporal_scope:
+            print(f"📅 修正时间范围: {temporal_scope} -> {fixed_scope}")
+            scene_data['temporal_scope'] = fixed_scope
+
+        return scene_data
+
+    def _parse_json_response(self, content: str) -> Dict[str, Any]:
+        """解析 LLM 返回的 JSON
+
+        Args:
+            content: LLM 返回的文本
+
+        Returns:
+            解析后的字典
+        """
+        try:
+            # 清理可能的 markdown 标记
+            content = content.strip()
+            if content.startswith('```json'):
+                content = content[7:]
+            if content.startswith('```'):
+                content = content[3:]
+            if content.endswith('```'):
+                content = content[:-3]
+
+            content = content.strip()
+            return json.loads(content)
+
+        except json.JSONDecodeError:
+            return {}
+
+    def _empty_scene(self, hot_topic: str) -> Dict[str, Any]:
+        """返回空场景（当处理失败时）
+
+        Args:
+            hot_topic: 原始热点话题
+
+        Returns:
+            空场景数据
+        """
+        return {
+            'scene_name': f'场景: {hot_topic[:20]}',
+            'scene_type': '未知',
+            'trigger_event': hot_topic,
+            'temporal_scope': '未知',
+            'geo_scope': '未知',
+            'user_intent': '暂无描述',
+            'potential_keywords': [],
+            'target_population': '未知'
+        }
+
+    def _fallback_scene(self, hot_topic: str, raw_response: str) -> Dict[str, Any]:
+        """回退场景（当 JSON 解析失败时）
+
+        Args:
+            hot_topic: 原始热点话题
+            raw_response: 原始响应
+
+        Returns:
+            包含原始响应的场景数据
+        """
+        return {
+            'scene_name': f'场景: {hot_topic[:20]}',
+            'scene_type': '需人工审核',
+            'trigger_event': hot_topic,
+            'temporal_scope': '待确定',
+            'geo_scope': '待确定',
+            'user_intent': raw_response[:100] if raw_response else '暂无描述',
+            'potential_keywords': [],
+            'target_population': '待确定',
+            'raw_response': raw_response
+        }
+
+    def health_check(self) -> bool:
+        """检查客户端健康状态
+
+        Returns:
+            是否可用
+        """
+        return self.client is not None
+
+
+if __name__ == "__main__":
+    # 测试代码
+    import os
+
+    if not os.getenv("ZHIPU_API_KEY"):
+        print("⚠️  请设置 ZHIPU_API_KEY 环境变量")
+    else:
+        client = GLMClient()
+
+        # 测试场景生成
+        test_topic = "2026世界杯今日开幕 梅西领衔阿根廷队"
+        scene = client.generate_scene(test_topic)
+
+        print("\n=== 生成的场景 ===")
+        print(json.dumps(scene, ensure_ascii=False, indent=2))
