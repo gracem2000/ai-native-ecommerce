@@ -278,6 +278,33 @@
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
 }
 
+/* ===== 输入框样式 ===== */
+.stTextInput input,
+.stDateInput input,
+.stSelectbox select,
+.stTextInput > div > div > input,
+.stDateInput > div > div > input,
+.stSelectbox > div > div > select,
+div[data-testid="stTextInput"] input,
+div[data-testid="stDateInput"] input,
+div[data-testid="stSelectbox"] select {
+    border: 1px solid #ef4444 !important;
+    border-radius: var(--radius-md);
+}
+
+.stTextInput input:focus,
+.stDateInput input:focus,
+.stSelectbox select:focus,
+.stTextInput > div > div > input:focus,
+.stDateInput > div > div > input:focus,
+.stSelectbox > div > div > select:focus,
+div[data-testid="stTextInput"] input:focus,
+div[data-testid="stDateInput"] input:focus,
+div[data-testid="stSelectbox"] select:focus {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15) !important;
+}
+
 /* ===== 分隔线 ===== */
 .section-divider {
     height: 1px;

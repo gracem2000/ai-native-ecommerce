@@ -32,6 +32,39 @@ def load_css():
 
 load_css()
 
+# 强制应用红色边框样式
+st.markdown('''
+<style>
+.stTextInput input, .stDateInput input, .stSelectbox select,
+.stTextInput > div > div > input, .stDateInput > div > div > input, .stSelectbox > div > div > select,
+div[data-testid="stTextInput"] input, div[data-testid="stDateInput"] input, div[data-testid="stSelectbox"] select {
+    border: 1px solid #ef4444 !important;
+    border-radius: 6px !important;
+}
+.stTextInput input:focus, .stDateInput input:focus, .stSelectbox select:focus,
+.stTextInput > div > div > input:focus, .stDateInput > div > div > input:focus, .stSelectbox > div > div > select:focus,
+div[data-testid="stTextInput"] input:focus, div[data-testid="stDateInput"] input:focus, div[data-testid="stSelectbox"] select:focus {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15) !important;
+}
+</style>
+''', unsafe_allow_html=True)
+
+
+def normalize_keywords(keywords) -> list:
+    """统一处理关键词格式，支持列表或逗号分隔的字符串
+
+    Args:
+        keywords: 列表格式 ["投影仪", "球衣"] 或字符串格式 "投影仪,球衣"
+
+    Returns:
+        清理后的关键词列表
+    """
+    if isinstance(keywords, str):
+        keywords = [k.strip() for k in keywords.split(',') if k.strip()]
+    # 去除关键词中的空格
+    return [k.replace(' ', '') for k in keywords if k]
+
 
 @st.cache_resource
 def get_service():
@@ -436,7 +469,7 @@ def run_pipeline(hot_limit: int, scene_limit: int):
                     st.caption(f"时间: {scene.get('temporal_scope', '未知')}")
                     st.caption(f"地理: {scene.get('geo_scope', '未知')}")
                     st.write(f"**用户意图**: {scene.get('user_intent', '暂无')[:100]}...")
-                    keywords = scene.get('potential_keywords', [])
+                    keywords = normalize_keywords(scene.get('potential_keywords', []))
                     if keywords:
                         st.write("**关键词**:", ", ".join(keywords[:5]))
 
@@ -508,7 +541,7 @@ def run_pipeline(hot_limit: int, scene_limit: int):
                         with col_b:
                             st.caption(f"时间: {scene.get('temporal_scope', '未知')}")
                         st.write(f"**用户意图**: {scene.get('user_intent', '暂无')[:100]}...")
-                        keywords = scene.get('potential_keywords', [])
+                        keywords = normalize_keywords(scene.get('potential_keywords', []))
                         if keywords:
                             st.write("**关键词**:", ", ".join(keywords[:5]))
                         st.markdown("---")
@@ -603,7 +636,7 @@ def render_scenes(result: dict):
             st.markdown(f"**👥 目标人群**: {scene.get('target_population', '未知')}")
 
             # 关键词标签
-            keywords = scene.get('potential_keywords', [])
+            keywords = normalize_keywords(scene.get('potential_keywords', []))
             if keywords:
                 st.markdown("**🔑 关键词**:")
                 for keyword in keywords:
@@ -709,7 +742,7 @@ def render_scene_submission():
                                         st.caption(f"类型: {scene.get('scene_type', '未知')}")
                                     with col_b:
                                         st.caption(f"时间: {scene.get('temporal_scope', '未知')}")
-                                    keywords = scene.get('potential_keywords', [])
+                                    keywords = normalize_keywords(scene.get('potential_keywords', []))
                                     if keywords:
                                         st.write("**关键词**:", ", ".join(keywords[:5]))
                                     st.markdown("---")
@@ -908,15 +941,10 @@ def render_scene_card(scene: Dict, expanded: bool = False):
         st.markdown(f"**🎯 用户意图**: {scene.get('user_intent', '暂无描述')}")
 
         # 关键词标签
-        keywords = scene.get('potential_keywords', [])
+        keywords = normalize_keywords(scene.get('potential_keywords', []))
         if keywords:
             st.markdown("**🔑 关键词:**")
-            # 处理关键词：可能是字符串（逗号分隔）或列表
-            if isinstance(keywords, str):
-                keywords = [k.strip() for k in keywords.split(',') if k.strip()]
-            # 清理关键词中的空格
-            clean_keywords = [k.replace(' ', '') for k in keywords if k]
-            keyword_tags = " ".join([f'<span class="keyword-tag">{keyword}</span>' for keyword in clean_keywords])
+            keyword_tags = " ".join([f'<span class="keyword-tag">{keyword}</span>' for keyword in keywords])
             st.markdown(keyword_tags, unsafe_allow_html=True)
 
         # 来源信息
@@ -1626,7 +1654,7 @@ def render_seasonal_scenes():
                             with col_b:
                                 st.caption(f"时间: {scene.get('temporal_scope', '未知')}")
                             st.write(f"**用户意图**: {scene.get('user_intent', '暂无')[:100]}...")
-                            keywords = scene.get('potential_keywords', [])
+                            keywords = normalize_keywords(scene.get('potential_keywords', []))
                             if keywords:
                                 st.write("**关键词**:", ", ".join(keywords[:5]))
                             st.markdown("---")
