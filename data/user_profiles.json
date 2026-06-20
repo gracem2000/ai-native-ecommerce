@@ -1,0 +1,50 @@
+{
+  "users": [
+    {
+      "user_id": "marla",
+      "name": "Marla",
+      "avatar_emoji": "👩‍💼",
+      "persona": "28 岁的上海产品经理，活泼、注重颜值与体验，喜欢尝鲜，追求精致生活",
+      "basics": {
+        "age": 28,
+        "gender": "female",
+        "city": "上海",
+        "occupation": "产品经理"
+      },
+      "preferences": {
+        "favorite_categories": ["美妆护肤", "服饰鞋帽", "数码电器", "时尚配饰"],
+        "price_range": [100, 2000],
+        "brands": ["雅诗兰黛", "欧莱雅", "Apple", "蕉下", "施华洛世奇"]
+      },
+      "interests": ["健身", "摄影", "咖啡", "旅行", "护肤"],
+      "history": {
+        "viewed": ["10072", "10073", "10097", "10098", "10036", "10031"],
+        "purchased": ["10073", "10031", "10036"],
+        "search_keywords": ["面膜", "防晒", "瑜伽", "降噪耳机", "旅行"]
+      }
+    },
+    {
+      "user_id": "steve",
+      "name": "Steve",
+      "avatar_emoji": "👨‍💻",
+      "persona": "35 岁的北京工程师，务实、热爱户外与科技，周末喜欢露营和打游戏，是聚会里的气氛担当",
+      "basics": {
+        "age": 35,
+        "gender": "male",
+        "city": "北京",
+        "occupation": "软件工程师"
+      },
+      "preferences": {
+        "favorite_categories": ["数码电器", "运动户外", "酒水饮料", "休闲零食"],
+        "price_range": [50, 5000],
+        "brands": ["小米", "任天堂", "JBL", "牧高笛", "青岛啤酒"]
+      },
+      "interests": ["户外徒步", "露营", "科技数码", "电竞", "看球"],
+      "history": {
+        "viewed": ["10011", "10022", "10012", "10034", "10032", "10001", "10002"],
+        "purchased": ["10022", "10034", "10001"],
+        "search_keywords": ["露营", "游戏机", "啤酒", "蓝牙音箱", "户外"]
+      }
+    }
+  ]
+}

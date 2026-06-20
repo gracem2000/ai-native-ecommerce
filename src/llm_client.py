@@ -4,7 +4,7 @@ LLM 客户端模块
 """
 from zai import ZhipuAiClient
 import json
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 from src.config import Config
 
 
@@ -87,6 +87,38 @@ class GLMClient:
             import traceback
             traceback.print_exc()
             return self._empty_scene(hot_topic)
+
+    def chat(self, messages: List[Dict], temperature: Optional[float] = None, max_tokens: Optional[int] = None) -> str:
+        """通用多轮对话
+
+        复用底层 chat.completions.create 调用，支持任意 messages 列表（多轮历史）。
+        供对话式购物助手等场景使用。
+
+        Args:
+            messages: 对话消息列表，形如 [{"role": "user", "content": "..."}]
+            temperature: 可选温度，默认使用配置值
+            max_tokens: 可选最大 token 数，默认使用配置值
+
+        Returns:
+            模型回复的文本内容；客户端未初始化或调用失败时返回空字符串
+        """
+        if not self.client:
+            print("⚠️  LLM 客户端未初始化，无法进行对话")
+            return ""
+
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                max_tokens=max_tokens if max_tokens is not None else self.max_tokens,
+                temperature=temperature if temperature is not None else self.temperature,
+            )
+            return response.choices[0].message.content or ""
+        except Exception as e:
+            print(f"❌ LLM 对话调用失败: {e}")
+            import traceback
+            traceback.print_exc()
+            return ""
 
     def _build_scene_prompt(self, hot_topic: str) -> str:
         """构建场景挖掘的 Prompt

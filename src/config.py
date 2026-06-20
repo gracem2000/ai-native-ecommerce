@@ -23,6 +23,7 @@ class Config:
     PRODUCT_DB_PATH = os.path.join(DATA_DIR, "mock_products.json")
     SCENARIOS_PATH = os.path.join(DATA_DIR, "scenarios.json")
     FESTIVALS_PATH = os.path.join(DATA_DIR, "festivals.json")
+    USER_PROFILES_PATH = os.path.join(DATA_DIR, "user_profiles.json")
 
     # ==================== 热搜抓取配置 ====================
     BAIDU_HOT_URL = "https://top.baidu.com/board?tab=realtime"

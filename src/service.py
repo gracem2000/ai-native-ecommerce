@@ -27,6 +27,7 @@ class ScenarioService:
         self.scene_mining = SceneMining(llm_client=self.llm_client)
         self.product_matching = ProductMatching()
         self.seasonal_perception = SeasonalPerception(llm_client=self.llm_client)
+        self._recommender = None  # 惰性初始化，避免循环导入
 
         print("✅ 系统初始化完成\n")
 
@@ -623,6 +624,17 @@ class ScenarioService:
                 'llm_model': Config.DEFAULT_MODEL
             }
         }
+
+    def get_recommender(self):
+        """获取个性化推荐引擎（惰性初始化，避免循环导入）
+
+        Returns:
+            Recommender 实例
+        """
+        if self._recommender is None:
+            from src.recommender import Recommender
+            self._recommender = Recommender(self.llm_client, self.product_matching, self)
+        return self._recommender
 
 
 # 创建全局服务实例

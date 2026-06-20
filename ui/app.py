@@ -133,69 +133,57 @@ def render_homepage():
     </div>
     ''', unsafe_allow_html=True)
 
-    st.markdown('<h2 style="text-align: center; margin: 1rem 0 1.5rem 0; font-size: 1.5rem;">三大场景来源</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 style="text-align: center; margin: 1rem 0 1.5rem 0; font-size: 1.5rem;">两大核心功能</h2>', unsafe_allow_html=True)
 
-    # 三大来源入口卡片 - 现代化设计
-    col1, col2, col3 = st.columns(3)
+    # 两大功能入口卡片：左 = 场景供给中心（功能一），右 = AI 购物助手（功能二）
+    col_left, col_right = st.columns(2)
 
-    with col1:
-        st.markdown(f'''
-        <div class="hero-card">
-            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">📅</div>
-            <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">时节场景</h3>
-            <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.85rem;">
-                基于传统节日、二十四节气<br/>
-                自动生成周期性购物场景
+    with col_left:
+        st.markdown('''
+        <div class="hero-card" style="text-align:left;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🧭</div>
+            <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">功能一 · 场景供给中心</h3>
+            <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.9rem;">
+                面向运营的后端演示：从<b>热点感知</b>、<b>季节感知</b>到<b>场景挖掘</b>与<b>商品匹配</b>的全链路闭环。
             </p>
-            <div style="display: flex; gap: 1rem; font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem;">
-                <span>📊 {seasonal_stats['total_festivals']} 个节日</span>
-                <span>📊 {seasonal_stats['total_solar_terms']} 个节气</span>
+            <div style="font-size:0.78rem; color:#6b7280; margin-bottom:0.75rem;">
+                📅 时节 · 🔥 热点 · ✍️ 提报 · 📚 场景库
             </div>
         </div>
         ''', unsafe_allow_html=True)
 
-        if st.button("→ 进入时节场景", key="seasonal_entry", use_container_width=True):
-            st.session_state.current_page = 'seasonal'
-            st.rerun()
+        sub1, sub2 = st.columns(2)
+        with sub1:
+            if st.button("📅 时节场景", key="home_seasonal", use_container_width=True):
+                st.session_state.current_page = 'seasonal'
+                st.rerun()
+            if st.button("✍️ 人工提报", key="home_manual", use_container_width=True):
+                st.session_state.current_page = 'manual'
+                st.rerun()
+        with sub2:
+            if st.button("🔥 热点追踪", key="home_hotspot", use_container_width=True):
+                st.session_state.current_page = 'hotspot'
+                st.rerun()
+            if st.button("📚 场景库", key="home_library", use_container_width=True):
+                st.session_state.current_page = 'library'
+                st.rerun()
 
-    with col2:
-        st.markdown(f'''
-        <div class="hero-card">
-            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🔥</div>
-            <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">热点追踪</h3>
-            <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.85rem;">
-                实时抓取百度热搜<br/>
-                LLM 自动转化为购物场景
+    with col_right:
+        st.markdown('''
+        <div class="hero-card" style="text-align:left; background: linear-gradient(135deg,#3b82f6,#8b5cf6); color:white;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🤖</div>
+            <h3 style="color:white; margin: 0 0 0.5rem 0; font-size: 1.3rem;">功能二 · AI 购物助手</h3>
+            <p style="color:rgba(255,255,255,0.92); margin: 0 0 1rem 0; font-size: 0.9rem;">
+                面向用户的前端对话：登录为 <b>Marla</b> 或 <b>Steve</b>，与 AI 助手聊天，结合<b>历史兴趣</b>、<b>时节</b>与<b>热点场景</b>，获得带推荐理由的个性化商品推荐。
             </p>
-            <div style="display: flex; gap: 1rem; font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem;">
-                <span>🔄 实时更新</span>
-                <span>🤖 AI 生成</span>
+            <div style="font-size:0.78rem; color:rgba(255,255,255,0.85);">
+                🗣️ 多轮对话 · 🎯 个性化推荐 · 🃏 商品卡片
             </div>
         </div>
         ''', unsafe_allow_html=True)
 
-        if st.button("→ 进入热点追踪", key="hotspot_entry", use_container_width=True):
-            st.session_state.current_page = 'hotspot'
-            st.rerun()
-
-    with col3:
-        st.markdown(f'''
-        <div class="hero-card">
-            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">✍️</div>
-            <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">人工提报</h3>
-            <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.85rem;">
-                运营人员手动提报场景<br/>
-                系统自动补全完整信息
-            </p>
-            <div style="display: flex; gap: 1rem; font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem;">
-                <span>📝 灵活提报</span>
-                <span>🤖 智能补全</span>
-            </div>
-        </div>
-        ''', unsafe_allow_html=True)
-
-        if st.button("→ 进入人工提报", key="manual_entry", use_container_width=True):
-            st.session_state.current_page = 'manual'
+        if st.button("🤖 登录并开始对话", key="home_chatbot", use_container_width=True):
+            st.session_state.current_page = 'chatbot'
             st.rerun()
 
     st.markdown('<div style="height: 1px; background: linear-gradient(90deg, transparent, #e5e7eb, transparent); margin: 2rem 0;"></div>', unsafe_allow_html=True)
@@ -291,7 +279,7 @@ def render_sidebar():
         st.markdown("---")
 
         # 导航菜单
-        st.markdown('<div style="color: #6b7280; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase;">功能导航</div>', unsafe_allow_html=True)
+        st.markdown('<div style="color: #6b7280; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase;">功能一 · 场景供给中心</div>', unsafe_allow_html=True)
 
         nav_items = [
             ("📅 时节场景", "seasonal"),
@@ -316,6 +304,13 @@ def render_sidebar():
             if st.button(icon, use_container_width=True, key=f"nav_{page}"):
                 st.session_state.current_page = page
                 st.rerun()
+
+        # 功能二：AI 购物助手
+        st.markdown('<div style="color: #6b7280; font-size: 0.75rem; font-weight: 600; margin: 1rem 0 0.5rem 0; text-transform: uppercase;">功能二 · AI 购物助手</div>', unsafe_allow_html=True)
+
+        if st.button("🤖 AI购物助手", use_container_width=True, key="nav_chatbot"):
+            st.session_state.current_page = 'chatbot'
+            st.rerun()
 
         st.markdown("---")
 
@@ -678,6 +673,61 @@ def render_products(result: dict):
                         """, unsafe_allow_html=True)
         else:
             st.info("该场景暂无匹配商品")
+
+
+# ==================== 商品卡片组件（品类 emoji + 渐变封面） ====================
+# image_url 指向的图片文件实际不存在，故用品类 emoji + 渐变色块作封面，无需任何图片资源
+CATEGORY_EMOJI = {
+    "酒水饮料": "🍺", "休闲零食": "🍪", "食品饮料": "🍜",
+    "数码电器": "📱", "运动户外": "🏕️", "服饰鞋帽": "👕",
+    "美妆护肤": "💄", "母婴用品": "🍼", "家居生活": "🏠",
+    "时尚配饰": "💎", "医疗保健": "💊", "潮玩手办": "🎁", "成人用品": "🔒",
+}
+CATEGORY_GRADIENT = {
+    "酒水饮料": "linear-gradient(135deg,#f59e0b,#ef4444)",
+    "休闲零食": "linear-gradient(135deg,#f59e0b,#f97316)",
+    "食品饮料": "linear-gradient(135deg,#f97316,#ef4444)",
+    "数码电器": "linear-gradient(135deg,#3b82f6,#1e3a8a)",
+    "运动户外": "linear-gradient(135deg,#10b981,#0d9488)",
+    "服饰鞋帽": "linear-gradient(135deg,#8b5cf6,#6d28d9)",
+    "美妆护肤": "linear-gradient(135deg,#ec4899,#db2777)",
+    "母婴用品": "linear-gradient(135deg,#f472b6,#f9a8d4)",
+    "家居生活": "linear-gradient(135deg,#0ea5e9,#22d3ee)",
+    "时尚配饰": "linear-gradient(135deg,#eab308,#f59e0b)",
+    "医疗保健": "linear-gradient(135deg,#14b8a6,#0ea5e9)",
+    "潮玩手办": "linear-gradient(135deg,#a855f7,#ec4899)",
+    "成人用品": "linear-gradient(135deg,#64748b,#475569)",
+}
+
+
+def _category_cover(category):
+    """根据品类返回 (emoji, 渐变背景)"""
+    return (
+        CATEGORY_EMOJI.get(category, "📦"),
+        CATEGORY_GRADIENT.get(category, "linear-gradient(135deg,#3b82f6,#8b5cf6)"),
+    )
+
+
+def render_product_card(product, reason=None):
+    """渲染单个商品卡片（品类 emoji + 渐变封面），用于 AI 购物助手推荐"""
+    emoji, gradient = _category_cover(product.get("category", ""))
+    tags = product.get("tags") or []
+    tags_html = "".join(f'<span class="keyword-tag">{t}</span>' for t in tags[:3])
+    reason_html = f'<div class="rec-reason">💡 {reason}</div>' if reason else ""
+    st.markdown(f'''
+    <div class="product-card rec-card">
+        <div class="product-cover" style="background:{gradient};">
+            <span class="product-cover-emoji">{emoji}</span>
+            <span class="product-cover-cat">{product.get('category', '')}</span>
+        </div>
+        <div class="product-card-body">
+            <div class="product-title">{product.get('title', '')}</div>
+            <div class="product-price">¥{product.get('price', '')}</div>
+            <div class="product-tags">{tags_html}</div>
+            {reason_html}
+        </div>
+    </div>
+    ''', unsafe_allow_html=True)
 
 
 def render_scene_submission():
@@ -2034,6 +2084,157 @@ def render_scene_library():
                     st.rerun()
 
 
+def _render_recommendations(recs):
+    """在一行内渲染推荐商品卡片网格"""
+    if not recs:
+        return
+    cols = st.columns(min(3, len(recs)))
+    for col, r in zip(cols, recs):
+        with col:
+            render_product_card(r.get('product', {}), r.get('reason'))
+
+
+def render_chatbot():
+    """渲染 AI 购物助手页面：登录(Marla/Steve) + 多轮对话 + 个性化商品卡片推荐"""
+    service = get_service()
+    recommender = service.get_recommender()
+    users = recommender.list_users()
+
+    # 初始化会话状态
+    if 'chat_messages' not in st.session_state:
+        st.session_state.chat_messages = []
+
+    # ==================== 登录态：选择用户 ====================
+    if not st.session_state.get('current_user'):
+        st.markdown("""
+        <div style="text-align:center; padding:1rem 0 0.5rem 0;">
+            <h1 style="font-size:1.8rem; font-weight:700; background:linear-gradient(135deg,#3b82f6,#8b5cf6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:0;">🤖 AI 购物助手</h1>
+            <p style="color:#6b7280; margin-top:0.5rem;">登录后，与懂你的 AI 助手聊聊，获得应时应景的个性化推荐</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown("#### 👋 请选择一个用户登录")
+        cols = st.columns(len(users)) if users else [st.container()]
+        for col, u in zip(cols, users):
+            with col:
+                interests = "".join(f'<span class="keyword-tag">{it}</span>' for it in u.get('interests', [])[:4])
+                st.markdown(f'''
+                <div class="persona-card">
+                    <div style="font-size:3rem; text-align:center;">{u.get('avatar_emoji','🙂')}</div>
+                    <h3 style="text-align:center; margin:0.5rem 0; color:#1f2937;">{u.get('name')}</h3>
+                    <p style="text-align:center; color:#6b7280; font-size:0.82rem; min-height:3rem;">{u.get('persona','')}</p>
+                    <div style="text-align:center; margin-top:0.5rem;">{interests}</div>
+                </div>
+                ''', unsafe_allow_html=True)
+                if st.button(f"以 {u.get('name')} 登录", key=f"login_{u.get('user_id')}", use_container_width=True):
+                    st.session_state.current_user = u.get('user_id')
+                    st.session_state.chat_messages = []
+                    st.rerun()
+        return
+
+    # ==================== 已登录：对话界面 ====================
+    user_id = st.session_state.current_user
+    profile = recommender.get_profile(user_id)
+    if not profile:
+        st.error("用户画像加载失败，请重新登录。")
+        if st.button("返回登录"):
+            st.session_state.current_user = None
+            st.rerun()
+        return
+
+    # 顶栏：当前用户 + 操作
+    tcol1, tcol2, tcol3 = st.columns([6, 1, 1])
+    with tcol1:
+        st.markdown(f"### {profile.get('avatar_emoji')} 与 **{profile.get('name')}** 的购物对话")
+    with tcol2:
+        if st.button("🔄 切换用户", use_container_width=True, key="switch_user"):
+            st.session_state.current_user = None
+            st.session_state.chat_messages = []
+            st.rerun()
+    with tcol3:
+        if st.button("🗑️ 清空对话", use_container_width=True, key="clear_chat"):
+            st.session_state.chat_messages = []
+            st.rerun()
+
+    # 主体：左侧对话 + 右侧画像/场景
+    chat_col, info_col = st.columns([3.2, 1])
+
+    with info_col:
+        st.markdown("##### 👤 用户画像")
+        st.caption(profile.get('persona', ''))
+        st.markdown(f"**基础**：{profile['basics'].get('age')}岁 · {profile['basics'].get('city')} · {profile['basics'].get('occupation')}")
+
+        prefs = profile.get('preferences', {})
+        st.markdown("**偏好品类**")
+        st.markdown(" · ".join(prefs.get('favorite_categories', [])))
+        pr = prefs.get('price_range', [])
+        if len(pr) == 2:
+            st.caption(f"预算区间 ¥{pr[0]} ~ ¥{pr[1]}")
+
+        st.markdown("**兴趣标签**")
+        interest_html = "".join(f'<span class="keyword-tag">{it}</span>' for it in profile.get('interests', []))
+        st.markdown(interest_html, unsafe_allow_html=True)
+
+        hist = profile.get('history', {})
+        purchased_titles = []
+        for sku in hist.get('purchased', []):
+            prod = service.product_matching.get_product_by_sku(sku)
+            if prod:
+                purchased_titles.append(prod.get('title'))
+        if purchased_titles:
+            st.markdown("**近期购买（历史兴趣）**")
+            for t in purchased_titles:
+                st.markdown(f"· {t}")
+
+        st.markdown("---")
+        st.markdown("##### 🌐 当前参考场景")
+        st.caption("推荐会结合以下时节/热点场景：")
+        try:
+            scenes = recommender._scene_summary(recommender._get_active_scenes())
+        except Exception:
+            scenes = []
+        for s in scenes[:6]:
+            st.markdown(
+                f"<div style='margin:0.2rem 0;'><span class='keyword-tag'>{s.get('source_type','')}</span> "
+                f"<span style='font-size:0.8rem;color:#374151;'>{s.get('scene_name','')}</span></div>",
+                unsafe_allow_html=True
+            )
+
+    with chat_col:
+        # 渲染历史对话
+        for msg in st.session_state.chat_messages:
+            with st.chat_message(msg['role']):
+                st.markdown(msg['content'])
+                if msg['role'] == 'assistant' and msg.get('recommendations'):
+                    _render_recommendations(msg['recommendations'])
+
+        # 输入框
+        if prompt := st.chat_input(f"和 {profile.get('name')} 的购物助手聊聊吧～（例如：周末想出游 / 最近有什么新品）"):
+            # 追加用户消息
+            st.session_state.chat_messages.append({'role': 'user', 'content': prompt})
+            with st.chat_message('user'):
+                st.markdown(prompt)
+
+            # 调用推荐引擎
+            with st.chat_message('assistant'):
+                with st.spinner('正在结合你的兴趣与当下场景为你挑选…'):
+                    slim_history = [{'role': m['role'], 'content': m['content']} for m in st.session_state.chat_messages]
+                    try:
+                        result = recommender.chat(user_id, slim_history)
+                    except Exception as e:
+                        result = {'reply': f'（出错了：{e}）', 'recommendations': []}
+                st.markdown(result['reply'])
+                if result.get('recommendations'):
+                    _render_recommendations(result['recommendations'])
+
+            # 持久化助手回复
+            st.session_state.chat_messages.append({
+                'role': 'assistant',
+                'content': result['reply'],
+                'recommendations': result.get('recommendations', []),
+            })
+
+
 def main():
     """主函数 - 首页导航 + 详细页面"""
     # 渲染侧边栏
@@ -2155,6 +2356,10 @@ def main():
         # 场景库管理页面
         render_header()
         render_scene_library()
+
+    elif current_page == 'chatbot':
+        # AI 购物助手对话页面（自带标题，不使用通用 header）
+        render_chatbot()
 
     else:
         # 首页展示
