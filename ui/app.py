@@ -133,56 +133,104 @@ def render_homepage():
     </div>
     ''', unsafe_allow_html=True)
 
-    st.markdown('<h2 style="text-align: center; margin: 1rem 0 1.5rem 0; font-size: 1.5rem;">两大核心功能</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 style="text-align: center; margin: 1rem 0 1.5rem 0; font-size: 1.5rem;">三大场景来源</h2>', unsafe_allow_html=True)
 
-    # 两大功能入口卡片：左 = 场景供给中心（功能一），右 = AI 购物助手（功能二）
-    col_left, col_right = st.columns(2)
+    # 三大来源入口卡片 - 现代化设计（恢复 master 版本）
+    col1, col2, col3 = st.columns(3)
 
-    with col_left:
-        st.markdown('''
-        <div class="hero-card" style="text-align:left;">
-            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🧭</div>
-            <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">功能一 · 场景供给中心</h3>
-            <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.9rem;">
-                面向运营的后端演示：从<b>热点感知</b>、<b>季节感知</b>到<b>场景挖掘</b>与<b>商品匹配</b>的全链路闭环。
+    with col1:
+        st.markdown(f'''
+        <div class="hero-card">
+            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">📅</div>
+            <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">时节场景</h3>
+            <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.85rem;">
+                基于传统节日、二十四节气<br/>
+                自动生成周期性购物场景
             </p>
-            <div style="font-size:0.78rem; color:#6b7280; margin-bottom:0.75rem;">
-                📅 时节 · 🔥 热点 · ✍️ 提报 · 📚 场景库
+            <div style="display: flex; gap: 1rem; font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem;">
+                <span>📊 {seasonal_stats['total_festivals']} 个节日</span>
+                <span>📊 {seasonal_stats['total_solar_terms']} 个节气</span>
             </div>
         </div>
         ''', unsafe_allow_html=True)
 
-        sub1, sub2 = st.columns(2)
-        with sub1:
-            if st.button("📅 时节场景", key="home_seasonal", use_container_width=True):
-                st.session_state.current_page = 'seasonal'
-                st.rerun()
-            if st.button("✍️ 人工提报", key="home_manual", use_container_width=True):
-                st.session_state.current_page = 'manual'
-                st.rerun()
-        with sub2:
-            if st.button("🔥 热点追踪", key="home_hotspot", use_container_width=True):
-                st.session_state.current_page = 'hotspot'
-                st.rerun()
-            if st.button("📚 场景库", key="home_library", use_container_width=True):
-                st.session_state.current_page = 'library'
-                st.rerun()
+        if st.button("→ 进入时节场景", key="seasonal_entry", use_container_width=True):
+            st.session_state.current_page = 'seasonal'
+            st.rerun()
 
-    with col_right:
-        st.markdown('''
-        <div class="hero-card" style="text-align:left; background: linear-gradient(135deg,#3b82f6,#8b5cf6); color:white;">
-            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🤖</div>
-            <h3 style="color:white; margin: 0 0 0.5rem 0; font-size: 1.3rem;">功能二 · AI 购物助手</h3>
-            <p style="color:rgba(255,255,255,0.92); margin: 0 0 1rem 0; font-size: 0.9rem;">
-                面向用户的前端对话：登录为 <b>Marla</b> 或 <b>Steve</b>，与 AI 助手聊天，结合<b>历史兴趣</b>、<b>时节</b>与<b>热点场景</b>，获得带推荐理由的个性化商品推荐。
+    with col2:
+        st.markdown(f'''
+        <div class="hero-card">
+            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🔥</div>
+            <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">热点追踪</h3>
+            <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.85rem;">
+                实时抓取百度热搜<br/>
+                LLM 自动转化为购物场景
             </p>
-            <div style="font-size:0.78rem; color:rgba(255,255,255,0.85);">
-                🗣️ 多轮对话 · 🎯 个性化推荐 · 🃏 商品卡片
+            <div style="display: flex; gap: 1rem; font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem;">
+                <span>🔄 实时更新</span>
+                <span>🤖 AI 生成</span>
             </div>
         </div>
         ''', unsafe_allow_html=True)
 
-        if st.button("🤖 登录并开始对话", key="home_chatbot", use_container_width=True):
+        if st.button("→ 进入热点追踪", key="hotspot_entry", use_container_width=True):
+            st.session_state.current_page = 'hotspot'
+            st.rerun()
+
+    with col3:
+        st.markdown(f'''
+        <div class="hero-card">
+            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">✍️</div>
+            <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">人工提报</h3>
+            <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.85rem;">
+                运营人员手动提报场景<br/>
+                系统自动补全完整信息
+            </p>
+            <div style="display: flex; gap: 1rem; font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem;">
+                <span>📝 灵活提报</span>
+                <span>🤖 智能补全</span>
+            </div>
+        </div>
+        ''', unsafe_allow_html=True)
+
+        if st.button("→ 进入人工提报", key="manual_entry", use_container_width=True):
+            st.session_state.current_page = 'manual'
+            st.rerun()
+
+    st.markdown('<div style="height: 1px; background: linear-gradient(90deg, transparent, #e5e7eb, transparent); margin: 2rem 0;"></div>', unsafe_allow_html=True)
+
+    # ===== AI 场景导购（功能二：AI 购物助手）=====
+    st.markdown('<h2 style="text-align: center; margin: 1rem 0 1.5rem 0; font-size: 1.5rem;">AI场景导购</h2>', unsafe_allow_html=True)
+
+    # 左右两列等大对齐：左 = AI推荐，右 = AI对话
+    ai_col1, ai_col2 = st.columns(2)
+
+    with ai_col1:
+        st.markdown('''
+        <div class="hero-card" style="text-align:left; min-height: 15rem;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🤖</div>
+            <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">AI推荐</h3>
+            <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.88rem; line-height: 1.6;">
+                系统融合你的<b>用户画像</b>与当下热门的<b>时节</b>、<b>热点场景</b>，由大模型实时推理，为你智能生成千人千面的个性化商品推荐列表——让每一次推荐都精准契合你的真实需求与当下时机。
+            </p>
+        </div>
+        ''', unsafe_allow_html=True)
+        if st.button("→ 开始AI推荐", key="home_ai_recommend", type="primary", use_container_width=True):
+            st.session_state.current_page = 'chatbot'
+            st.rerun()
+
+    with ai_col2:
+        st.markdown('''
+        <div class="hero-card" style="text-align:left; min-height: 15rem;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">💬</div>
+            <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">AI对话</h3>
+            <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.88rem; line-height: 1.6;">
+                像和朋友聊天一样，与 AI 购物助手进行多轮自然语言对话。无论是寻找购物灵感、咨询好物还是解答疑问，它都能像懂你的朋友一样，给出贴心、专业的建议。
+            </p>
+        </div>
+        ''', unsafe_allow_html=True)
+        if st.button("→ 开始AI对话", key="home_ai_chat", type="primary", use_container_width=True):
             st.session_state.current_page = 'chatbot'
             st.rerun()
 
