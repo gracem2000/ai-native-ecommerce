@@ -47,6 +47,14 @@ div[data-testid="stTextInput"] input:focus, div[data-testid="stDateInput"] input
     border-color: #dc2626 !important;
     box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15) !important;
 }
+/* Streamlit 选择框为 BaseWeb 控件，可见边框在 [data-baseweb="select"] 控件层（非 select 元素）—— 常驻红色边框 */
+div[data-testid="stSelectbox"] [data-baseweb="select"] {
+    border-color: #ef4444 !important;
+}
+div[data-testid="stSelectbox"] [data-baseweb="select"] > div {
+    border: 1px solid #ef4444 !important;
+    border-radius: 4px !important;
+}
 </style>
 ''', unsafe_allow_html=True)
 
