@@ -80,7 +80,7 @@ def render_homepage():
     # 主标题区域 - 紧凑设计
     st.markdown("""
     <div style="text-align: center; padding: 2rem 0 1.5rem 0;">
-        <h1 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #1f2937; font-weight: 600;">电商场景智能供给与智能导购系统</h1>
+        <h1 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #1f2937; font-weight: 600;">电商场景供给系统与智能导购</h1>
         <p style="font-size: 0.95rem; color: #6b7280; max-width: 500px; margin: 0 auto; line-height: 1.5;">
             将 LLM 作为"感知大脑"，自动完成从场景识别到商品推荐的智能闭环
         </p>
@@ -126,7 +126,7 @@ def render_homepage():
     </div>
     ''', unsafe_allow_html=True)
 
-    st.markdown('<h2 style="text-align: center; margin: 1rem 0 1.5rem 0; font-size: 1.5rem;">智能场景供给</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 style="text-align: center; margin: 1rem 0 1.5rem 0; font-size: 1.5rem;">电商场景供给</h2>', unsafe_allow_html=True)
 
     # 三大来源入口卡片 - 现代化设计（恢复 master 版本）
     col1, col2, col3 = st.columns(3)
@@ -161,7 +161,7 @@ def render_homepage():
             </p>
             <div style="display: flex; gap: 1rem; font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem;">
                 <span>🔄 小时级别更新</span>
-                <span>👹 AI智能理解</span>
+                <span>💡 AI智能理解</span>
             </div>
         </div>
         ''', unsafe_allow_html=True)
@@ -180,7 +180,7 @@ def render_homepage():
             </p>
             <div style="display: flex; gap: 1rem; font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem;">
                 <span>📝 灵活提报</span>
-                <span>👹 智能补全</span>
+                <span>💡 智能补全</span>
             </div>
         </div>
         ''', unsafe_allow_html=True)
@@ -191,7 +191,7 @@ def render_homepage():
     st.markdown('<div style="height: 1px; background: linear-gradient(90deg, transparent, #e5e7eb, transparent); margin: 2rem 0;"></div>', unsafe_allow_html=True)
 
     # ===== AI 场景导购（功能二：AI 购物助手）=====
-    st.markdown('<h2 style="text-align: center; margin: 1rem 0 1.5rem 0; font-size: 1.5rem;">智能导购</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 style="text-align: center; margin: 1rem 0 1.5rem 0; font-size: 1.5rem;">电商智能导购</h2>', unsafe_allow_html=True)
 
     # 左右两列等大对齐：左 = AI推荐，右 = AI对话
     ai_col1, ai_col2 = st.columns(2)
@@ -199,10 +199,10 @@ def render_homepage():
     with ai_col1:
         st.markdown('''
         <div class="hero-card" style="text-align:left; min-height: 15rem;">
-            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">👹</div>
+            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">💡</div>
             <h3 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.3rem;">AI推荐</h3>
             <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.88rem; line-height: 1.6;">
-                系统融合你的<b>用户画像</b>与当下热门的<b>时节</b>、<b>热点场景</b>，由大模型实时推理，为你智能生成千人千面的个性化商品推荐列表——让每一次推荐都精准契合你的真实需求与当下时机。
+                系统融合你的用户画像与当下热门的时节、热点场景，由大模型实时推理，为你智能生成千人千面的个性化商品推荐列表——让每一次推荐都精准契合你的真实需求与当下时机。
             </p>
         </div>
         ''', unsafe_allow_html=True)
@@ -297,7 +297,6 @@ def render_sidebar():
             color: white;
         ">
             <div style="font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
-                <span>🎯</span>
                 <span>场景供给和智能导购</span>
             </div>
             <div style="font-size: 0.8rem; opacity: 0.8; margin-top: 0.5rem;">
@@ -325,7 +324,7 @@ def render_sidebar():
 
         st.markdown('<div style="color: #6b7280; font-size: 0.75rem; font-weight: 600; margin: 0.75rem 0 0.4rem 0; text-transform: uppercase;">智能导购</div>', unsafe_allow_html=True)
 
-        if st.button("👹 AI推荐", use_container_width=True, key="custom_nav_ai_rec"):
+        if st.button("💡 AI推荐", use_container_width=True, key="custom_nav_ai_rec"):
             st.switch_page("pages/5_ai_recommend.py")
         if st.button("💬 AI对话", use_container_width=True, key="custom_nav_ai_chat"):
             st.switch_page("pages/6_ai_chat.py")
@@ -448,7 +447,7 @@ def run_pipeline(hot_limit: int, scene_limit: int):
                             cls = "log-success"
                         elif log.startswith("❌") or log.startswith("⚠️"):
                             cls = "log-error"
-                        elif log.startswith("👹"):
+                        elif log.startswith("💡"):
                             cls = "log-llm"
                         elif log.startswith("   ") or log.startswith("    "):
                             cls = "log-detail"
@@ -495,7 +494,7 @@ def run_pipeline(hot_limit: int, scene_limit: int):
 
             elif event_type == 'llm_start':
                 topic = args[0]
-                progress_logs.append(f"👹 正在处理热点: {topic[:40]}...")
+                progress_logs.append(f"💡 正在处理热点: {topic[:40]}...")
                 render_progress()
 
             elif event_type == 'scene_generated':
@@ -866,7 +865,7 @@ def render_scene_submission():
                     f'<div class="log-panel">'
                     f'<div class="log-step">📌 主题：{scene_name}'
                     f'（{"多场景" if generate_multiple else "单场景"}模式，{"预计 " + str(scene_count) + " 个" if generate_multiple else ""}）</div>'
-                    f'<div class="log-llm">👹 LLM 正在理解主题并生成购物场景…</div>'
+                    f'<div class="log-llm">💡 LLM 正在理解主题并生成购物场景…</div>'
                     f'</div>',
                     unsafe_allow_html=True,
                 )
@@ -1206,7 +1205,7 @@ def render_scene_review_mode():
         # 显示生成状态占位符
         status_placeholder = st.empty()
         with status_placeholder.container():
-            st.info(f"👹 正在为「{current_event['name']}」生成购物场景，请稍候...")
+            st.info(f"💡 正在为「{current_event['name']}」生成购物场景，请稍候...")
             st.progress(0, "调用 LLM 生成场景...")
 
         try:
@@ -1226,7 +1225,7 @@ def render_scene_review_mode():
 
             # 更新进度
             with status_placeholder.container():
-                st.info(f"👹 正在为「{current_event['name']}」生成购物场景，请稍候...")
+                st.info(f"💡 正在为「{current_event['name']}」生成购物场景，请稍候...")
                 st.progress(0.3, "调用 LLM 生成场景...")
 
             # 使用LLM生成场景（支持自定义提示）
@@ -1237,7 +1236,7 @@ def render_scene_review_mode():
             if scene_data and scene_data.get('scene_name'):
                 # 更新进度
                 with status_placeholder.container():
-                    st.info(f"👹 正在为「{current_event['name']}」生成购物场景，请稍候...")
+                    st.info(f"💡 正在为「{current_event['name']}」生成购物场景，请稍候...")
                     st.progress(0.6, "场景生成成功，正在匹配商品...")
 
                 # 创建场景对象
@@ -2452,7 +2451,7 @@ def render_chatbot():
     if not st.session_state.get('current_user'):
         st.markdown("""
         <div style="text-align:center; padding:1rem 0 0.5rem 0;">
-            <h1 style="font-size:1.8rem; font-weight:700; background:linear-gradient(135deg,#3b82f6,#8b5cf6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:0;">👹 AI 购物助手</h1>
+            <h1 style="font-size:1.8rem; font-weight:700; background:linear-gradient(135deg,#3b82f6,#8b5cf6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:0;">💡 AI 购物助手</h1>
             <p style="color:#6b7280; margin-top:0.5rem;">登录后，与懂你的 AI 助手聊聊，获得应时应景的个性化推荐</p>
         </div>
         """, unsafe_allow_html=True)

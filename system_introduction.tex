@@ -1,0 +1,475 @@
+% 场景供给和智能导购 AI 电商演示系统 — 演示文稿
+% 编译: tectonic system_introduction.tex
+\documentclass[aspectratio=169, UTF8]{ctexbeamer}
+
+\usetheme{default}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{itemize items}[circle]
+
+% ---- 配色 ----
+\definecolor{primary}{HTML}{3b82f6}
+\definecolor{primarydark}{HTML}{1d4ed8}
+\definecolor{accent}{HTML}{8b5cf6}
+\definecolor{lightblue}{HTML}{eff6ff}
+\definecolor{lightpurple}{HTML}{f5f0ff}
+\definecolor{warning}{HTML}{f59e0b}
+\definecolor{lightamber}{HTML}{fff7ed}
+\definecolor{success}{HTML}{10b981}
+\definecolor{lightgreen}{HTML}{ecfdf5}
+\definecolor{textgray}{HTML}{374151}
+\definecolor{border}{HTML}{cbd5e1}
+\definecolor{layerbg}{HTML}{f8fafc}
+
+\setbeamercolor{title}{fg=primarydark}
+\setbeamercolor{frametitle}{fg=primarydark}
+\setbeamercolor{structure}{fg=primary}
+\setbeamercolor{block title}{bg=lightblue, fg=primarydark}
+
+% ---- TikZ ----
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric, fit, calc, backgrounds, shadows}
+\tikzset{
+  mod1/.style={draw=primary, fill=lightblue, rounded corners, thick,
+               minimum height=7mm, minimum width=24mm, align=center, font=\footnotesize, inner sep=3pt},
+  mod2/.style={draw=accent, fill=lightpurple, rounded corners, thick,
+               minimum height=7mm, minimum width=24mm, align=center, font=\footnotesize, inner sep=3pt},
+  data/.style={draw=border, fill=layerbg, rounded corners,
+               minimum height=7mm, minimum width=24mm, align=center, font=\footnotesize, inner sep=3pt},
+  ext/.style={draw=warning, fill=lightamber, rounded corners, thick,
+              minimum height=7mm, minimum width=24mm, align=center, font=\footnotesize, inner sep=3pt},
+  svc/.style={draw=primarydark, fill=primary, text=white, rounded corners, thick,
+              minimum height=8mm, minimum width=36mm, align=center, font=\footnotesize\bfseries, inner sep=3pt},
+  guard/.style={draw=success, fill=lightgreen, rounded corners, thick,
+                minimum height=7mm, minimum width=22mm, align=center, font=\footnotesize, inner sep=3pt},
+  llmnode/.style={draw=accent, fill=lightpurple, rounded corners, thick,
+                  minimum height=7mm, minimum width=28mm, align=center, font=\footnotesize\bfseries, inner sep=3pt},
+  flow/.style={-Stealth, thick, primary!75},
+  flow2/.style={-Stealth, thick, accent!80, dashed},
+  labelfont/.style={font=\scriptsize, text=textgray, fill=white, inner sep=1pt},
+  layerbgstyle/.style={draw=border, fill=layerbg, rounded corners, dashed, inner sep=8pt},
+}
+
+% ---- 表格 ----
+\usepackage{booktabs}
+\usepackage{array}
+
+% ---- 标题信息 ----
+\title{场景供给和智能导购\\AI 电商演示系统}
+\author{Grace \;·\; AI Agent 产品经理}
+\date{2026 年 6 月}
+
+\begin{document}
+
+% ==================== 第 1 页：标题 ====================
+\begin{frame}[plain]
+  \vspace{2cm}
+  \begin{center}
+    {\huge\bfseries\color{primarydark} 场景供给和智能导购 \\
+      \normalsize AI 电商演示系统 \\[1em]
+      \Large\color{textgray} 系统架构 \quad·\quad 功能模块 \quad·\quad LLM 调用链 \\[2em]
+      \normalsize\color{border} Grace \;·\; AI Agent 产品经理 \\
+      2026 年 6 月 \;·\; Vibe Coding with Claude Code
+    }
+  \end{center}
+\end{frame}
+
+% ==================== 第 2 页：目录 ====================
+\begin{frame}{目录}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{enumerate}
+      \item 核心能力总结
+      \item 系统架构
+      \item 技术栈一览
+      \item 场景供给链路数据流
+      \item 商品推荐链路数据流
+    \end{enumerate}
+    \column{0.5\textwidth}
+    \begin{enumerate}
+      \setcounter{enumi}{5}
+      \item LLM 调用链总览
+      \item 质量保障机制
+      \item Vibe Coding 实践
+      \item 技术理解与收获
+    \end{enumerate}
+  \end{columns}
+\end{frame}
+
+% ==================== 第 3 页：核心能力总结 ====================
+\begin{frame}{核心能力总结}
+  \begin{center}
+    \begin{tikzpicture}[node distance=10mm and 14mm]
+      % 五大核心能力
+      \node[mod1] (a) at (0,0) {热点感知\\\tiny 实时抓取百度热搜};
+      \node[mod1] (b) at (3.2,0) {场景理解\\\tiny LLM 转化为购物场景};
+      \node[mod1] (c) at (6.4,0) {商品匹配\\\tiny 关键词多维打分};
+      \node[mod2] (d) at (9.6,0) {对话式导购\\\tiny 千人千面 + 应时应景};
+      \node[guard] (e) at (1.6,-2.0) {政治过滤};
+      \node[guard] (f) at (4.8,-2.0) {文本清洗 + 归一化};
+      \node[guard] (g) at (8.0,-2.0) {智能去重};
+      \node[guard] (h) at (11.2,-2.0) {幻觉过滤};
+
+      \draw[flow] (a) -- (b);
+      \draw[flow] (b) -- (c);
+      \draw[flow] (c) -- (d);
+      \draw[flow, dashed, gray] (a.south) -- (e.north);
+      \draw[flow, dashed, gray] (b.south) -- (f.north);
+      \draw[flow, dashed, gray] (c.south) -- (g.north);
+      \draw[flow, dashed, gray] (d.south) -- (h.north);
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.8em}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \textbf{功能一：场景供给中心（运营端）}
+    \begin{itemize}
+      \item 3 种来源：热点追踪 / 时节场景 / 人工提报
+      \item 419 件商品库 × 多维打分匹配
+      \item 5 层质量防护 → 自动入库
+    \end{itemize}
+    \column{0.5\textwidth}
+    \textbf{功能二：AI 购物助手（用户端）}
+    \begin{itemize}
+      \item Marla / Steve 双画像驱动
+      \item 约束选品 + 幻觉过滤
+      \item 场景化推荐理由 + 商品卡片
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ==================== 第 4 页：系统架构（整页） ====================
+\begin{frame}{系统架构}
+  \begin{center}
+    \begin{tikzpicture}[node distance=6mm and 8mm, scale=0.92]
+      % ---- 分层背景 ----
+      \node[layerbgstyle, fit={(-9.2,5.2)(6.5,7.2)}] (l1) {};
+      \node[layerbgstyle, fit={(-9.2,2.4)(6.5,4.6)}] (l2) {};
+      \node[layerbgstyle, fit={(-9.2,-0.2)(6.5,1.8)}] (l3) {};
+      \node[layerbgstyle, fit={(-9.2,-3.0)(6.5,-0.8)}] (l4) {};
+
+      \node[layerlabel] at (-9.8,6.2) {前端层};
+      \node[layerlabel] at (-9.8,3.5) {服务层};
+      \node[layerlabel] at (-9.8,0.8) {业务层};
+      \node[layerlabel] at (-9.8,-1.9) {数据层};
+
+      % ---- 前端层 ----
+      \node[mod1] (ui1) at (-4.2,6.2) {时节 + 热点 + 提报 + 场景库};
+      \node[mod2] (ui2) at ( 3.0,6.2) {AI推荐 + AI对话};
+
+      % ---- 服务层 ----
+      \node[svc] (svc) at (-0.6,3.5) {ScenarioService 服务编排层};
+
+      % ---- 业务层 ----
+      \node[mod1] (hot)   at (-7.0,1.2) {HotPerception\\\tiny 热点采集};
+      \node[mod1] (sea)   at (-4.2,1.2) {SeasonalPerception\\\tiny 时节感知};
+      \node[mod1] (mine)  at (-1.4,1.2) {SceneMining\\\tiny 场景挖掘};
+      \node[mod1] (match) at ( 1.4,1.2) {ProductMatching\\\tiny 商品匹配};
+      \node[mod2] (rec)   at ( 4.2,1.2) {Recommender\\\tiny 个性化推荐};
+      \node[llmnode] (llm) at (-1.4,-0.4) {GLMClient LLM 客户端};
+
+      % ---- 数据层 ----
+      \node[ext]  (baidu) at (-7.0,-2.2) {百度热搜};
+      \node[data] (fest)  at (-4.2,-2.2) {festivals.json\\\tiny 40事件};
+      \node[ext]  (glm)   at (-1.4,-2.2) {GLM-5.1 API};
+      \node[data] (prod)  at ( 1.4,-2.2) {products.json\\\tiny 419件商品};
+      \node[data] (user)  at ( 4.2,-2.2) {user profiles\\\tiny Marla/Steve};
+
+      % ---- 箭头 ----
+      \draw[flow] (ui1.south) -- (svc.north west);
+      \draw[flow] (ui2.south) -- (svc.north east);
+      \draw[flow] (svc.south) -- (mine.north);
+      \draw[flow] (svc.south) -- (match.north);
+      \draw[flow2] (svc.south) to[bend right=10] (rec.north east);
+      \draw[flow] (mine.south) -- (llm.north);
+      \draw[flow2] (rec.south) to[bend right=12] (llm.east);
+      \draw[flow] (hot.south) -- (baidu.north);
+      \draw[flow] (sea.south) -- (fest.north);
+      \draw[flow] (llm.south) -- (glm.north);
+      \draw[flow] (match.south) -- (prod.north);
+      \draw[flow2] (rec.south) -- (user.north);
+
+      % ---- 图例 ----
+      \node[anchor=north west, font=\tiny] at (-9.2,-3.6) {
+        \tikz\draw[flow] (0,0)--(4mm,0); 功能一 \quad
+        \tikz\draw[flow2] (0,0)--(4mm,0); 功能二
+      };
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+% ==================== 第 5 页：技术栈一览 ====================
+\begin{frame}{技术栈一览}
+  \begin{center}
+    \begin{tabular}{l l l}
+      \toprule
+      \textbf{层级} & \textbf{技术} & \textbf{选型理由} \\
+      \midrule
+      LLM       & 智谱 GLM-5.1     & 中文理解强，zai-sdk 原生集成 \\
+      LLM SDK   & zai-sdk          & 官方 Python SDK，API 稳定 \\
+      语言      & Python 3.10+     & AI/数据生态最完善 \\
+      前端      & Streamlit 1.31   & Python 一站式，原生多页架构 \\
+      数据采集  & requests + bs4   & 百度热搜 HTML 解析 \\
+      农历换算  & zhdate           & 节日数据阳历统一 \\
+      数据存储  & JSON             & 零配置，可版本管理 \\
+      文档      & LaTeX + TikZ     & 矢量架构图，无渲染损失 \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \vspace{0.5em}
+  \textbf{为什么选 Streamlit 而非 React？}
+  \begin{itemize}
+    \item PM 独立开发：纯 Python 栈，数据 → LLM → 前端不需要切换语言
+    \item 原生多页：\texttt{pages/} 目录 + \texttt{st.switch\_page}，脚本上下文完全隔离
+    \item 部署简单：Streamlit Cloud 原生支持，Secrets 管理 API Key
+  \end{itemize}
+\end{frame}
+
+% ==================== 第 6 页：场景供给链路数据流 ====================
+\begin{frame}{场景供给链路数据流（功能一）}
+  \begin{center}
+    \begin{tikzpicture}[node distance=8mm and 8mm, scale=0.95]
+      \node[ext]   (a) at (-9.0,0) {百度热搜};
+      \node[mod1]  (b) at (-5.5,0) {采集 + 清洗};
+      \node[guard] (c) at (-2.0,0) {政治过滤};
+      \node[llmnode](d) at ( 1.5,1.2) {GLM-5.1};
+      \node[mod1]  (e) at ( 1.5,0) {场景挖掘};
+      \node[guard] (f) at ( 5.0,0) {清洗归一化};
+      \node[mod1]  (g) at ( 8.5,0) {商品匹配};
+      \node[guard] (h) at ( 3.2,-1.8) {智能去重};
+      \node[data]  (i) at ( 8.5,-1.8) {scenarios.json};
+
+      \draw[flow] (a) -- (b);
+      \draw[flow] (b) -- (c);
+      \draw[flow] (c) -- (e);
+      \draw[flow] (d) -- (e);
+      \draw[flow] (e) -- (f);
+      \draw[flow] (f) -- (g);
+      \draw[flow] (g) -- (h);
+      \draw[flow] (h) -- (i);
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.5em}
+  \begin{columns}[T]
+    \column{0.33\textwidth}
+    \textbf{输入 → 输出}
+    \begin{itemize}
+      \item HTML → 热搜标题 Top 10
+      \item 正则过滤敏感话题
+      \item LLM 生成场景 JSON
+    \end{itemize}
+    \column{0.33\textwidth}
+    \textbf{防护节点}
+    \begin{itemize}
+      \item \texttt{\_is\_political()} 黑名单
+      \item \texttt{\_sanitize()} 清洗
+      \item \texttt{\_normalize\_keywords()} 归一
+    \end{itemize}
+    \column{0.33\textwidth}
+    \textbf{关键指标}
+    \begin{itemize}
+      \item 每热点 → 1 个场景
+      \item 419 件商品多维打分
+      \item 4 维判定去重入库
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ==================== 第 7 页：商品推荐链路数据流 ====================
+\begin{frame}{商品推荐链路数据流（功能二）}
+  \begin{center}
+    \begin{tikzpicture}[node distance=8mm and 6mm, scale=0.95]
+      \node[data]  (p) at (-8.0, 1.2) {用户画像};
+      \node[data]  (s) at (-8.0,-1.2) {活跃场景};
+      \node[data]  (m) at (-4.0, 0  ) {候选商品库\\\tiny ≤40件};
+
+      \node[mod2]  (r) at ( 0.0, 0) {Recommender\\\tiny 上下文组装};
+      \node[llmnode](g) at ( 0.0, 2.2) {GLM-5.1 chat()};
+      \node[guard] (h) at ( 4.5, 0) {幻觉过滤\\\tiny sku 还原};
+      \node[mod2]  (u) at ( 8.5, 0) {前端渲染\\\tiny 回复 + 商品卡片};
+
+      \draw[flow2] (p) -- (r);
+      \draw[flow2] (s) -- (r);
+      \draw[flow2] (m) -- (r);
+      \draw[flow2] (g) -- (r);
+      \draw[flow2] (r) -- node[labelfont,above]{\tiny 约束选品} (h);
+      \draw[flow2] (h) -- (u);
+      \draw[flow2, dashed] (u.east) to[bend right=30] node[labelfont,right]{\tiny 多轮反馈} (r.east);
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.5em}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \textbf{上下文组装（每轮对话）}
+    \begin{itemize}
+      \item 画像：基础 / 偏好 / 兴趣 / 历史购买
+      \item 场景：时节 + 热点各取最近 3 条
+      \item 候选：按偏好品类过滤，预算优先，上限 40 件
+    \end{itemize}
+    \column{0.5\textwidth}
+    \textbf{防幻觉机制}
+    \begin{itemize}
+      \item System Prompt 强制"只能从候选 sku\_id 选品"
+      \item \texttt{get\_product\_by\_sku} 还原完整商品
+      \item 库外 sku 直接丢弃，不展示
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ==================== 第 8 页：LLM 调用链总览 ====================
+\begin{frame}{LLM 调用链总览}
+  \begin{center}
+    \begin{tabular}{l l l l}
+      \toprule
+      \textbf{功能} & \textbf{方法} & \textbf{输入 → 输出} & \textbf{调用频次} \\
+      \midrule
+      热点追踪 & \texttt{generate\_scene()}
+        & 热搜标题 → 1 个场景 JSON & 逐条串行（Top 5）\\[4pt]
+      时节场景 & \texttt{generate\_multiple\_scenes()}
+        & 节日名 → N 个场景数组 & 每事件 1 次 \\[4pt]
+      人工提报 & 上述两者
+        & 主题 → 1 或 N 个场景 & 提交时 \\[4pt]
+      AI 推荐 & \texttt{chat()}
+        & 场景+商品列表 → 亮点数组 & 每次选场景 \\[4pt]
+      AI 对话 & \texttt{chat()}
+        & System Prompt+历史 → JSON & 每轮对话 \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \vspace{0.8em}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \textbf{为什么全串行？}
+    \begin{itemize}
+      \item API 按量计费，串行可逐条观察
+      \item 异常时及早中断，避免浪费
+      \item 进度回调实时展示，用户体验可接受
+    \end{itemize}
+    \column{0.5\textwidth}
+    \textbf{Prompt 设计要点}
+    \begin{itemize}
+      \item JSON 强制约束输出格式
+      \item 示例引导（Few-shot）提高稳定性
+      \item 关键词特异性规则（场景专属）
+      \item 政治内容兜底（返空 JSON）
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ==================== 第 9 页：质量保障机制 ====================
+\begin{frame}{质量保障机制：5 层防护节点}
+  \begin{center}
+    \begin{tikzpicture}[node distance=7mm and 6mm, scale=0.92]
+      \node[ext]   (in)  at (0,0) {外部输入\\\tiny 热搜 / 主题};
+
+      \node[guard] (g1) at (0,-1.6) {\small 政治过滤\\\tiny \texttt{\_is\_political()}};
+      \node[font=\tiny, text=textgray, anchor=west] at (3.0,-1.6) {正则黑名单，命中跳过};
+
+      \node[guard] (g2) at (0,-3.2) {\small 文本清洗\\\tiny \texttt{\_sanitize()}};
+      \node[font=\tiny, text=textgray, anchor=west] at (3.0,-3.2) {去特殊符号/热搜尾标/多余空格};
+
+      \node[guard] (g3) at (0,-4.8) {\small 关键词归一化\\\tiny \texttt{\_normalize\_keywords()}};
+      \node[font=\tiny, text=textgray, anchor=west] at (3.0,-4.8) {兼容字符串/数组，过滤单字};
+
+      \node[guard] (g4) at (0,-6.4) {\small 智能去重\\\tiny 名称75\%+事件75\%+关键词60\%+24h};
+      \node[font=\tiny, text=textgray, anchor=west] at (3.0,-6.4) {4 维综合判定，防重复入库};
+
+      \node[guard] (g5) at (0,-8.0) {\small 幻觉过滤\\\tiny sku 还原查库};
+      \node[font=\tiny, text=textgray, anchor=west] at (3.0,-8.0) {LLM 推荐的 sku 必须在库中存在};
+
+      \draw[flow] (in) -- (g1);
+      \draw[flow] (g1) -- (g2);
+      \draw[flow] (g2) -- (g3);
+      \draw[flow] (g3) -- (g4);
+      \draw[flow] (g4) -- (g5);
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.3em}
+  \begin{block}{设计来源}
+    每个节点都源于实际踩坑 —— 关键词归一化因 LLM 返回字符串被 Python 逐字拆分为单字；政治过滤因敏感热搜触发 API 安全拦截。
+  \end{block}
+\end{frame}
+
+% ==================== 第 10 页：Vibe Coding 实践 ====================
+\begin{frame}{Vibe Coding 实践}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \textbf{PM 负责}
+    \begin{itemize}
+      \item 产品方向：为什么做、解决什么问题
+      \item 架构决策：Streamlit vs React、串行 vs 并行
+      \item Prompt 策略：JSON 约束、关键词规则、安全兜底
+      \item 质量验收：场景匹配率、去重效果、商品覆盖率
+    \end{itemize}
+    \column{0.48\textwidth}
+    \textbf{AI 负责}
+    \begin{itemize}
+      \item 代码生成：业务逻辑、CSS 样式、Bug 修复
+      \item 样式调整：暗色日志面板、商品卡片、页面布局
+      \item 文档编写：Markdown、LaTeX、TikZ 架构图
+    \end{itemize}
+  \end{columns}
+
+  \vspace{0.8em}
+  \begin{center}
+    \begin{tikzpicture}[node distance=10mm and 10mm]
+      \node[mod1, minimum width=28mm] (p1) {发现问题\\\tiny 匹配 0 商品};
+      \node[mod1, minimum width=28mm] (p2) at (3.8,0) {定位根因\\\tiny 关键词/阈值};
+      \node[mod2, minimum width=28mm] (p3) at (7.6,0) {描述给 AI\\\tiny 自然语言};
+      \node[mod1, minimum width=28mm] (p4) at (11.4,0) {验证修复\\\tiny 几分钟闭环};
+
+      \draw[flow] (p1) -- (p2);
+      \draw[flow] (p2) -- (p3);
+      \draw[flow2] (p3) -- (p4);
+    \end{tikzpicture}
+    \vspace{0.3em}
+    {\footnotesize\color{textgray} 典型迭代循环：发现 → 定位 → 描述 → AI修复 → 验证，分钟级闭环}
+  \end{center}
+\end{frame}
+
+% ==================== 第 11 页：技术理解与收获 ====================
+\begin{frame}{技术理解与收获}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{block}{LLM 的边界认知}
+      \begin{itemize}
+        \item \textbf{Token 限制}：max\_tokens 2000，候选库需 ≤40 件，否则 JSON 截断
+        \item \textbf{幻觉问题}：LLM 真的会编造商品，sku 还原+约束选品是必须的
+        \item \textbf{Prompt 质量 = 系统质量}：关键词匹配率问题调 Prompt 比改代码更有效
+      \end{itemize}
+    \end{block}
+    \column{0.5\textwidth}
+    \begin{block}{工程权衡}
+      \begin{itemize}
+        \item \textbf{串行的价值}：按量计费场景下，串行可逐条观察、及早中断，优于无脑并行
+        \item \textbf{框架天花板}：Streamlit 1.31 不支持 fragment，理解能力边界做合理取舍
+        \item \textbf{JSON 约束}：LLM 输出不可控 → 用 Prompt + 解析容错 + sku 还原三道防线
+      \end{itemize}
+    \end{block}
+  \end{columns}
+
+  \vspace{0.6em}
+  \begin{center}
+    \begin{tikzpicture}
+      \node[mod2, minimum width=120mm] (core) at (0,0) {
+        \small\bfseries AI Agent PM 的核心竞争力不是写代码，而是：
+        用 AI 高效落地产品想法 + 把控架构方向 + 理解技术边界
+      };
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.3em}
+  \begin{itemize}
+    \item 本项目全程由 PM 通过 Claude Code 独立完成，共 8 个 Python 模块、7 个前端页面、419 件商品、74 条场景
+    \item 从产品方向定义到架构设计到 Prompt 策略到质量验收，PM 全程主导；AI 负责代码实现
+  \end{itemize}
+\end{frame}
+
+\end{document}
