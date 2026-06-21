@@ -1,16 +1,16 @@
-# ⚡ 时空场景自动供给系统
+# 🎯 场景供给和智能导购 AI 电商演示系统
 
-[![Version](https://img.shields.io/badge/version-1.2.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue)](CHANGELOG.md)
 [![Python](https://img.shields.io/badge/python-3.10+-green)](https://python.org)
 [![License](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
 
-> 基于 LLM 的电商场景智能供给系统，展示从"热点感知"到"交易闭环"的 AI-Native 能力
+> AI-Native 电商演示系统 — 场景智能供给 + 对话式个性化导购，展示 LLM 重构电商链路的完整能力
 
 ---
 
 ## 📋 项目简介
 
-本项目是一个 AI-Native 演示系统，通过引入智谱 GLM 大模型，重构传统电商供给链路。将 LLM 作为系统的"感知器官"和"推理大脑"，实现对外部热点的毫秒级响应，自动构建时空场景并完成商品匹配。
+**🎯 场景供给和智能导购 AI 电商演示系统** — 通过引入智谱 GLM-5.1 大模型，重构传统电商供给链路。将 LLM 作为系统的"感知器官"和"推理大脑"，实现对外部热点的毫秒级响应，自动构建时空场景并完成商品匹配。同时提供面向终端用户的对话式个性化导购体验。
 
 ### 核心能力
 
@@ -38,25 +38,33 @@
 ```
 .
 ├── data/
-│   ├── mock_products.json          # 模拟商品库 (300 个商品)
-│   ├── hot_topics.json              # 热搜数据缓存
-│   ├── scenarios.json               # 生成的场景数据
-│   ├── festivals.json               # 节日数据
+│   ├── mock_products.json          # 模拟商品库 (419 个商品，12+ 品类)
+│   ├── hot_topics.json              # 热搜数据缓存（运行时更新）
+│   ├── scenarios.json               # 场景库 (74 条结构化场景)
+│   ├── festivals.json               # 节日数据 (40 个事件，农历已转阳历)
 │   └── user_profiles.json           # 虚拟用户画像 (Marla / Steve)
 ├── src/
 │   ├── __init__.py
 │   ├── config.py                    # 配置管理
-│   ├── hot_perception.py            # 热点采集模块
-│   ├── seasonal_perception.py       # 季节性感知模块
-│   ├── llm_client.py                # GLM-5.1 客户端封装（场景生成 + 通用对话）
-│   ├── scene_mining.py              # 场景挖掘模块
-│   ├── product_matching.py          # 商品匹配模块
-│   ├── recommender.py               # 个性化推荐引擎（对话式导购）
-│   └── service.py                   # 服务层统一入口
-├── ui/
+│   ├── hot_perception.py            # 热点采集模块（百度热搜）
+│   ├── seasonal_perception.py       # 时节感知模块（节日+节气+农历转阳历）
+│   ├── llm_client.py                # GLM-5.1 客户端（场景生成 + 通用多轮对话）
+│   ├── scene_mining.py              # 场景挖掘（LLM 核心 + 智能去重 + 文本清洗）
+│   ├── product_matching.py          # 商品匹配（关键词多维打分）
+│   ├── recommender.py               # 个性化推荐引擎（对话式导购 + 场景化推荐）
+│   └── service.py                   # 服务层统一入口（含政治内容过滤）
+├── ui/                               # Streamlit 多页应用
 │   ├── __init__.py
-│   ├── app.py                       # Streamlit 前端应用
-│   └── style.css                    # 全局样式
+│   ├── app.py                       # 入口（首页）
+│   ├── common.py                    # 共享模块（渲染函数 + 导航 + 初始化）
+│   ├── style.css                    # 全局样式
+│   └── pages/                       # 6 个独立页面
+│       ├── 1_📅_时节场景.py
+│       ├── 2_🔥_热点追踪.py
+│       ├── 3_✍️_人工提报.py
+│       ├── 4_📚_场景库.py
+│       ├── 5_🤖_AI推荐.py
+│       └── 6_💬_AI对话.py
 ├── requirements.txt
 └── README.md
 ```
@@ -117,10 +125,12 @@
 | `DEFAULT_MODEL` | 使用的模型 | `glm-5.1` |
 | `TEMPERATURE` | LLM 温度参数 | `0.7` |
 | `MAX_TOKENS` | LLM 最大 Token 数 | `2000` |
+| `MIN_CONFIDENCE` | 商品匹配最低置信度 | `0.2` |
 
 ### 热搜配置
 
 - **百度热搜**: 自动抓取 Top 10
+- **政治过滤**: 自动跳过敏感热点，避免触发 LLM 安全拦截
 - **抓取间隔**: 30 分钟（可在代码中调整）
 
 ---
@@ -253,7 +263,7 @@ for r in result["recommendations"]: # 带理由的推荐商品
 
 - 多维度匹配：标题、标签、类别
 - 相关性排序：按匹配度排序返回结果
-- 商品库：300 个示例商品，覆盖 12+ 个品类
+- 商品库：419 个示例商品，覆盖 12+ 个品类
 
 ### 5. 个性化推荐引擎 (Recommender) —— 功能二核心
 
@@ -358,6 +368,10 @@ MIT License
 
 - [智谱 AI](https://open.bigmodel.cn/) - 提供 GLM-5.1 API
 - [Streamlit](https://streamlit.io/) - 前端框架
+
+---
+
+**项目作者**：Grace | **定位**：AI-Native 电商演示系统 | **开发方式**：Vibe Coding（Claude Code） | **版本**：1.3.0
 
 ---
 
