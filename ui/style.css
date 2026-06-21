@@ -68,6 +68,10 @@
 }
 
 /* ===== 导航栏样式 ===== */
+/* 隐藏 Streamlit 自动生成的多页列表，用自定义导航替代 */
+[data-testid="stSidebarNav"] {
+    display: none !important;
+}
 .sidebar-nav {
     background: linear-gradient(180deg, #1e3a5f 0%, #2d5a87 100%);
     padding: 1.5rem;
@@ -303,6 +307,15 @@ div[data-testid="stDateInput"] input:focus,
 div[data-testid="stSelectbox"] select:focus {
     border-color: #dc2626 !important;
     box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15) !important;
+}
+
+/* Streamlit 选择框为 BaseWeb 控件，可见边框在 [data-baseweb="select"] 控件层（非 select 元素）—— 常驻红色边框 */
+div[data-testid="stSelectbox"] [data-baseweb="select"] {
+    border-color: #ef4444 !important;
+}
+div[data-testid="stSelectbox"] [data-baseweb="select"] > div {
+    border: 1px solid #ef4444 !important;
+    border-radius: 4px !important;
 }
 
 /* ===== 分隔线 ===== */
