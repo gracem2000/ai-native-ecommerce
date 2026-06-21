@@ -148,7 +148,7 @@ def render_homepage():
         ''', unsafe_allow_html=True)
 
         if st.button("→ 进入时节场景", key="seasonal_entry", use_container_width=True):
-            st.switch_page("pages/1_📅_时节场景.py")
+            st.switch_page("pages/1_seasonal_scenes.py")
 
     with col2:
         st.markdown(f'''
@@ -167,7 +167,7 @@ def render_homepage():
         ''', unsafe_allow_html=True)
 
         if st.button("→ 进入热点追踪", key="hotspot_entry", use_container_width=True):
-            st.switch_page("pages/2_🔥_热点追踪.py")
+            st.switch_page("pages/2_hotspot_tracking.py")
 
     with col3:
         st.markdown(f'''
@@ -186,7 +186,7 @@ def render_homepage():
         ''', unsafe_allow_html=True)
 
         if st.button("→ 进入人工提报", key="manual_entry", use_container_width=True):
-            st.switch_page("pages/3_✍️_人工提报.py")
+            st.switch_page("pages/3_manual_submit.py")
 
     st.markdown('<div style="height: 1px; background: linear-gradient(90deg, transparent, #e5e7eb, transparent); margin: 2rem 0;"></div>', unsafe_allow_html=True)
 
@@ -207,7 +207,7 @@ def render_homepage():
         </div>
         ''', unsafe_allow_html=True)
         if st.button("→ 开始AI推荐", key="home_ai_recommend", type="primary", use_container_width=True):
-            st.switch_page("pages/5_🤖_AI推荐.py")
+            st.switch_page("pages/5_ai_recommend.py")
 
     with ai_col2:
         st.markdown('''
@@ -220,7 +220,7 @@ def render_homepage():
         </div>
         ''', unsafe_allow_html=True)
         if st.button("→ 开始AI对话", key="home_ai_chat", type="primary", use_container_width=True):
-            st.switch_page("pages/6_💬_AI对话.py")
+            st.switch_page("pages/6_ai_chat.py")
 
     st.markdown('<div style="height: 1px; background: linear-gradient(90deg, transparent, #e5e7eb, transparent); margin: 2rem 0;"></div>', unsafe_allow_html=True)
 
@@ -315,20 +315,20 @@ def render_sidebar():
         st.markdown('<div style="color: #6b7280; font-size: 0.75rem; font-weight: 600; margin: 0.75rem 0 0.4rem 0; text-transform: uppercase;">智能场景供给</div>', unsafe_allow_html=True)
 
         if st.button("📅 时节场景", use_container_width=True, key="custom_nav_seasonal"):
-            st.switch_page("pages/1_📅_时节场景.py")
+            st.switch_page("pages/1_seasonal_scenes.py")
         if st.button("🔥 热点追踪", use_container_width=True, key="custom_nav_hotspot"):
-            st.switch_page("pages/2_🔥_热点追踪.py")
+            st.switch_page("pages/2_hotspot_tracking.py")
         if st.button("✍️ 人工提报", use_container_width=True, key="custom_nav_manual"):
-            st.switch_page("pages/3_✍️_人工提报.py")
-        if st.button("📚 场景库", use_container_width=True, key="custom_nav_library"):
-            st.switch_page("pages/4_📚_场景库.py")
+            st.switch_page("pages/3_manual_submit.py")
+        if st.button("📚 场景库管理", use_container_width=True, key="custom_nav_library"):
+            st.switch_page("pages/4_scene_library.py")
 
         st.markdown('<div style="color: #6b7280; font-size: 0.75rem; font-weight: 600; margin: 0.75rem 0 0.4rem 0; text-transform: uppercase;">智能导购</div>', unsafe_allow_html=True)
 
         if st.button("🤖 AI推荐", use_container_width=True, key="custom_nav_ai_rec"):
-            st.switch_page("pages/5_🤖_AI推荐.py")
+            st.switch_page("pages/5_ai_recommend.py")
         if st.button("💬 AI对话", use_container_width=True, key="custom_nav_ai_chat"):
-            st.switch_page("pages/6_💬_AI对话.py")
+            st.switch_page("pages/6_ai_chat.py")
 
         st.markdown("---")
 
@@ -855,29 +855,43 @@ def render_scene_submission():
             scene_count = st.slider("场景数量", min_value=3, max_value=15, value=5,
                                    help="生成场景的数量，每个场景从不同角度切入")
 
-        col1, col2 = st.columns(2)
-        with col1:
-            submitted = st.form_submit_button("🚀 生成场景", type="primary", use_container_width=True)
-        with col2:
-            example = st.form_submit_button("📝 示例", use_container_width=True)
-
-        if example:
-            st.info("示例主题：端午节、春节、世界杯观赛、高考季、双十一购物")
+        submitted = st.form_submit_button("🚀 生成场景", type="primary", use_container_width=True)
 
         if submitted and scene_name:
-            with st.spinner(f"🤖 正在生成场景信息..."):
-                try:
-                    service = get_service()
-                    result = service.submit_scene(scene_name, generate_multiple=generate_multiple, scene_count=scene_count)
+            # ── 终端风格日志面板（与热点 / 时节一致）──
+            log_area = st.empty()
+            with log_area.container():
+                st.markdown(f'<div class="log-status">⏳ 正在生成场景信息…</div>', unsafe_allow_html=True)
+                st.markdown(
+                    f'<div class="log-panel">'
+                    f'<div class="log-step">📌 主题：{scene_name}'
+                    f'（{"多场景" if generate_multiple else "单场景"}模式，{"预计 " + str(scene_count) + " 个" if generate_multiple else ""}）</div>'
+                    f'<div class="log-llm">🤖 LLM 正在理解主题并生成购物场景…</div>'
+                    f'</div>',
+                    unsafe_allow_html=True,
+                )
 
-                    if result['success']:
-                        if generate_multiple and 'scenes' in result:
-                            # 多场景模式：批量保存
-                            scenes = result['scenes']
-                            save_result = service.save_scenes_batch(scenes)
+            try:
+                service = get_service()
+                result = service.submit_scene(scene_name, generate_multiple=generate_multiple, scene_count=scene_count)
 
-                            st.success(f"✅ 成功生成 {len(scenes)} 个场景！")
-                            st.info(f"💾 保存结果: 新增 {save_result['saved']} 个场景，跳过 {save_result['skipped']} 个重复场景")
+                if result['success']:
+                    if generate_multiple and 'scenes' in result:
+                        # 多场景模式：批量保存
+                        scenes = result['scenes']
+                        save_result = service.save_scenes_batch(scenes)
+
+                        # 更新日志面板为完成态
+                        with log_area.container():
+                            st.markdown(f'<div class="log-status">✅ 完成</div>', unsafe_allow_html=True)
+                            st.markdown(
+                                f'<div class="log-panel">'
+                                f'<div class="log-step">📌 主题：{scene_name}（生成 {len(scenes)} 个场景）</div>'
+                                f'<div class="log-success">✅ 成功生成 {len(scenes)} 个场景'
+                                f' — 新增 {save_result["saved"]} 个，跳过 {save_result["skipped"]} 个重复</div>'
+                                f'</div>',
+                                unsafe_allow_html=True,
+                            )
 
                             # 显示生成的场景
                             with st.expander("📋 查看生成的场景", expanded=True):
@@ -899,15 +913,15 @@ def render_scene_submission():
                                     for skipped in save_result['skipped_scenes']:
                                         st.markdown(f"**{skipped['scene_name']}**")
                                         st.caption(f"与「{skipped['duplicate_of']}」重复: {skipped['reason']}")
-                        else:
-                            # 单场景模式：进入编辑
-                            st.session_state.pending_scene = result['scene']
-                            st.session_state.show_edit_mode = True
-                            st.success("✅ 场景生成成功！请查看并编辑后保存")
-                            st.rerun()
                     else:
-                        st.error(f"❌ {result.get('error', '生成失败')}")
-                except Exception as e:
+                        # 单场景模式：进入编辑
+                        st.session_state.pending_scene = result['scene']
+                        st.session_state.show_edit_mode = True
+                        st.success("✅ 场景生成成功！请查看并编辑后保存")
+                        st.rerun()
+                else:
+                    st.error(f"❌ {result.get('error', '生成失败')}")
+            except Exception as e:
                     st.error(f"❌ 处理异常: {e}")
 
 
@@ -1760,22 +1774,58 @@ def render_seasonal_scenes():
     # 生成按钮
     if st.button("🚀 批量生成时节场景", type="primary", use_container_width=True, key="batch_generate_seasonal"):
         if events:
-            # 直接生成并自动保存，不进入审核模式
-            total_expected = len(events) * scenes_per_event
             # 将日期转换为 datetime 对象
             start_datetime = datetime.combine(start_date, datetime.min.time())
             end_datetime = datetime.combine(end_date, datetime.min.time())
-            with st.spinner(f"🔄 正在为 {len(events)} 个时节事件生成场景（预计 {total_expected} 个）..."):
-                result = service.generate_seasonal_scenes(
-                    auto_save=True,
-                    scenes_per_event=scenes_per_event,
-                    start_date=start_datetime,
-                    end_date=end_datetime
-                )
+            total_expected = len(events) * scenes_per_event
+
+            # ── 终端风格日志面板（与热点追踪一致）──
+            progress_area = st.empty()
+            progress_logs = []
+            current_step = ""
+
+            def _render():
+                with progress_area.container():
+                    if current_step:
+                        st.markdown(f'<div class="log-status">{current_step}</div>', unsafe_allow_html=True)
+                    if progress_logs:
+                        lines_html = ""
+                        for log in progress_logs[-18:]:
+                            cls = "log-line"
+                            if log.startswith("📌"):   cls = "log-step"
+                            elif log.startswith("✅"): cls = "log-success"
+                            elif log.startswith("❌"): cls = "log-error"
+                            log = log.replace("**", "")
+                            lines_html += f'<div class="{cls}">{log}</div>'
+                        st.markdown(f'<div class="log-panel">{lines_html}</div>', unsafe_allow_html=True)
+
+            def _cb(event_type, *args):
+                nonlocal current_step
+                if event_type == 'processing':
+                    idx, total, name = args
+                    current_step = f"⏳ 处理中 ({idx}/{total})"
+                    progress_logs.append(f"📌 [{idx}/{total}] 处理: {name}（生成 {scenes_per_event} 个场景）")
+                    _render()
+
+            current_step = f"⏳ 开始生成（{len(events)} 个事件，预计 {total_expected} 个场景）"
+            progress_logs.append(f"📌 时节事件共 {len(events)} 个，每个生成 {scenes_per_event} 个场景")
+            _render()
+
+            result = service.generate_seasonal_scenes(
+                auto_save=True,
+                scenes_per_event=scenes_per_event,
+                start_date=start_datetime,
+                end_date=end_datetime,
+                progress_callback=_cb,
+            )
 
             saved = result.get('saved', 0)
             skipped = result.get('skipped', 0)
             skipped_scenes = result.get('skipped_scenes', [])
+
+            progress_logs.append(f"✅ 生成完成 — 新增 {saved} 个场景，跳过 {skipped} 个重复")
+            current_step = "✅ 完成"
+            _render()
 
             st.success(f"✅ 生成完成! 新增 {saved} 个场景，跳过 {skipped} 个重复场景")
 
@@ -2243,15 +2293,42 @@ def render_ai_recommend():
     cache = st.session_state.setdefault('ai_rec_cache', {})
 
     if current['label'] not in cache:
-        with st.spinner(f'AI 正为「{current["label"]}」场景精选好物并提炼亮点…'):
-            try:
-                cache[current['label']] = recommender.recommend_by_scene(
-                    current['label'], current['scene_tag'], current['keywords'], top_n=6
-                )
-            except Exception as e:
-                cache[current['label']] = []
-                st.error(f'生成失败：{e}')
-                return
+        # ── 暗色终端日志面板（与热点/时节/提报一致）──
+        log_area = st.empty()
+        loading_spacer = st.empty()   # 撑满视口，覆盖旧页残留（拉取完成后清除）
+        with log_area.container():
+            st.markdown(f'<div class="log-status">⏳ 正在分析场景…</div>', unsafe_allow_html=True)
+            st.markdown(
+                f'<div class="log-panel">'
+                f'<div class="log-step">📌 场景：{current["label"]}（{current["scene_tag"]}）</div>'
+                f'<div class="log-llm">🤖 LLM 正在结合商品属性与场景标签精选好物、提炼亮点与推荐理由…</div>'
+                f'<div class="log-detail">关键词：{", ".join(current["keywords"][:5])}</div>'
+                f'</div>',
+                unsafe_allow_html=True,
+            )
+        loading_spacer.markdown('<div style="min-height:55vh"></div>', unsafe_allow_html=True)
+        try:
+            cache[current['label']] = recommender.recommend_by_scene(
+                current['label'], current['scene_tag'], current['keywords'], top_n=6
+            )
+        except Exception as e:
+            cache[current['label']] = []
+            loading_spacer.empty()
+            log_area.error(f'生成失败：{e}')
+            return
+
+        recs = cache.get(current['label'], [])
+        loading_spacer.empty()   # 清除占位，卡片接替填入
+        with log_area.container():
+            st.markdown(f'<div class="log-status">✅ 完成</div>', unsafe_allow_html=True)
+            st.markdown(
+                f'<div class="log-panel">'
+                f'<div class="log-step">📌 场景：{current["label"]}（{current["scene_tag"]}）</div>'
+                f'<div class="log-success">✅ 已生成 {len(recs)} 张推荐卡片，含亮点提炼与推荐理由</div>'
+                f'<div class="log-detail">示例：{recs[0]["product"]["title"] if recs else ""}</div>'
+                f'</div>',
+                unsafe_allow_html=True,
+            )
 
     # 数据就绪：渲染商品卡片列表
     cards = cache.get(current['label'], [])

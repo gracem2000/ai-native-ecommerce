@@ -12,7 +12,7 @@ for _p in (_UI, _ROOT):
 import streamlit as st  # noqa: E402
 import common           # noqa: E402
 
-common.init_page("场景库", icon="📚")
+common.init_page("场景库管理", icon="📚")
 
 # 库弹窗守卫（删除/批量删除/库内编辑），渲染了弹窗则跳过常规库列表
 if not common.handle_library_modals():
