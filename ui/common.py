@@ -424,15 +424,42 @@ def run_pipeline(hot_limit: int, scene_limit: int):
         total_steps = 4
 
         def render_progress():
-            """渲染进度信息"""
+            """渲染进度信息（终端风格日志面板 + 胶囊状态标签）"""
             with progress_area.container():
+                # 当前步骤用细长胶囊标签（替代原来占面积的 st.info 大蓝框）
                 if current_step:
-                    st.info(f"**{current_step}**")
+                    st.markdown(
+                        f'<div class="log-status">{current_step}</div>',
+                        unsafe_allow_html=True,
+                    )
 
                 if progress_logs:
-                    st.markdown("#### 📋 详细处理日志")
-                    for log in progress_logs[-10:]:  # 只显示最后10条
-                        st.markdown(log)
+                    # 开日志面板
+                    lines_html = ""
+                    for log in progress_logs[-15:]:
+                        # 按前缀分级、剥离 markdown 标记，交给 CSS 上色 + 缩进
+                        cls = "log-line"
+                        if log.startswith("###"):
+                            cls = "log-heading"
+                            log = log[4:]
+                        elif log.startswith("📌"):
+                            cls = "log-step"
+                        elif log.startswith("✅"):
+                            cls = "log-success"
+                        elif log.startswith("❌") or log.startswith("⚠️"):
+                            cls = "log-error"
+                        elif log.startswith("🤖"):
+                            cls = "log-llm"
+                        elif log.startswith("   ") or log.startswith("    "):
+                            cls = "log-detail"
+                        # 清理残留的 markdown 加粗标记
+                        log = log.replace("**", "")
+                        lines_html += f'<div class="{cls}">{log}</div>'
+
+                    st.markdown(
+                        f'<div class="log-panel">{lines_html}</div>',
+                        unsafe_allow_html=True,
+                    )
 
         def handle_progress(event_type, *args):
             """处理进度回调"""

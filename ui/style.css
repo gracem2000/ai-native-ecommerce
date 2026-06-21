@@ -655,3 +655,84 @@ div[data-testid="stSelectbox"] [data-baseweb="select"] > div {
 @keyframes ai-spin {
     to { transform: rotate(360deg); }
 }
+
+/* ========================================
+   热点追踪：抓取进度日志面板（终端风格）
+   ======================================== */
+
+/* 当前步骤胶囊标签 —— 替代原来厚重的 st.info 蓝框 */
+.log-status {
+    display: inline-block;
+    padding: 0.28rem 0.9rem;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: #ffffff;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 0.65rem;
+    letter-spacing: 0.01em;
+}
+
+/* 暗色终端风格日志面板 */
+.log-panel {
+    background: #1e293b;
+    color: #cbd5e1;
+    border-radius: var(--radius-md);
+    padding: 0.7rem 1rem;
+    font-family: "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
+    font-size: 0.72rem;
+    line-height: 1.65;
+    max-height: 430px;
+    overflow-y: auto;
+    border: 1px solid #334155;
+}
+
+/* 各层级色标 */
+.log-heading {
+    color: #fbbf24;
+    font-weight: 700;
+    font-size: 0.78rem;
+    margin-top: 0.45rem;
+    margin-bottom: 0.1rem;
+}
+.log-heading:first-child { margin-top: 0; }
+
+.log-step {
+    color: #38bdf8;
+    font-weight: 600;
+    margin-top: 0.35rem;
+}
+
+.log-success {
+    color: #34d399;
+    padding-left: 1.2rem;
+}
+
+.log-error {
+    color: #f87171;
+    padding-left: 0.6rem;
+}
+
+.log-llm {
+    color: #c084fc;
+    padding-left: 0.6rem;
+}
+
+.log-detail {
+    color: #94a3b8;
+    padding-left: 1.8rem;
+    font-size: 0.68rem;
+}
+
+.log-line {
+    color: #cbd5e1;
+}
+
+/* 日志面板滚动条（暗色适配） */
+.log-panel::-webkit-scrollbar { width: 6px; }
+.log-panel::-webkit-scrollbar-track { background: #0f172a; border-radius: 4px; }
+.log-panel::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 4px;
+}
+.log-panel::-webkit-scrollbar-thumb:hover { background: #64748b; }
