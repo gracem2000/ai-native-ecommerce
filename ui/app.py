@@ -2255,19 +2255,26 @@ def render_ai_recommend():
     st.markdown('<div style="height:1px; background:linear-gradient(90deg,transparent,#e5e7eb,transparent); margin:1.25rem 0 0.5rem 0;"></div>', unsafe_allow_html=True)
     st.markdown(f"##### 🔍 {current['label']} · 场景标签 `#{current['scene_tag']}` 为你精选")
 
-    # 按场景缓存推荐结果，避免每次 rerun 都调用 LLM
+    # 加载/拉取：用 st.status（Streamlit 实时组件）保证运行期间清晰可见、不灰显，
+    # 先把首页/旧列表替换成本页骨架 + 加载态，再阻塞拉取，最后渲染卡片
     cache = st.session_state.setdefault('ai_rec_cache', {})
+
     if current['label'] not in cache:
-        with st.spinner(f'正在为「{current["label"]}」生成 AI 选品与亮点…'):
+        with st.status('正在加载结果...', expanded=True, state='running') as status:
+            st.write(f'AI 正为「{current["label"]}」场景精选好物并提炼亮点…')
             try:
                 cache[current['label']] = recommender.recommend_by_scene(
                     current['label'], current['scene_tag'], current['keywords'], top_n=6
                 )
             except Exception as e:
                 cache[current['label']] = []
+                status.update(label='生成失败', state='error', expanded=False)
                 st.error(f'生成失败：{e}')
+                return
+            status.update(label='加载完成', state='complete', expanded=False)
 
-    cards = cache[current['label']]
+    # 数据就绪：渲染商品卡片列表
+    cards = cache.get(current['label'], [])
     if not cards:
         st.info("该场景暂无匹配商品，试试其他场景～")
     else:
