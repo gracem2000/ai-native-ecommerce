@@ -68,6 +68,10 @@
 }
 
 /* ===== 导航栏样式 ===== */
+/* 隐藏 Streamlit 自动生成的多页列表，用自定义导航替代 */
+[data-testid="stSidebarNav"] {
+    display: none !important;
+}
 .sidebar-nav {
     background: linear-gradient(180deg, #1e3a5f 0%, #2d5a87 100%);
     padding: 1.5rem;
@@ -305,6 +309,25 @@ div[data-testid="stSelectbox"] select:focus {
     box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15) !important;
 }
 
+/* Streamlit 选择框为 BaseWeb 控件，可见边框在 [data-baseweb="select"] 控件层（非 select 元素）—— 常驻红色边框 */
+div[data-testid="stSelectbox"] [data-baseweb="select"] {
+    border-color: #ef4444 !important;
+}
+div[data-testid="stSelectbox"] [data-baseweb="select"] > div {
+    border: 1px solid #ef4444 !important;
+    border-radius: 4px !important;
+}
+
+/* chat_input 对话框常驻红边框 */
+[data-testid="stChatInput"] textarea {
+    border: 1px solid #ef4444 !important;
+    border-radius: var(--radius-lg) !important;
+}
+[data-testid="stChatInput"] textarea:focus {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15) !important;
+}
+
 /* ===== 分隔线 ===== */
 .section-divider {
     height: 1px;
@@ -423,3 +446,303 @@ div[data-testid="stSelectbox"] select:focus {
         font-size: 1.5rem;
     }
 }
+
+/* ========================================
+   AI 购物助手：推荐商品卡片（品类 emoji + 渐变封面）
+   ======================================== */
+
+/* 推荐卡片：去掉默认内边距，改为上下结构（封面 + 正文） */
+.rec-card {
+    padding: 0 !important;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-cover {
+    height: 92px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.96);
+}
+
+.product-cover-emoji {
+    font-size: 2.3rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+
+.product-cover-cat {
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 0.1rem 0.6rem;
+    border-radius: 10px;
+}
+
+.product-card-body {
+    padding: 0.75rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.product-title {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text-primary);
+    line-height: 1.3;
+    min-height: 2.3rem;
+}
+
+.product-price {
+    color: var(--danger-color);
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.product-tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0.1rem 0;
+}
+
+.product-tags .keyword-tag {
+    font-size: 0.68rem;
+    padding: 0.15rem 0.5rem;
+    margin: 0.1rem;
+}
+
+.rec-reason {
+    margin-top: 0.4rem;
+    padding: 0.5rem 0.6rem;
+    background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+    border-left: 3px solid var(--warning-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.78rem;
+    color: #92400e;
+    line-height: 1.45;
+}
+
+/* ===== 用户画像登录卡片 ===== */
+.persona-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.persona-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+/* ========================================
+   「AI 推荐」页：场景化商品卡片
+   ======================================== */
+
+/* 卡片整体：横向布局（封面在左，内容在右），适合垂直长列表 */
+.scene-rec-card {
+    flex-direction: row !important;
+    align-items: stretch;
+}
+.scene-rec-card .product-cover {
+    width: 130px;
+    min-width: 130px;
+    height: auto;
+}
+.scene-rec-card .product-card-body {
+    padding: 0.9rem 1rem;
+}
+
+/* 场景标签（浅绿）+ 属性标签（浅蓝）所在行 */
+.tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0.5rem 0 0.25rem 0;
+}
+.scene-tag {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    border: 1px solid #bbf7d0;
+}
+.attr-tag {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    border: 1px solid #bfdbfe;
+}
+
+/* AI 区块通用标题 */
+.ai-section-title {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+/* 💡 AI 提炼产品亮点（列表，浅蓝底） */
+.ai-highlights {
+    margin-top: 0.55rem;
+    padding: 0.6rem 0.75rem;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-left: 3px solid #0ea5e9;
+    border-radius: var(--radius-sm);
+}
+.ai-highlights ul {
+    margin: 0;
+    padding-left: 1.15rem;
+}
+.ai-highlights li {
+    font-size: 0.8rem;
+    color: #0c4a6e;
+    line-height: 1.55;
+    margin: 0.15rem 0;
+}
+
+/* 🎯 AI 推荐理由（浅琥珀底，与对话页推荐理由 .rec-reason 风格一致） */
+.ai-reason {
+    margin-top: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+    border-left: 3px solid var(--warning-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    color: #92400e;
+    line-height: 1.55;
+}
+
+/* 「AI 推荐」页：加载占位（点击场景后立即显示，高度≈一张商品卡片） */
+.ai-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    margin: 0.5rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    border: 1px dashed #cbd5e1;
+    border-radius: var(--radius-lg);
+    color: #475569;
+}
+.ai-loading .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #dbeafe;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: ai-spin 0.8s linear infinite;
+    margin-bottom: 0.85rem;
+}
+.ai-loading .loading-text {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: #334155;
+}
+.ai-loading .loading-sub {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-top: 0.3rem;
+}
+@keyframes ai-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   热点追踪：抓取进度日志面板（终端风格）
+   ======================================== */
+
+/* 当前步骤胶囊标签 —— 替代原来厚重的 st.info 蓝框 */
+.log-status {
+    display: inline-block;
+    padding: 0.28rem 0.9rem;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: #ffffff;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 0.65rem;
+    letter-spacing: 0.01em;
+}
+
+/* 暗色终端风格日志面板 */
+.log-panel {
+    background: #1e293b;
+    color: #cbd5e1;
+    border-radius: var(--radius-md);
+    padding: 0.7rem 1rem;
+    font-family: "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
+    font-size: 0.72rem;
+    line-height: 1.65;
+    max-height: 430px;
+    overflow-y: auto;
+    border: 1px solid #334155;
+}
+
+/* 各层级色标 */
+.log-heading {
+    color: #fbbf24;
+    font-weight: 700;
+    font-size: 0.78rem;
+    margin-top: 0.45rem;
+    margin-bottom: 0.1rem;
+}
+.log-heading:first-child { margin-top: 0; }
+
+.log-step {
+    color: #38bdf8;
+    font-weight: 600;
+    margin-top: 0.35rem;
+}
+
+.log-success {
+    color: #34d399;
+    padding-left: 1.2rem;
+}
+
+.log-error {
+    color: #f87171;
+    padding-left: 0.6rem;
+}
+
+.log-llm {
+    color: #c084fc;
+    padding-left: 0.6rem;
+}
+
+.log-detail {
+    color: #94a3b8;
+    padding-left: 1.8rem;
+    font-size: 0.68rem;
+}
+
+.log-line {
+    color: #cbd5e1;
+}
+
+/* 日志面板滚动条（暗色适配） */
+.log-panel::-webkit-scrollbar { width: 6px; }
+.log-panel::-webkit-scrollbar-track { background: #0f172a; border-radius: 4px; }
+.log-panel::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 4px;
+}
+.log-panel::-webkit-scrollbar-thumb:hover { background: #64748b; }

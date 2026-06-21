@@ -4,7 +4,7 @@ LLM 客户端模块
 """
 from zai import ZhipuAiClient
 import json
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 from src.config import Config
 
 
@@ -88,6 +88,38 @@ class GLMClient:
             traceback.print_exc()
             return self._empty_scene(hot_topic)
 
+    def chat(self, messages: List[Dict], temperature: Optional[float] = None, max_tokens: Optional[int] = None) -> str:
+        """通用多轮对话
+
+        复用底层 chat.completions.create 调用，支持任意 messages 列表（多轮历史）。
+        供对话式购物助手等场景使用。
+
+        Args:
+            messages: 对话消息列表，形如 [{"role": "user", "content": "..."}]
+            temperature: 可选温度，默认使用配置值
+            max_tokens: 可选最大 token 数，默认使用配置值
+
+        Returns:
+            模型回复的文本内容；客户端未初始化或调用失败时返回空字符串
+        """
+        if not self.client:
+            print("⚠️  LLM 客户端未初始化，无法进行对话")
+            return ""
+
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                max_tokens=max_tokens if max_tokens is not None else self.max_tokens,
+                temperature=temperature if temperature is not None else self.temperature,
+            )
+            return response.choices[0].message.content or ""
+        except Exception as e:
+            print(f"❌ LLM 对话调用失败: {e}")
+            import traceback
+            traceback.print_exc()
+            return ""
+
     def _build_scene_prompt(self, hot_topic: str) -> str:
         """构建场景挖掘的 Prompt
 
@@ -121,6 +153,13 @@ class GLMClient:
 1. 时间范围必须使用当前年份（{current_year}）的日期
 2. 如果是热点事件，时间范围从今天开始，持续1-4周
 3. 如果是季节性场景，使用当前年份的相关季节
+
+质量标准（务必遵守）：
+4. 所有文本字段不要使用特殊符号（如 # @ ￥ % & *）、不要出现多余空格/换行/tab/引号；中文标点使用全角（如 ，。、）。
+5. scene_name 必须简洁明了（4-10个汉字），不要带标点或数字。
+6. potential_keywords 的每个关键词必须是干净的商品词（2-5个汉字），不要带修饰词或标点。
+7. 关键词必须与「当前这个具体场景」紧密相关，不要使用话题层级的通用词。例如生成"教师节职业穿搭"场景时，关键词应为衬衫、西装、乐福鞋等服装类词，而非钢笔、保温杯等泛教师节礼品词。
+8. 如果热点话题涉及政治人物、军事冲突、领土争议、民族宗教敏感事件，请直接返回空JSON对象 {{}} 表示无法生成场景。
 
 只返回JSON内容，不要其他说明文字。
 
@@ -295,6 +334,13 @@ class GLMClient:
 1. 时间范围必须使用当前年份（{current_year}）的日期
 2. 每个场景要有明显的区分度，避免重复
 3. 场景名称要体现不同角度，如"端午礼品馈赠"、"端午家庭出游"、"端午粽子DIY"等
+
+质量标准（务必遵守）：
+4. 所有文本字段不要使用特殊符号（如 # @ ￥ % & *）、不要出现多余空格/换行/tab/引号；中文标点使用全角（如 ，。、）。
+5. scene_name 必须简洁明了（4-10个汉字），不要带标点或数字。
+6. potential_keywords 的每个关键词必须是干净的商品词（2-5个汉字），不要带修饰词或标点。
+7. 不同角度的场景，关键词必须明显区分、各场景专属。例如"教师节职业穿搭"→衬衫/西装/乐福鞋，"教师节手工DIY"→手工贺卡/扭扭棒花束/热熔胶枪，禁止所有场景共用钢笔/保温杯等泛主题词。
+8. 如果热点话题涉及政治人物、军事冲突、领土争议、民族宗教敏感事件，请直接返回空JSON数组 {{}} 表示无法生成场景。
 
 只返回JSON数组内容，不要其他说明文字。
 

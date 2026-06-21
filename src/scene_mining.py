@@ -195,41 +195,67 @@ class SceneMining:
         print(f"\n📊 场景挖掘完成: 成功 {processed_count}/{limit} 条")
         return scenes
 
+    @staticmethod
+    def _normalize_keywords(raw_keywords) -> list:
+        """规范化关键词：兼容 LLM 返回的逗号分隔字符串 or 数组，去单字/去空"""
+        if isinstance(raw_keywords, str):
+            raw_keywords = [k.strip() for k in raw_keywords.split(',') if k.strip()]
+        if not isinstance(raw_keywords, list):
+            return []
+        result = []
+        for k in raw_keywords:
+            k = SceneMining._sanitize(str(k))
+            if len(k) >= 2:   # 过滤单字（如 "钢"、"笔"）
+                result.append(k)
+        return result
+
+    @staticmethod
+    def _sanitize(text: str) -> str:
+        """清理文本：去首尾空格/换行/tab、折叠多余空格、去特殊符号/热搜尾标签"""
+        if not isinstance(text, str):
+            return text
+        import re
+        text = text.strip()
+        text = re.sub(r'[\r\n\t]+', ' ', text)
+        text = re.sub(r' {2,}', ' ', text)
+        # 去半角特殊符号
+        text = re.sub(r'[#@￥$%^&*|\\/`~\[\]{}⟨⟩「」『』【】()（）]', '', text)
+        # 去首尾多余标点
+        text = re.sub(r'^[：:。，,；;！!？?"\'…—\-\.\s]+', '', text)
+        text = re.sub(r'[：:。，,；;！!？?"\'…—\-\.\s]+$', '', text)
+        # 去热搜尾部标签（空格 + 单字如 热/新/沸/爆/荐 等）
+        text = re.sub(r'\s+[热新沸腾爆荐顶]$', '', text)
+        text = text.strip()
+        return text
+
     def _create_scene_object(self, source_topic: str, scene_data: Dict, source: str = 'hotspot', source_detail: str = '') -> Dict:
-        """创建场景对象
-
-        Args:
-            source_topic: 原始热点话题
-            scene_data: LLM 生成的场景数据
-            source: 场景来源 (seasonal|hotspot|manual)
-            source_detail: 来源详情描述
-
-        Returns:
-            完整的场景对象
-        """
-        # 来源映射到中文
+        """创建场景对象（所有文本字段均经过 sanitize 处理）"""
         source_type_map = {
             'seasonal': '时节',
             'hotspot': '热点',
             'manual': '人工'
         }
-
+        # 原文保留一份（调试用），展示用字段做清理
+        raw_topic = str(source_topic or '')
+        raw_detail = str(source_detail or '')
         return {
             'scene_id': self._generate_unique_scene_id(),
             'source': source,
             'source_type': source_type_map.get(source, '热点'),
-            'source_detail': source_detail or source_topic,
-            'source_topic': source_topic,
+            'source_detail': self._sanitize(raw_detail or raw_topic),
+            'source_topic': self._sanitize(raw_topic),
             'created_at': datetime.now().isoformat(),
-            'scene_name': scene_data.get('scene_name', '未知场景'),
-            'scene_type': scene_data.get('scene_type', '未知'),
-            'trigger_event': scene_data.get('trigger_event', ''),
-            'temporal_scope': scene_data.get('temporal_scope', '未知'),
-            'geo_scope': scene_data.get('geo_scope', '未知'),
-            'user_intent': scene_data.get('user_intent', ''),
-            'potential_keywords': scene_data.get('potential_keywords', []),
-            'target_population': scene_data.get('target_population', '未知'),
-            'confidence': 0.8  # 默认置信度
+            'scene_name': self._sanitize(scene_data.get('scene_name', '未知场景')),
+            'scene_type': self._sanitize(scene_data.get('scene_type', '未知')),
+            'trigger_event': self._sanitize(scene_data.get('trigger_event', '')),
+            'temporal_scope': self._sanitize(str(scene_data.get('temporal_scope', '未知'))),
+            'geo_scope': self._sanitize(str(scene_data.get('geo_scope', '未知'))),
+            'user_intent': self._sanitize(scene_data.get('user_intent', '')),
+            'potential_keywords': self._normalize_keywords(
+                scene_data.get('potential_keywords', [])
+            ),
+            'target_population': self._sanitize(scene_data.get('target_population', '未知')),
+            'confidence': 0.8
         }
 
     def _save_scenes(self, scenes: List[Dict], auto_deduplicate: bool = True) -> Dict[str, any]:
