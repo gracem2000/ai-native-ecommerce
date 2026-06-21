@@ -318,6 +318,16 @@ div[data-testid="stSelectbox"] [data-baseweb="select"] > div {
     border-radius: 4px !important;
 }
 
+/* chat_input 对话框常驻红边框 */
+[data-testid="stChatInput"] textarea {
+    border: 1px solid #ef4444 !important;
+    border-radius: var(--radius-lg) !important;
+}
+[data-testid="stChatInput"] textarea:focus {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15) !important;
+}
+
 /* ===== 分隔线 ===== */
 .section-divider {
     height: 1px;

@@ -4,7 +4,13 @@
       "sku_id": "10001",
       "title": "青岛啤酒经典10度500ml*24听",
       "category": "酒水饮料",
-      "tags": ["啤酒", "聚会", "世界杯", "看球", "酒精"],
+      "tags": [
+        "啤酒",
+        "聚会",
+        "世界杯",
+        "看球",
+        "酒精"
+      ],
       "price": 79.9,
       "stock": 1000,
       "image_url": "/images/beer.jpg"
@@ -13,7 +19,13 @@
       "sku_id": "10002",
       "title": "乐事薯片原味黄瓜味混合装200g",
       "category": "休闲零食",
-      "tags": ["薯片", "零食", "看剧", "聚会", "膨化"],
+      "tags": [
+        "薯片",
+        "零食",
+        "看剧",
+        "聚会",
+        "膨化"
+      ],
       "price": 15.9,
       "stock": 500,
       "image_url": "/images/chips.jpg"
@@ -22,7 +34,13 @@
       "sku_id": "10003",
       "title": "Swisse 斯维诗 护肝片 180片",
       "category": "医疗保健",
-      "tags": ["护肝", "熬夜", "解酒", "保健", "维生素"],
+      "tags": [
+        "护肝",
+        "熬夜",
+        "解酒",
+        "保健",
+        "维生素"
+      ],
       "price": 128.0,
       "stock": 300,
       "image_url": "/images/liver.jpg"
@@ -31,7 +49,13 @@
       "sku_id": "10004",
       "title": "泡泡玛特 Labubu 世界杯系列盲盒",
       "category": "潮玩手办",
-      "tags": ["盲盒", "拉布布", "世界杯", "收藏", "手办"],
+      "tags": [
+        "盲盒",
+        "拉布布",
+        "世界杯",
+        "收藏",
+        "手办"
+      ],
       "price": 399.0,
       "stock": 50,
       "image_url": "/images/labubu.jpg"
@@ -40,7 +64,13 @@
       "sku_id": "10005",
       "title": "哈啤(Harbin) 冰爽啤酒500ml*18罐",
       "category": "酒水饮料",
-      "tags": ["啤酒", "聚会", "世界杯", "冰爽", "酒精"],
+      "tags": [
+        "啤酒",
+        "聚会",
+        "世界杯",
+        "冰爽",
+        "酒精"
+      ],
       "price": 59.9,
       "stock": 800,
       "image_url": "/images/harbin.jpg"
@@ -49,7 +79,13 @@
       "sku_id": "10006",
       "title": "可口可乐汽水330ml*24罐",
       "category": "酒水饮料",
-      "tags": ["可乐", "碳酸", "聚会", "饮料", "冰爽"],
+      "tags": [
+        "可乐",
+        "碳酸",
+        "聚会",
+        "饮料",
+        "冰爽"
+      ],
       "price": 49.9,
       "stock": 1200,
       "image_url": "/images/cola.jpg"
@@ -58,7 +94,13 @@
       "sku_id": "10007",
       "title": "三只松鼠坚果大礼包1680g",
       "category": "休闲零食",
-      "tags": ["坚果", "零食", "聚会", "送礼", "健康"],
+      "tags": [
+        "坚果",
+        "零食",
+        "聚会",
+        "送礼",
+        "健康"
+      ],
       "price": 89.0,
       "stock": 400,
       "image_url": "/images/nuts.jpg"
@@ -67,7 +109,13 @@
       "sku_id": "10008",
       "title": "良品铺子卤鸭脖200g",
       "category": "休闲零食",
-      "tags": ["卤味", "鸭脖", "零食", "聚会", "辣味"],
+      "tags": [
+        "卤味",
+        "鸭脖",
+        "零食",
+        "聚会",
+        "辣味"
+      ],
       "price": 29.9,
       "stock": 600,
       "image_url": "/images/duck.jpg"
@@ -76,7 +124,13 @@
       "sku_id": "10009",
       "title": "红牛能量饮料250ml*24罐",
       "category": "酒水饮料",
-      "tags": ["功能饮料", "能量", "熬夜", "提神", "保健"],
+      "tags": [
+        "功能饮料",
+        "能量",
+        "熬夜",
+        "提神",
+        "保健"
+      ],
       "price": 138.0,
       "stock": 700,
       "image_url": "/images/redbull.jpg"
@@ -85,7 +139,13 @@
       "sku_id": "10010",
       "title": "百草味麻辣小龙虾尾500g",
       "category": "休闲零食",
-      "tags": ["小龙虾", "零食", "聚会", "麻辣", "海鲜"],
+      "tags": [
+        "小龙虾",
+        "零食",
+        "聚会",
+        "麻辣",
+        "海鲜"
+      ],
       "price": 79.9,
       "stock": 350,
       "image_url": "/images/crayfish.jpg"
@@ -94,7 +154,13 @@
       "sku_id": "10011",
       "title": "小米65英寸4K智能电视",
       "category": "数码电器",
-      "tags": ["电视", "4K", "智能", "观赛", "影音"],
+      "tags": [
+        "电视",
+        "4K",
+        "智能",
+        "观赛",
+        "影音"
+      ],
       "price": 2999.0,
       "stock": 50,
       "image_url": "/images/tv.jpg"
@@ -103,7 +169,13 @@
       "sku_id": "10012",
       "title": "JBL蓝牙音箱便携式",
       "category": "数码电器",
-      "tags": ["音箱", "蓝牙", "便携", "音响", "音乐"],
+      "tags": [
+        "音箱",
+        "蓝牙",
+        "便携",
+        "音响",
+        "音乐"
+      ],
       "price": 399.0,
       "stock": 200,
       "image_url": "/images/speaker.jpg"
@@ -112,7 +184,13 @@
       "sku_id": "10013",
       "title": "泰国进口芒果干500g",
       "category": "休闲零食",
-      "tags": ["芒果干", "水果", "零食", "健康", "进口"],
+      "tags": [
+        "芒果干",
+        "水果",
+        "零食",
+        "健康",
+        "进口"
+      ],
       "price": 39.9,
       "stock": 450,
       "image_url": "/images/mango.jpg"
@@ -121,7 +199,13 @@
       "sku_id": "10014",
       "title": "德芙巧克力礼盒756g",
       "category": "休闲零食",
-      "tags": ["巧克力", "甜品", "送礼", "情人节", "零食"],
+      "tags": [
+        "巧克力",
+        "甜品",
+        "送礼",
+        "情人节",
+        "零食"
+      ],
       "price": 88.0,
       "stock": 300,
       "image_url": "/images/chocolate.jpg"
@@ -130,7 +214,13 @@
       "sku_id": "10015",
       "title": "康师傅冰红茶500ml*24瓶",
       "category": "酒水饮料",
-      "tags": ["茶饮料", "冰爽", "饮料", "聚会", "柠檬"],
+      "tags": [
+        "茶饮料",
+        "冰爽",
+        "饮料",
+        "聚会",
+        "柠檬"
+      ],
       "price": 42.9,
       "stock": 900,
       "image_url": "/images/ice_tea.jpg"
@@ -139,7 +229,13 @@
       "sku_id": "10016",
       "title": "星巴克咖啡豆200g",
       "category": "酒水饮料",
-      "tags": ["咖啡", "提神", "熬夜", "品质", "进口"],
+      "tags": [
+        "咖啡",
+        "提神",
+        "熬夜",
+        "品质",
+        "进口"
+      ],
       "price": 128.0,
       "stock": 250,
       "image_url": "/images/coffee.jpg"
@@ -148,7 +244,13 @@
       "sku_id": "10017",
       "title": "奥利奥饼干原味592g",
       "category": "休闲零食",
-      "tags": ["饼干", "零食", "甜食", "聚会", "牛奶"],
+      "tags": [
+        "饼干",
+        "零食",
+        "甜食",
+        "聚会",
+        "牛奶"
+      ],
       "price": 18.9,
       "stock": 550,
       "image_url": "/images/oreo.jpg"
@@ -157,7 +259,13 @@
       "sku_id": "10018",
       "title": "百威啤酒500ml*24听",
       "category": "酒水饮料",
-      "tags": ["啤酒", "聚会", "世界杯", "进口", "酒精"],
+      "tags": [
+        "啤酒",
+        "聚会",
+        "世界杯",
+        "进口",
+        "酒精"
+      ],
       "price": 99.0,
       "stock": 600,
       "image_url": "/images/budweiser.jpg"
@@ -166,7 +274,13 @@
       "sku_id": "10019",
       "title": "自然堂男士护肤套装",
       "category": "美妆护肤",
-      "tags": ["护肤", "男士", "套装", "保养", "礼物"],
+      "tags": [
+        "护肤",
+        "男士",
+        "套装",
+        "保养",
+        "礼物"
+      ],
       "price": 168.0,
       "stock": 200,
       "image_url": "/images/skincare.jpg"
@@ -175,7 +289,12 @@
       "sku_id": "10020",
       "title": "冈本避孕安全套10片装",
       "category": "成人用品",
-      "tags": ["避孕", "安全", "成人", "健康"],
+      "tags": [
+        "避孕",
+        "安全",
+        "成人",
+        "健康"
+      ],
       "price": 39.9,
       "stock": 1000,
       "image_url": "/images/condom.jpg"
@@ -184,7 +303,13 @@
       "sku_id": "10021",
       "title": "医用外科口罩50只",
       "category": "医疗保健",
-      "tags": ["口罩", "防护", "医疗", "健康", "防疫"],
+      "tags": [
+        "口罩",
+        "防护",
+        "医疗",
+        "健康",
+        "防疫"
+      ],
       "price": 19.9,
       "stock": 2000,
       "image_url": "/images/mask.jpg"
@@ -193,7 +318,13 @@
       "sku_id": "10022",
       "title": "任天堂Switch游戏机",
       "category": "数码电器",
-      "tags": ["游戏机", "Switch", "娱乐", "聚会", "游戏"],
+      "tags": [
+        "游戏机",
+        "Switch",
+        "娱乐",
+        "聚会",
+        "游戏"
+      ],
       "price": 2099.0,
       "stock": 80,
       "image_url": "/images/switch.jpg"
@@ -202,7 +333,13 @@
       "sku_id": "10023",
       "title": "高端人体工学椅",
       "category": "家居生活",
-      "tags": ["椅子", "办公", "健康", "舒适", "家居"],
+      "tags": [
+        "椅子",
+        "办公",
+        "健康",
+        "舒适",
+        "家居"
+      ],
       "price": 899.0,
       "stock": 100,
       "image_url": "/images/chair.jpg"
@@ -211,7 +348,13 @@
       "sku_id": "10024",
       "title": "加拿大原大冰川矿泉水4L*4桶",
       "category": "酒水饮料",
-      "tags": ["矿泉水", "健康", "进口", "饮用水", "家庭"],
+      "tags": [
+        "矿泉水",
+        "健康",
+        "进口",
+        "饮用水",
+        "家庭"
+      ],
       "price": 59.9,
       "stock": 500,
       "image_url": "/images/water.jpg"
@@ -220,7 +363,13 @@
       "sku_id": "10025",
       "title": "双汇火腿肠王中王500g",
       "category": "休闲零食",
-      "tags": ["火腿肠", "零食", "方便", "肉类", "聚会"],
+      "tags": [
+        "火腿肠",
+        "零食",
+        "方便",
+        "肉类",
+        "聚会"
+      ],
       "price": 15.9,
       "stock": 800,
       "image_url": "/images/sausage.jpg"
@@ -229,7 +378,13 @@
       "sku_id": "10026",
       "title": "六神花露水180ml",
       "category": "美妆护肤",
-      "tags": ["花露水", "驱蚊", "夏日", "清凉", "传统"],
+      "tags": [
+        "花露水",
+        "驱蚊",
+        "夏日",
+        "清凉",
+        "传统"
+      ],
       "price": 12.9,
       "stock": 1500,
       "image_url": "/images/liushen.jpg"
@@ -238,7 +393,13 @@
       "sku_id": "10027",
       "title": "椰树椰汁245ml*20罐",
       "category": "酒水饮料",
-      "tags": ["椰汁", "饮料", "聚会", "健康", "植物蛋白"],
+      "tags": [
+        "椰汁",
+        "饮料",
+        "聚会",
+        "健康",
+        "植物蛋白"
+      ],
       "price": 49.9,
       "stock": 600,
       "image_url": "/images/coconut.jpg"
@@ -247,7 +408,13 @@
       "sku_id": "10028",
       "title": "旺旺大礼包600g",
       "category": "休闲零食",
-      "tags": ["零食", "旺旺", "礼包", "聚会", "送礼"],
+      "tags": [
+        "零食",
+        "旺旺",
+        "礼包",
+        "聚会",
+        "送礼"
+      ],
       "price": 29.9,
       "stock": 700,
       "image_url": "/images/wangwang.jpg"
@@ -256,7 +423,13 @@
       "sku_id": "10029",
       "title": "周黑鸭真空锁鲜装500g",
       "category": "休闲零食",
-      "tags": ["卤味", "鸭脖", "零食", "聚会", "辣味"],
+      "tags": [
+        "卤味",
+        "鸭脖",
+        "零食",
+        "聚会",
+        "辣味"
+      ],
       "price": 49.9,
       "stock": 400,
       "image_url": "/images/zhouheiya.jpg"
@@ -265,7 +438,13 @@
       "sku_id": "10030",
       "title": "喜力啤酒500ml*24听",
       "category": "酒水饮料",
-      "tags": ["啤酒", "聚会", "世界杯", "进口", "酒精"],
+      "tags": [
+        "啤酒",
+        "聚会",
+        "世界杯",
+        "进口",
+        "酒精"
+      ],
       "price": 109.0,
       "stock": 450,
       "image_url": "/images/heineken.jpg"
@@ -274,7 +453,13 @@
       "sku_id": "10031",
       "title": "Keep 瑜伽垫防滑加厚10mm",
       "category": "运动户外",
-      "tags": ["瑜伽", "健身", "运动", "防滑", "居家"],
+      "tags": [
+        "瑜伽",
+        "健身",
+        "运动",
+        "防滑",
+        "居家"
+      ],
       "price": 89.0,
       "stock": 300,
       "image_url": "/images/yoga_mat.jpg"
@@ -283,7 +468,13 @@
       "sku_id": "10032",
       "title": "迪卡侬运动腰包跑步臂包",
       "category": "运动户外",
-      "tags": ["跑步", "运动", "臂包", "健身", "户外"],
+      "tags": [
+        "跑步",
+        "运动",
+        "臂包",
+        "健身",
+        "户外"
+      ],
       "price": 49.0,
       "stock": 500,
       "image_url": "/images/running_belt.jpg"
@@ -292,7 +483,13 @@
       "sku_id": "10033",
       "title": "Keep 运动水壶1000ml便携大容量",
       "category": "运动户外",
-      "tags": ["水壶", "运动", "健身", "便携", "户外"],
+      "tags": [
+        "水壶",
+        "运动",
+        "健身",
+        "便携",
+        "户外"
+      ],
       "price": 39.0,
       "stock": 600,
       "image_url": "/images/water_bottle.jpg"
@@ -301,7 +498,13 @@
       "sku_id": "10034",
       "title": "牧高笛露营帐篷双人户外自动",
       "category": "运动户外",
-      "tags": ["露营", "帐篷", "户外", "旅游", "野营"],
+      "tags": [
+        "露营",
+        "帐篷",
+        "户外",
+        "旅游",
+        "野营"
+      ],
       "price": 299.0,
       "stock": 150,
       "image_url": "/images/tent.jpg"
@@ -310,7 +513,13 @@
       "sku_id": "10035",
       "title": "Keep 泡沫轴肌肉放松滚轴",
       "category": "运动户外",
-      "tags": ["泡沫轴", "放松", "健身", "运动", "按摩"],
+      "tags": [
+        "泡沫轴",
+        "放松",
+        "健身",
+        "运动",
+        "按摩"
+      ],
       "price": 45.0,
       "stock": 400,
       "image_url": "/images/foam_roller.jpg"
@@ -319,7 +528,13 @@
       "sku_id": "10036",
       "title": "AirPods Pro 2 无线降噪耳机",
       "category": "数码电器",
-      "tags": ["耳机", "蓝牙", "苹果", "降噪", "数码"],
+      "tags": [
+        "耳机",
+        "蓝牙",
+        "苹果",
+        "降噪",
+        "数码"
+      ],
       "price": 1899.0,
       "stock": 200,
       "image_url": "/images/airpods.jpg"
@@ -328,7 +543,13 @@
       "sku_id": "10037",
       "title": "Anker 20000mAh 移动电源充电宝",
       "category": "数码电器",
-      "tags": ["充电宝", "移动电源", "快充", "数码", "便携"],
+      "tags": [
+        "充电宝",
+        "移动电源",
+        "快充",
+        "数码",
+        "便携"
+      ],
       "price": 159.0,
       "stock": 800,
       "image_url": "/images/powerbank.jpg"
@@ -337,7 +558,13 @@
       "sku_id": "10038",
       "title": "小米 Type-C 数据线快充2米",
       "category": "数码电器",
-      "tags": ["数据线", "快充", "Type-C", "数码配件", "小米"],
+      "tags": [
+        "数据线",
+        "快充",
+        "Type-C",
+        "数码配件",
+        "小米"
+      ],
       "price": 29.0,
       "stock": 2000,
       "image_url": "/images/cable.jpg"
@@ -346,7 +573,13 @@
       "sku_id": "10039",
       "title": "华为智能手表GT 4",
       "category": "数码电器",
-      "tags": ["智能手表", "运动", "健康", "华为", "可穿戴"],
+      "tags": [
+        "智能手表",
+        "运动",
+        "健康",
+        "华为",
+        "可穿戴"
+      ],
       "price": 1488.0,
       "stock": 250,
       "image_url": "/images/smartwatch.jpg"
@@ -355,7 +588,13 @@
       "sku_id": "10040",
       "title": "罗技 MX Master 3S 无线鼠标",
       "category": "数码电器",
-      "tags": ["鼠标", "无线", "办公", "人体工学", "罗技"],
+      "tags": [
+        "鼠标",
+        "无线",
+        "办公",
+        "人体工学",
+        "罗技"
+      ],
       "price": 599.0,
       "stock": 180,
       "image_url": "/images/mouse.jpg"
@@ -364,7 +603,13 @@
       "sku_id": "10041",
       "title": "飞利浦电动牙刷成人款",
       "category": "数码电器",
-      "tags": ["电动牙刷", "口腔护理", "健康", "飞利浦", "智能"],
+      "tags": [
+        "电动牙刷",
+        "口腔护理",
+        "健康",
+        "飞利浦",
+        "智能"
+      ],
       "price": 399.0,
       "stock": 300,
       "image_url": "/images/electric_brush.jpg"
@@ -373,7 +618,13 @@
       "sku_id": "10042",
       "title": "小米空气净化器4 Pro",
       "category": "数码电器",
-      "tags": ["空气净化器", "健康", "家电", "除甲醛", "小米"],
+      "tags": [
+        "空气净化器",
+        "健康",
+        "家电",
+        "除甲醛",
+        "小米"
+      ],
       "price": 1299.0,
       "stock": 100,
       "image_url": "/images/purifier.jpg"
@@ -382,7 +633,13 @@
       "sku_id": "10043",
       "title": "索尼 WH-1000XM5 头戴降噪耳机",
       "category": "数码电器",
-      "tags": ["耳机", "降噪", "索尼", "头戴式", "蓝牙"],
+      "tags": [
+        "耳机",
+        "降噪",
+        "索尼",
+        "头戴式",
+        "蓝牙"
+      ],
       "price": 2499.0,
       "stock": 120,
       "image_url": "/images/sony_headphones.jpg"
@@ -391,7 +648,13 @@
       "sku_id": "10044",
       "title": "iPhone 15 Pro Max 手机壳硅胶保护套",
       "category": "数码电器",
-      "tags": ["手机壳", "保护套", "苹果", "配件", "硅胶"],
+      "tags": [
+        "手机壳",
+        "保护套",
+        "苹果",
+        "配件",
+        "硅胶"
+      ],
       "price": 59.0,
       "stock": 1000,
       "image_url": "/images/phone_case.jpg"
@@ -400,7 +663,13 @@
       "sku_id": "10045",
       "title": "任天堂 Switch OLED 游戏机",
       "category": "数码电器",
-      "tags": ["游戏机", "Switch", "OLED", "任天堂", "娱乐"],
+      "tags": [
+        "游戏机",
+        "Switch",
+        "OLED",
+        "任天堂",
+        "娱乐"
+      ],
       "price": 2599.0,
       "stock": 80,
       "image_url": "/images/switch_oled.jpg"
@@ -409,7 +678,13 @@
       "sku_id": "10046",
       "title": "小米手环8 智能运动手环",
       "category": "数码电器",
-      "tags": ["手环", "智能", "运动", "健康", "小米"],
+      "tags": [
+        "手环",
+        "智能",
+        "运动",
+        "健康",
+        "小米"
+      ],
       "price": 249.0,
       "stock": 500,
       "image_url": "/images/band.jpg"
@@ -418,7 +693,13 @@
       "sku_id": "10047",
       "title": "戴森 V12 Detect Slim 吸尘器",
       "category": "数码电器",
-      "tags": ["吸尘器", "戴森", "无线", "清洁", "家电"],
+      "tags": [
+        "吸尘器",
+        "戴森",
+        "无线",
+        "清洁",
+        "家电"
+      ],
       "price": 4499.0,
       "stock": 50,
       "image_url": "/images/dyson.jpg"
@@ -427,7 +708,13 @@
       "sku_id": "10048",
       "title": "GoPro HERO12 运动相机",
       "category": "数码电器",
-      "tags": ["运动相机", "GoPro", "户外", "vlog", "防水"],
+      "tags": [
+        "运动相机",
+        "GoPro",
+        "户外",
+        "vlog",
+        "防水"
+      ],
       "price": 3498.0,
       "stock": 60,
       "image_url": "/images/gopro.jpg"
@@ -436,7 +723,13 @@
       "sku_id": "10049",
       "title": "美的 1.5匹 变频空调",
       "category": "数码电器",
-      "tags": ["空调", "家电", "变频", "美的", "制冷"],
+      "tags": [
+        "空调",
+        "家电",
+        "变频",
+        "美的",
+        "制冷"
+      ],
       "price": 2999.0,
       "stock": 100,
       "image_url": "/images/ac.jpg"
@@ -445,7 +738,13 @@
       "sku_id": "10050",
       "title": "飞利浦空气炸锅4L大容量",
       "category": "数码电器",
-      "tags": ["空气炸锅", "厨房电器", "健康", "油炸", "飞利浦"],
+      "tags": [
+        "空气炸锅",
+        "厨房电器",
+        "健康",
+        "油炸",
+        "飞利浦"
+      ],
       "price": 699.0,
       "stock": 200,
       "image_url": "/images/airfryer.jpg"
@@ -454,7 +753,13 @@
       "sku_id": "10051",
       "title": "爱他美 卓萃 婴儿配方奶粉3段800g",
       "category": "母婴用品",
-      "tags": ["奶粉", "婴儿", "爱他美", "营养", "德国"],
+      "tags": [
+        "奶粉",
+        "婴儿",
+        "爱他美",
+        "营养",
+        "德国"
+      ],
       "price": 268.0,
       "stock": 400,
       "image_url": "/images/formula.jpg"
@@ -463,7 +768,13 @@
       "sku_id": "10052",
       "title": "好奇 Huggies 铂金装纸尿裤M码72片",
       "category": "母婴用品",
-      "tags": ["纸尿裤", "好奇", "婴儿", "透气", "干爽"],
+      "tags": [
+        "纸尿裤",
+        "好奇",
+        "婴儿",
+        "透气",
+        "干爽"
+      ],
       "price": 159.0,
       "stock": 600,
       "image_url": "/images/diapers.jpg"
@@ -472,7 +783,13 @@
       "sku_id": "10053",
       "title": "帮宝适 Pampers 一级帮纸尿裤L码64片",
       "category": "母婴用品",
-      "tags": ["纸尿裤", "帮宝适", "婴儿", "吸收", "舒适"],
+      "tags": [
+        "纸尿裤",
+        "帮宝适",
+        "婴儿",
+        "吸收",
+        "舒适"
+      ],
       "price": 129.0,
       "stock": 700,
       "image_url": "/images/pampers.jpg"
@@ -481,7 +798,13 @@
       "sku_id": "10054",
       "title": "乐高 LEGO 得宝系列 大颗粒积木",
       "category": "母婴用品",
-      "tags": ["积木", "乐高", "玩具", "益智", "早教"],
+      "tags": [
+        "积木",
+        "乐高",
+        "玩具",
+        "益智",
+        "早教"
+      ],
       "price": 299.0,
       "stock": 200,
       "image_url": "/images/lego.jpg"
@@ -490,7 +813,13 @@
       "sku_id": "10055",
       "title": "费雪 Fisher-Price 婴儿音乐健身架",
       "category": "母婴用品",
-      "tags": ["健身架", "婴儿", "费雪", "早教", "玩具"],
+      "tags": [
+        "健身架",
+        "婴儿",
+        "费雪",
+        "早教",
+        "玩具"
+      ],
       "price": 199.0,
       "stock": 150,
       "image_url": "/images/fisher_gym.jpg"
@@ -499,7 +828,13 @@
       "sku_id": "10056",
       "title": "Hape 木质积木益智玩具套装",
       "category": "母婴用品",
-      "tags": ["积木", "Hape", "木质", "益智", "早教"],
+      "tags": [
+        "积木",
+        "Hape",
+        "木质",
+        "益智",
+        "早教"
+      ],
       "price": 159.0,
       "stock": 180,
       "image_url": "/images/hape_blocks.jpg"
@@ -508,7 +843,13 @@
       "sku_id": "10057",
       "title": "babycare 婴儿湿巾80抽×6包",
       "category": "母婴用品",
-      "tags": ["湿巾", "婴儿", "babycare", "清洁", "温和"],
+      "tags": [
+        "湿巾",
+        "婴儿",
+        "babycare",
+        "清洁",
+        "温和"
+      ],
       "price": 49.0,
       "stock": 800,
       "image_url": "/images/wipes.jpg"
@@ -517,7 +858,13 @@
       "sku_id": "10058",
       "title": "贝亲 Pigeon 宽口径奶嘴240ml",
       "category": "母婴用品",
-      "tags": ["奶瓶", "贝亲", "婴儿", "宽口", "母乳"],
+      "tags": [
+        "奶瓶",
+        "贝亲",
+        "婴儿",
+        "宽口",
+        "母乳"
+      ],
       "price": 89.0,
       "stock": 400,
       "image_url": "/images/bottle.jpg"
@@ -526,7 +873,13 @@
       "sku_id": "10059",
       "title": "大王 光羽环贴纸尿裤NB码96片",
       "category": "母婴用品",
-      "tags": ["纸尿裤", "大王", "新生儿", "透气", "薄"],
+      "tags": [
+        "纸尿裤",
+        "大王",
+        "新生儿",
+        "透气",
+        "薄"
+      ],
       "price": 139.0,
       "stock": 500,
       "image_url": "/images/goon.jpg"
@@ -535,7 +888,13 @@
       "sku_id": "10060",
       "title": "澳优 海普诺凯 婴儿奶粉1段800g",
       "category": "母婴用品",
-      "tags": ["奶粉", "澳优", "婴儿", "荷兰", "乳铁蛋白"],
+      "tags": [
+        "奶粉",
+        "澳优",
+        "婴儿",
+        "荷兰",
+        "乳铁蛋白"
+      ],
       "price": 358.0,
       "stock": 300,
       "image_url": "/images/ausnutria.jpg"
@@ -544,7 +903,13 @@
       "sku_id": "10061",
       "title": "小米米家 免安装扫拖机器人",
       "category": "家居生活",
-      "tags": ["扫地机器人", "小米", "清洁", "智能", "懒人"],
+      "tags": [
+        "扫地机器人",
+        "小米",
+        "清洁",
+        "智能",
+        "懒人"
+      ],
       "price": 1499.0,
       "stock": 150,
       "image_url": "/images/robot.jpg"
@@ -553,7 +918,13 @@
       "sku_id": "10062",
       "title": "IRIS 爱丽思 抽屉式收纳箱三件套",
       "category": "家居生活",
-      "tags": ["收纳箱", "收纳", "整理", "IRIS", "塑料"],
+      "tags": [
+        "收纳箱",
+        "收纳",
+        "整理",
+        "IRIS",
+        "塑料"
+      ],
       "price": 129.0,
       "stock": 600,
       "image_url": "/images/storage_box.jpg"
@@ -562,7 +933,13 @@
       "sku_id": "10063",
       "title": "茶花 塑料洗衣盆大号",
       "category": "家居生活",
-      "tags": ["洗衣盆", "茶花", "家居", "塑料", "实用"],
+      "tags": [
+        "洗衣盆",
+        "茶花",
+        "家居",
+        "塑料",
+        "实用"
+      ],
       "price": 35.0,
       "stock": 1000,
       "image_url": "/images/washbasin.jpg"
@@ -571,7 +948,13 @@
       "sku_id": "10064",
       "title": "妙洁 垃圾袋加厚手提式50只",
       "category": "家居生活",
-      "tags": ["垃圾袋", "妙洁", "家居", "加厚", "清洁"],
+      "tags": [
+        "垃圾袋",
+        "妙洁",
+        "家居",
+        "加厚",
+        "清洁"
+      ],
       "price": 19.9,
       "stock": 3000,
       "image_url": "/images/trash_bag.jpg"
@@ -580,7 +963,13 @@
       "sku_id": "10065",
       "title": "维达 抽纸3层120抽×10包",
       "category": "家居生活",
-      "tags": ["抽纸", "维达", "纸巾", "家居", "生活用纸"],
+      "tags": [
+        "抽纸",
+        "维达",
+        "纸巾",
+        "家居",
+        "生活用纸"
+      ],
       "price": 39.9,
       "stock": 2500,
       "image_url": "/images/tissue.jpg"
@@ -589,7 +978,13 @@
       "sku_id": "10066",
       "title": "蓝月亮 洗衣液3kg装深层洁净",
       "category": "家居生活",
-      "tags": ["洗衣液", "蓝月亮", "清洁", "家居", "除菌"],
+      "tags": [
+        "洗衣液",
+        "蓝月亮",
+        "清洁",
+        "家居",
+        "除菌"
+      ],
       "price": 59.9,
       "stock": 1500,
       "image_url": "/images/detergent.jpg"
@@ -598,7 +993,13 @@
       "sku_id": "10067",
       "title": "威露士 消毒液除菌液1.8L",
       "category": "家居生活",
-      "tags": ["消毒液", "威露士", "除菌", "清洁", "家居"],
+      "tags": [
+        "消毒液",
+        "威露士",
+        "除菌",
+        "清洁",
+        "家居"
+      ],
       "price": 49.9,
       "stock": 800,
       "image_url": "/images/antiseptic.jpg"
@@ -607,7 +1008,13 @@
       "sku_id": "10068",
       "title": "无印良品 收纳箱带盖大号",
       "category": "家居生活",
-      "tags": ["收纳", "无印良品", "MUJI", "简约", "整理"],
+      "tags": [
+        "收纳",
+        "无印良品",
+        "MUJI",
+        "简约",
+        "整理"
+      ],
       "price": 99.0,
       "stock": 300,
       "image_url": "/images/muji_box.jpg"
@@ -616,7 +1023,13 @@
       "sku_id": "10069",
       "title": "四季沐歌 太阳能热水器",
       "category": "家居生活",
-      "tags": ["热水器", "太阳能", "节能", "环保", "卫浴"],
+      "tags": [
+        "热水器",
+        "太阳能",
+        "节能",
+        "环保",
+        "卫浴"
+      ],
       "price": 2299.0,
       "stock": 80,
       "image_url": "/images/solar.jpg"
@@ -625,7 +1038,13 @@
       "sku_id": "10070",
       "title": "全棉时代 棉柔巾抽取式100抽×6包",
       "category": "家居生活",
-      "tags": ["棉柔巾", "全棉时代", "纯棉", "母婴", "温和"],
+      "tags": [
+        "棉柔巾",
+        "全棉时代",
+        "纯棉",
+        "母婴",
+        "温和"
+      ],
       "price": 59.0,
       "stock": 1000,
       "image_url": "/images/cotton.jpg"
@@ -634,7 +1053,13 @@
       "sku_id": "10071",
       "title": "立白 洗洁精柠檬1.5kg×2瓶",
       "category": "家居生活",
-      "tags": ["洗洁精", "立白", "厨房", "清洁", "去油"],
+      "tags": [
+        "洗洁精",
+        "立白",
+        "厨房",
+        "清洁",
+        "去油"
+      ],
       "price": 29.9,
       "stock": 2000,
       "image_url": "/images/dishwash.jpg"
@@ -643,7 +1068,13 @@
       "sku_id": "10072",
       "title": "欧莱雅 复颜玻尿酸保湿面膜10片",
       "category": "美妆护肤",
-      "tags": ["面膜", "保湿", "欧莱雅", "护肤", "玻尿酸"],
+      "tags": [
+        "面膜",
+        "保湿",
+        "欧莱雅",
+        "护肤",
+        "玻尿酸"
+      ],
       "price": 139.0,
       "stock": 500,
       "image_url": "/images/loreal_mask.jpg"
@@ -652,7 +1083,13 @@
       "sku_id": "10073",
       "title": "雅诗兰黛 ANR 小棕瓶精华50ml",
       "category": "美妆护肤",
-      "tags": ["精华", "雅诗兰黛", "抗老", "修护", "高端"],
+      "tags": [
+        "精华",
+        "雅诗兰黛",
+        "抗老",
+        "修护",
+        "高端"
+      ],
       "price": 980.0,
       "stock": 150,
       "image_url": "/images/estee.jpg"
@@ -661,7 +1098,13 @@
       "sku_id": "10074",
       "title": "兰蔻 菁纯面霜50ml",
       "category": "美妆护肤",
-      "tags": ["面霜", "兰蔻", "抗老", "保湿", "高端"],
+      "tags": [
+        "面霜",
+        "兰蔻",
+        "抗老",
+        "保湿",
+        "高端"
+      ],
       "price": 1280.0,
       "stock": 120,
       "image_url": "/images/lancome_cream.jpg"
@@ -670,7 +1113,13 @@
       "sku_id": "10075",
       "title": "迪奥 999 烈艳蓝金唇膏口红",
       "category": "美妆护肤",
-      "tags": ["口红", "迪奥", "Dior", "彩妆", "正红色"],
+      "tags": [
+        "口红",
+        "迪奥",
+        "Dior",
+        "彩妆",
+        "正红色"
+      ],
       "price": 380.0,
       "stock": 300,
       "image_url": "/images/dior_lipstick.jpg"
@@ -679,7 +1128,13 @@
       "sku_id": "10076",
       "title": "MAC 魅可 子弹头口红 Chili色",
       "category": "美妆护肤",
-      "tags": ["口红", "MAC", "魅可", "彩妆", "辣椒红"],
+      "tags": [
+        "口红",
+        "MAC",
+        "魅可",
+        "彩妆",
+        "辣椒红"
+      ],
       "price": 175.0,
       "stock": 400,
       "image_url": "/images/mac_lipstick.jpg"
@@ -688,7 +1143,13 @@
       "sku_id": "10077",
       "title": "完美日记 十二色动物眼影盘",
       "category": "美妆护肤",
-      "tags": ["眼影", "完美日记", "彩妆", "盘子", "国货"],
+      "tags": [
+        "眼影",
+        "完美日记",
+        "彩妆",
+        "盘子",
+        "国货"
+      ],
       "price": 139.0,
       "stock": 600,
       "image_url": "/images/perfect_shadow.jpg"
@@ -697,7 +1158,13 @@
       "sku_id": "10078",
       "title": "SK-II 神仙水精华230ml",
       "category": "美妆护肤",
-      "tags": ["精华", "SK-II", "神仙水", "高端", "护肤"],
+      "tags": [
+        "精华",
+        "SK-II",
+        "神仙水",
+        "高端",
+        "护肤"
+      ],
       "price": 1690.0,
       "stock": 100,
       "image_url": "/images/skii.jpg"
@@ -706,7 +1173,13 @@
       "sku_id": "10079",
       "title": "资生堂 红腰子精华50ml",
       "category": "美妆护肤",
-      "tags": ["精华", "资生堂", "红腰子", "保湿", "修护"],
+      "tags": [
+        "精华",
+        "资生堂",
+        "红腰子",
+        "保湿",
+        "修护"
+      ],
       "price": 890.0,
       "stock": 180,
       "image_url": "/images/shiseido.jpg"
@@ -715,7 +1188,13 @@
       "sku_id": "10080",
       "title": "科颜氏 高保湿面霜50ml",
       "category": "美妆护肤",
-      "tags": ["面霜", "科颜氏", "保湿", "Kiehl's", "护肤"],
+      "tags": [
+        "面霜",
+        "科颜氏",
+        "保湿",
+        "Kiehl's",
+        "护肤"
+      ],
       "price": 350.0,
       "stock": 250,
       "image_url": "/images/kiehls.jpg"
@@ -724,7 +1203,13 @@
       "sku_id": "10081",
       "title": "冰泉 口罩立体防护3层50只",
       "category": "美妆护肤",
-      "tags": ["口罩", "防护", "立体", " breathable", "健康"],
+      "tags": [
+        "口罩",
+        "防护",
+        "立体",
+        " breathable",
+        "健康"
+      ],
       "price": 24.9,
       "stock": 3000,
       "image_url": "/images/mask_new.jpg"
@@ -733,7 +1218,13 @@
       "sku_id": "10082",
       "title": "康师傅 红烧牛肉面5连包",
       "category": "食品饮料",
-      "tags": ["方便面", "康师傅", "速食", "经典", "红烧"],
+      "tags": [
+        "方便面",
+        "康师傅",
+        "速食",
+        "经典",
+        "红烧"
+      ],
       "price": 14.9,
       "stock": 5000,
       "image_url": "/images/noodle.jpg"
@@ -742,7 +1233,13 @@
       "sku_id": "10083",
       "title": "海底捞 番茄火锅底料150g×2",
       "category": "食品饮料",
-      "tags": ["火锅底料", "海底捞", "番茄", "调料", "速食"],
+      "tags": [
+        "火锅底料",
+        "海底捞",
+        "番茄",
+        "调料",
+        "速食"
+      ],
       "price": 35.0,
       "stock": 1500,
       "image_url": "/images/hotpot_base.jpg"
@@ -751,7 +1248,13 @@
       "sku_id": "10084",
       "title": "海底捞 牛油火锅底料150g×2",
       "category": "食品饮料",
-      "tags": ["火锅底料", "海底捞", "牛油", "麻辣", "重庆"],
+      "tags": [
+        "火锅底料",
+        "海底捞",
+        "牛油",
+        "麻辣",
+        "重庆"
+      ],
       "price": 38.0,
       "stock": 1500,
       "image_url": "/images/beef_base.jpg"
@@ -760,7 +1263,13 @@
       "sku_id": "10085",
       "title": "颐海国际 小龙虾调味料320g",
       "category": "食品饮料",
-      "tags": ["小龙虾", "调料", "麻辣", "速食", "居家"],
+      "tags": [
+        "小龙虾",
+        "调料",
+        "麻辣",
+        "速食",
+        "居家"
+      ],
       "price": 28.0,
       "stock": 800,
       "image_url": "/images/crayfish_seasoning.jpg"
@@ -769,7 +1278,13 @@
       "sku_id": "10086",
       "title": "统一 汤达人 日式豚骨拉面5连包",
       "category": "食品饮料",
-      "tags": ["方便面", "统一", "汤达人", "拉面", "豚骨"],
+      "tags": [
+        "方便面",
+        "统一",
+        "汤达人",
+        "拉面",
+        "豚骨"
+      ],
       "price": 22.9,
       "stock": 2000,
       "image_url": "/images/tangdaren.jpg"
@@ -778,7 +1293,13 @@
       "sku_id": "10087",
       "title": "螺霸王 螺蛳粉330g×3袋",
       "category": "食品饮料",
-      "tags": ["螺蛳粉", "螺霸王", "速食", "广西", "酸辣"],
+      "tags": [
+        "螺蛳粉",
+        "螺霸王",
+        "速食",
+        "广西",
+        "酸辣"
+      ],
       "price": 39.9,
       "stock": 1500,
       "image_url": "/images/luosifen.jpg"
@@ -787,7 +1308,13 @@
       "sku_id": "10088",
       "title": "自热火锅 海底捞自煮火锅套餐",
       "category": "食品饮料",
-      "tags": ["自热火锅", "速食", "海底捞", "方便", "懒人"],
+      "tags": [
+        "自热火锅",
+        "速食",
+        "海底捞",
+        "方便",
+        "懒人"
+      ],
       "price": 29.9,
       "stock": 1000,
       "image_url": "/images/self_hotpot.jpg"
@@ -796,7 +1323,13 @@
       "sku_id": "10089",
       "title": "老干妈 风味豆豉油辣椒280g",
       "category": "食品饮料",
-      "tags": ["老干妈", "辣椒酱", "调味", "下饭", "经典"],
+      "tags": [
+        "老干妈",
+        "辣椒酱",
+        "调味",
+        "下饭",
+        "经典"
+      ],
       "price": 12.9,
       "stock": 5000,
       "image_url": "/images/lao_gan_ma.jpg"
@@ -805,7 +1338,13 @@
       "sku_id": "10090",
       "title": "海天 金标生抽酱油1.9L",
       "category": "食品饮料",
-      "tags": ["酱油", "海天", "调味", "生抽", "烹饪"],
+      "tags": [
+        "酱油",
+        "海天",
+        "调味",
+        "生抽",
+        "烹饪"
+      ],
       "price": 18.9,
       "stock": 3000,
       "image_url": "/images/soy_sauce.jpg"
@@ -814,7 +1353,13 @@
       "sku_id": "10091",
       "title": "王守义 十三香调料45g×5",
       "category": "食品饮料",
-      "tags": ["十三香", "王守义", "调料", "炖肉", "香料"],
+      "tags": [
+        "十三香",
+        "王守义",
+        "调料",
+        "炖肉",
+        "香料"
+      ],
       "price": 15.0,
       "stock": 4000,
       "image_url": "/images/shisanxiang.jpg"
@@ -823,7 +1368,13 @@
       "sku_id": "10092",
       "title": "安耐晒 小金瓶防晒霜60ml",
       "category": "美妆护肤",
-      "tags": ["防晒", "安耐晒", "夏日", "隔离", "防晒霜"],
+      "tags": [
+        "防晒",
+        "安耐晒",
+        "夏日",
+        "隔离",
+        "防晒霜"
+      ],
       "price": 128.0,
       "stock": 600,
       "image_url": "/images/ansun.jpg"
@@ -832,7 +1383,13 @@
       "sku_id": "10093",
       "title": "香蕉船 防晒喷雾SPF50+",
       "category": "美妆护肤",
-      "tags": ["防晒", "喷雾", "夏日", "户外", "防水"],
+      "tags": [
+        "防晒",
+        "喷雾",
+        "夏日",
+        "户外",
+        "防水"
+      ],
       "price": 89.0,
       "stock": 500,
       "image_url": "/images/banana_boat.jpg"
@@ -841,7 +1398,13 @@
       "sku_id": "10094",
       "title": "六神 花露水驱蚊喷雾180ml",
       "category": "美妆护肤",
-      "tags": ["驱蚊", "花露水", "六神", "夏日", "户外"],
+      "tags": [
+        "驱蚊",
+        "花露水",
+        "六神",
+        "夏日",
+        "户外"
+      ],
       "price": 19.9,
       "stock": 2000,
       "image_url": "/images/liushen_spray.jpg"
@@ -850,7 +1413,13 @@
       "sku_id": "10095",
       "title": "润本 电热蚊香液无香3瓶+1器",
       "category": "家居生活",
-      "tags": ["驱蚊", "蚊香液", "润本", "夏日", "无香"],
+      "tags": [
+        "驱蚊",
+        "蚊香液",
+        "润本",
+        "夏日",
+        "无香"
+      ],
       "price": 49.0,
       "stock": 1500,
       "image_url": "/images/mosquito_repellent.jpg"
@@ -859,7 +1428,13 @@
       "sku_id": "10096",
       "title": "超威 杀虫气雾剂600ml",
       "category": "家居生活",
-      "tags": ["杀虫剂", "超威", "除虫", "夏日", "居家"],
+      "tags": [
+        "杀虫剂",
+        "超威",
+        "除虫",
+        "夏日",
+        "居家"
+      ],
       "price": 19.9,
       "stock": 2000,
       "image_url": "/images/insecticide.jpg"
@@ -868,7 +1443,13 @@
       "sku_id": "10097",
       "title": "mikibobo 时尚太阳镜偏光驾驶",
       "category": "服饰鞋帽",
-      "tags": ["太阳镜", "偏光", "驾驶", "夏日", "时尚"],
+      "tags": [
+        "太阳镜",
+        "偏光",
+        "驾驶",
+        "夏日",
+        "时尚"
+      ],
       "price": 199.0,
       "stock": 400,
       "image_url": "/images/sunglasses.jpg"
@@ -877,7 +1458,13 @@
       "sku_id": "10098",
       "title": "蕉下 折叠胶囊伞防晒伞",
       "category": "服饰鞋帽",
-      "tags": ["遮阳伞", "防晒", "蕉下", "夏日", "折叠"],
+      "tags": [
+        "遮阳伞",
+        "防晒",
+        "蕉下",
+        "夏日",
+        "折叠"
+      ],
       "price": 89.0,
       "stock": 800,
       "image_url": "/images/umbrella.jpg"
@@ -886,7 +1473,13 @@
       "sku_id": "10099",
       "title": "阿迪达斯 透气运动短袖T恤",
       "category": "服饰鞋帽",
-      "tags": ["T恤", "阿迪达斯", "运动", "透气", "夏日"],
+      "tags": [
+        "T恤",
+        "阿迪达斯",
+        "运动",
+        "透气",
+        "夏日"
+      ],
       "price": 199.0,
       "stock": 500,
       "image_url": "/images/adi_tee.jpg"
@@ -895,7 +1488,13 @@
       "sku_id": "10100",
       "title": "斯凯奇 D'Lites 休闲运动鞋",
       "category": "服饰鞋帽",
-      "tags": ["运动鞋", "斯凯奇", "休闲", "舒适", "Skechers"],
+      "tags": [
+        "运动鞋",
+        "斯凯奇",
+        "休闲",
+        "舒适",
+        "Skechers"
+      ],
       "price": 499.0,
       "stock": 300,
       "image_url": "/images/skechers.jpg"
@@ -904,7 +1503,13 @@
       "sku_id": "10101",
       "title": "施华洛世奇 经典天鹅项链",
       "category": "时尚配饰",
-      "tags": ["项链", "施华洛世奇", "水晶", "饰品", "送礼"],
+      "tags": [
+        "项链",
+        "施华洛世奇",
+        "水晶",
+        "饰品",
+        "送礼"
+      ],
       "price": 899.0,
       "stock": 150,
       "image_url": "/images/swan_necklace.jpg"
@@ -913,7 +1518,13 @@
       "sku_id": "10102",
       "title": "卡地亚 LOVE系列手镯",
       "category": "时尚配饰",
-      "tags": ["手镯", "卡地亚", "Cartier", "奢侈品", "情侣"],
+      "tags": [
+        "手镯",
+        "卡地亚",
+        "Cartier",
+        "奢侈品",
+        "情侣"
+      ],
       "price": 7500.0,
       "stock": 20,
       "image_url": "/images/love_bracelet.jpg"
@@ -922,7 +1533,13 @@
       "sku_id": "10103",
       "title": "天梭 力洛克系列机械腕表",
       "category": "时尚配饰",
-      "tags": ["手表", "天梭", "Tissot", "机械表", "商务"],
+      "tags": [
+        "手表",
+        "天梭",
+        "Tissot",
+        "机械表",
+        "商务"
+      ],
       "price": 3800.0,
       "stock": 50,
       "image_url": "/images/tissot.jpg"
@@ -931,7 +1548,13 @@
       "sku_id": "10104",
       "title": "周大福 纯金转运珠手链",
       "category": "时尚配饰",
-      "tags": ["手链", "周大福", "黄金", "转运珠", "珠宝"],
+      "tags": [
+        "手链",
+        "周大福",
+        "黄金",
+        "转运珠",
+        "珠宝"
+      ],
       "price": 1580.0,
       "stock": 80,
       "image_url": "/images/gold_bracelet.jpg"
@@ -940,7 +1563,13 @@
       "sku_id": "10105",
       "title": "潘多拉 串饰手链入门套装",
       "category": "时尚配饰",
-      "tags": ["手链", "潘多拉", "Pandora", "串饰", "定制"],
+      "tags": [
+        "手链",
+        "潘多拉",
+        "Pandora",
+        "串饰",
+        "定制"
+      ],
       "price": 698.0,
       "stock": 120,
       "image_url": "/images/pandora.jpg"
@@ -949,7 +1578,13 @@
       "sku_id": "10106",
       "title": "DR 钻戒 D系列求婚钻戒",
       "category": "时尚配饰",
-      "tags": ["钻戒", "DR", "求婚", "钻石", "一生唯一"],
+      "tags": [
+        "钻戒",
+        "DR",
+        "求婚",
+        "钻石",
+        "一生唯一"
+      ],
       "price": 15800.0,
       "stock": 10,
       "image_url": "/images/d_ring.jpg"
@@ -958,7 +1593,13 @@
       "sku_id": "10107",
       "title": "华为 Mate 60 Pro 5G手机",
       "category": "数码电器",
-      "tags": ["手机", "华为", "5G", "旗舰", "卫星通信"],
+      "tags": [
+        "手机",
+        "华为",
+        "5G",
+        "旗舰",
+        "卫星通信"
+      ],
       "price": 6999.0,
       "stock": 100,
       "image_url": "/images/mate60.jpg"
@@ -967,7 +1608,13 @@
       "sku_id": "10108",
       "title": "小米14 Ultra 徕卡影像旗舰",
       "category": "数码电器",
-      "tags": ["手机", "小米", "徕卡", "影像", "旗舰"],
+      "tags": [
+        "手机",
+        "小米",
+        "徕卡",
+        "影像",
+        "旗舰"
+      ],
       "price": 6499.0,
       "stock": 150,
       "image_url": "/images/mi14ultra.jpg"
@@ -976,7 +1623,13 @@
       "sku_id": "10109",
       "title": "戴尔 XPS 15 笔记本电脑",
       "category": "数码电器",
-      "tags": ["笔记本", "戴尔", "Dell", "XPS", "办公"],
+      "tags": [
+        "笔记本",
+        "戴尔",
+        "Dell",
+        "XPS",
+        "办公"
+      ],
       "price": 12999.0,
       "stock": 40,
       "image_url": "/images/dell_xps.jpg"
@@ -985,7 +1638,13 @@
       "sku_id": "10110",
       "title": "联想 ThinkPad X1 Carbon 商务本",
       "category": "数码电器",
-      "tags": ["笔记本", "ThinkPad", "联想", "商务", "轻薄"],
+      "tags": [
+        "笔记本",
+        "ThinkPad",
+        "联想",
+        "商务",
+        "轻薄"
+      ],
       "price": 11999.0,
       "stock": 50,
       "image_url": "/images/thinkpad.jpg"
@@ -994,7 +1653,13 @@
       "sku_id": "10111",
       "title": "佳能 EOS R6 Mark II 微单相机",
       "category": "数码电器",
-      "tags": ["相机", "佳能", "Canon", "微单", "摄影"],
+      "tags": [
+        "相机",
+        "佳能",
+        "Canon",
+        "微单",
+        "摄影"
+      ],
       "price": 15999.0,
       "stock": 30,
       "image_url": "/images/canon.jpg"
@@ -1003,7 +1668,13 @@
       "sku_id": "10112",
       "title": "大疆 DJI Mini 4 Pro 航拍无人机",
       "category": "数码电器",
-      "tags": ["无人机", "大疆", "DJI", "航拍", "4K"],
+      "tags": [
+        "无人机",
+        "大疆",
+        "DJI",
+        "航拍",
+        "4K"
+      ],
       "price": 4788.0,
       "stock": 60,
       "image_url": "/images/dji_drone.jpg"
@@ -1012,7 +1683,13 @@
       "sku_id": "10113",
       "title": "苹果 iPad Air M2 平板电脑",
       "category": "数码电器",
-      "tags": ["平板", "iPad", "苹果", "M2", "办公"],
+      "tags": [
+        "平板",
+        "iPad",
+        "苹果",
+        "M2",
+        "办公"
+      ],
       "price": 4799.0,
       "stock": 80,
       "image_url": "/images/ipad_air.jpg"
@@ -1021,7 +1698,13 @@
       "sku_id": "10114",
       "title": "三星 27寸 4K 显示器",
       "category": "数码电器",
-      "tags": ["显示器", "三星", "4K", "办公", "游戏"],
+      "tags": [
+        "显示器",
+        "三星",
+        "4K",
+        "办公",
+        "游戏"
+      ],
       "price": 2499.0,
       "stock": 100,
       "image_url": "/images/samsung_monitor.jpg"
@@ -1030,7 +1713,13 @@
       "sku_id": "10115",
       "title": "雷蛇 黑寡妇机械键盘RGB",
       "category": "数码电器",
-      "tags": ["机械键盘", "雷蛇", "Razer", "游戏", "RGB"],
+      "tags": [
+        "机械键盘",
+        "雷蛇",
+        "Razer",
+        "游戏",
+        "RGB"
+      ],
       "price": 899.0,
       "stock": 200,
       "image_url": "/images/razer_kb.jpg"
@@ -1039,7 +1728,13 @@
       "sku_id": "10116",
       "title": "罗技 G Pro 无线游戏鼠标",
       "category": "数码电器",
-      "tags": ["游戏鼠标", "罗技", "无线", "电竞", "轻量化"],
+      "tags": [
+        "游戏鼠标",
+        "罗技",
+        "无线",
+        "电竞",
+        "轻量化"
+      ],
       "price": 699.0,
       "stock": 250,
       "image_url": "/images/logitech_g.jpg"
@@ -1048,7 +1743,13 @@
       "sku_id": "10117",
       "title": "网易严选 全棉四件套床品",
       "category": "家居生活",
-      "tags": ["四件套", "网易严选", "床品", "纯棉", "舒适"],
+      "tags": [
+        "四件套",
+        "网易严选",
+        "床品",
+        "纯棉",
+        "舒适"
+      ],
       "price": 299.0,
       "stock": 400,
       "image_url": "/images/bedding.jpg"
@@ -1057,7 +1758,13 @@
       "sku_id": "10118",
       "title": "记忆棉枕头 护颈枕慢回弹",
       "category": "家居生活",
-      "tags": ["枕头", "记忆棉", "护颈", "睡眠", "健康"],
+      "tags": [
+        "枕头",
+        "记忆棉",
+        "护颈",
+        "睡眠",
+        "健康"
+      ],
       "price": 129.0,
       "stock": 600,
       "image_url": "/memory_pillow.jpg"
@@ -1066,7 +1773,13 @@
       "sku_id": "10119",
       "title": "乳胶床垫 1.8m双人薄款5cm",
       "category": "家居生活",
-      "tags": ["床垫", "乳胶", "睡眠", "健康", "舒适"],
+      "tags": [
+        "床垫",
+        "乳胶",
+        "睡眠",
+        "健康",
+        "舒适"
+      ],
       "price": 699.0,
       "stock": 200,
       "image_url": "/latex_mattress.jpg"
@@ -1075,7 +1788,13 @@
       "sku_id": "10120",
       "title": "雅兰 弹簧床垫 1.5m护脊款",
       "category": "家居生活",
-      "tags": ["床垫", "雅兰", "弹簧", "护脊", "睡眠"],
+      "tags": [
+        "床垫",
+        "雅兰",
+        "弹簧",
+        "护脊",
+        "睡眠"
+      ],
       "price": 1599.0,
       "stock": 100,
       "image_url": "/airland_mattress.jpg"
@@ -1084,7 +1803,13 @@
       "sku_id": "10121",
       "title": "慕思 沙发客厅真皮三人位",
       "category": "家居生活",
-      "tags": ["沙发", "慕思", "真皮", "客厅", "家具"],
+      "tags": [
+        "沙发",
+        "慕思",
+        "真皮",
+        "客厅",
+        "家具"
+      ],
       "price": 5999.0,
       "stock": 50,
       "image_url": "/mussy_sofa.jpg"
@@ -1093,7 +1818,13 @@
       "sku_id": "10122",
       "title": "索菲亚 衣柜定制到顶收纳",
       "category": "家居生活",
-      "tags": ["衣柜", "索菲亚", "定制", "收纳", "卧室"],
+      "tags": [
+        "衣柜",
+        "索菲亚",
+        "定制",
+        "收纳",
+        "卧室"
+      ],
       "price": 3999.0,
       "stock": 30,
       "image_url": "/suofeiya_wardrobe.jpg"
@@ -1102,7 +1833,13 @@
       "sku_id": "10123",
       "title": "全友家居 餐桌实木长方形",
       "category": "家居生活",
-      "tags": ["餐桌", "全友", "实木", "餐厅", "家具"],
+      "tags": [
+        "餐桌",
+        "全友",
+        "实木",
+        "餐厅",
+        "家具"
+      ],
       "price": 1299.0,
       "stock": 80,
       "image_url": "/quanyou_table.jpg"
@@ -1111,7 +1848,13 @@
       "sku_id": "10124",
       "title": "顾家家居 人体工学办公椅",
       "category": "家居生活",
-      "tags": ["办公椅", "顾家", "人体工学", "舒适", "办公"],
+      "tags": [
+        "办公椅",
+        "顾家",
+        "人体工学",
+        "舒适",
+        "办公"
+      ],
       "price": 899.0,
       "stock": 150,
       "image_url": "/kuka_chair.jpg"
@@ -1120,7 +1863,13 @@
       "sku_id": "10125",
       "title": "雷美 台灯护眼学习灯",
       "category": "家居生活",
-      "tags": ["台灯", "护眼", "学习", "LED", "儿童"],
+      "tags": [
+        "台灯",
+        "护眼",
+        "学习",
+        "LED",
+        "儿童"
+      ],
       "price": 199.0,
       "stock": 400,
       "image_url": "/eye_care_lamp.jpg"
@@ -1129,7 +1878,13 @@
       "sku_id": "10126",
       "title": "格力 1.5匹 变频空调",
       "category": "数码电器",
-      "tags": ["空调", "格力", "变频", "制冷", "家电"],
+      "tags": [
+        "空调",
+        "格力",
+        "变频",
+        "制冷",
+        "家电"
+      ],
       "price": 3299.0,
       "stock": 120,
       "image_url": "/gree_ac.jpg"
@@ -1138,7 +1893,13 @@
       "sku_id": "10127",
       "title": "海尔 200L 对开门冰箱",
       "category": "数码电器",
-      "tags": ["冰箱", "海尔", "对开门", "家电", "节能"],
+      "tags": [
+        "冰箱",
+        "海尔",
+        "对开门",
+        "家电",
+        "节能"
+      ],
       "price": 2999.0,
       "stock": 100,
       "image_url": "/haier_fridge.jpg"
@@ -1147,7 +1908,13 @@
       "sku_id": "10128",
       "title": "西门子 10kg 洗烘一体机",
       "category": "数码电器",
-      "tags": ["洗衣机", "西门子", "洗烘一体", "家电", "智能"],
+      "tags": [
+        "洗衣机",
+        "西门子",
+        "洗烘一体",
+        "家电",
+        "智能"
+      ],
       "price": 4999.0,
       "stock": 80,
       "image_url": "/siemens_washer.jpg"
@@ -1156,7 +1923,13 @@
       "sku_id": "10129",
       "title": "方太 烟灶套装侧吸烟机",
       "category": "数码电器",
-      "tags": ["油烟机", "方太", "厨房", "烟灶套装", "家电"],
+      "tags": [
+        "油烟机",
+        "方太",
+        "厨房",
+        "烟灶套装",
+        "家电"
+      ],
       "price": 3999.0,
       "stock": 60,
       "image_url": "/fotile_hood.jpg"
@@ -1165,7 +1938,13 @@
       "sku_id": "10130",
       "title": "美的 电压力锅5L智能预约",
       "category": "数码电器",
-      "tags": ["电压力锅", "美的", "厨房", "智能", "家用"],
+      "tags": [
+        "电压力锅",
+        "美的",
+        "厨房",
+        "智能",
+        "家用"
+      ],
       "price": 399.0,
       "stock": 300,
       "image_url": "/midea_cooker.jpg"
@@ -1174,7 +1953,13 @@
       "sku_id": "10131",
       "title": "苏泊尔 炒锅不粘锅电磁炉通用",
       "category": "数码电器",
-      "tags": ["炒锅", "苏泊尔", "不粘锅", "厨房", "烹饪"],
+      "tags": [
+        "炒锅",
+        "苏泊尔",
+        "不粘锅",
+        "厨房",
+        "烹饪"
+      ],
       "price": 199.0,
       "stock": 500,
       "image_url": "/supor_wok.jpg"
@@ -1183,7 +1968,13 @@
       "sku_id": "10132",
       "title": "九阳 豆浆机家用全自动",
       "category": "数码电器",
-      "tags": ["豆浆机", "九阳", "破壁机", "厨房", "健康"],
+      "tags": [
+        "豆浆机",
+        "九阳",
+        "破壁机",
+        "厨房",
+        "健康"
+      ],
       "price": 299.0,
       "stock": 400,
       "image_url": "/joyoung_blender.jpg"
@@ -1192,7 +1983,13 @@
       "sku_id": "10133",
       "title": "美的 微波炉家用平板式",
       "category": "数码电器",
-      "tags": ["微波炉", "美的", "厨房", "加热", "家用"],
+      "tags": [
+        "微波炉",
+        "美的",
+        "厨房",
+        "加热",
+        "家用"
+      ],
       "price": 499.0,
       "stock": 300,
       "image_url": "/midea_microwave.jpg"
@@ -1201,7 +1998,13 @@
       "sku_id": "10134",
       "title": "东净水器 厨下式RO反渗透",
       "category": "数码电器",
-      "tags": ["净水器", "厨房", "饮水", "健康", "过滤"],
+      "tags": [
+        "净水器",
+        "厨房",
+        "饮水",
+        "健康",
+        "过滤"
+      ],
       "price": 1999.0,
       "stock": 100,
       "image_url": "/water_purifier.jpg"
@@ -1210,7 +2013,13 @@
       "sku_id": "10135",
       "title": "美的 电热水瓶家用4L",
       "category": "数码电器",
-      "tags": ["热水瓶", "美的", "厨房", "保温", "家用"],
+      "tags": [
+        "热水瓶",
+        "美的",
+        "厨房",
+        "保温",
+        "家用"
+      ],
       "price": 299.0,
       "stock": 400,
       "image_url": "/misure_kettle.jpg"
@@ -1219,7 +2028,13 @@
       "sku_id": "10136",
       "title": "科沃斯 地宝T30 PRO扫地机器人",
       "category": "数码电器",
-      "tags": ["扫地机器人", "科沃斯", "智能", "清洁", "家电"],
+      "tags": [
+        "扫地机器人",
+        "科沃斯",
+        "智能",
+        "清洁",
+        "家电"
+      ],
       "price": 3499.0,
       "stock": 80,
       "image_url": "/ecovacs.jpg"
@@ -1228,7 +2043,13 @@
       "sku_id": "10137",
       "title": "石头 自动洗拖布基站扫拖机器人",
       "category": "数码电器",
-      "tags": ["扫地机器人", "石头", "自动洗拖布", "智能", "清洁"],
+      "tags": [
+        "扫地机器人",
+        "石头",
+        "自动洗拖布",
+        "智能",
+        "清洁"
+      ],
       "price": 3299.0,
       "stock": 100,
       "image_url": "/roborock.jpg"
@@ -1237,7 +2058,13 @@
       "sku_id": "10138",
       "title": "追觅 扫地机器人AI避障",
       "category": "数码电器",
-      "tags": ["扫地机器人", "追觅", "AI避障", "智能", "清洁"],
+      "tags": [
+        "扫地机器人",
+        "追觅",
+        "AI避障",
+        "智能",
+        "清洁"
+      ],
       "price": 2999.0,
       "stock": 120,
       "image_url": "/dreame.jpg"
@@ -1246,7 +2073,13 @@
       "sku_id": "10139",
       "title": "荣事达 挂烫机家用手持",
       "category": "数码电器",
-      "tags": ["挂烫机", "荣事达", "熨烫", "衣物护理", "家用"],
+      "tags": [
+        "挂烫机",
+        "荣事达",
+        "熨烫",
+        "衣物护理",
+        "家用"
+      ],
       "price": 129.0,
       "stock": 500,
       "image_url": "/steam_iron.jpg"
@@ -1255,7 +2088,13 @@
       "sku_id": "10140",
       "title": "飞科 电动剃须刀男士刮胡刀",
       "category": "数码电器",
-      "tags": ["剃须刀", "飞科", "男士", "电动", "护理"],
+      "tags": [
+        "剃须刀",
+        "飞科",
+        "男士",
+        "电动",
+        "护理"
+      ],
       "price": 199.0,
       "stock": 800,
       "image_url": "/flyco_shaver.jpg"
@@ -1264,7 +2103,13 @@
       "sku_id": "10141",
       "title": "戴森 吹风机Supersonic HD15",
       "category": "数码电器",
-      "tags": ["吹风机", "戴森", "负离子", "护理", "高端"],
+      "tags": [
+        "吹风机",
+        "戴森",
+        "负离子",
+        "护理",
+        "高端"
+      ],
       "price": 2990.0,
       "stock": 60,
       "image_url": "/dyson_hair.jpg"
@@ -1273,7 +2118,13 @@
       "sku_id": "10142",
       "title": "飞利浦 美发造型器卷发棒",
       "category": "数码电器",
-      "tags": ["卷发棒", "飞利浦", "造型", "美发", "护理"],
+      "tags": [
+        "卷发棒",
+        "飞利浦",
+        "造型",
+        "美发",
+        "护理"
+      ],
       "price": 299.0,
       "stock": 300,
       "image_url": "/philips_styler.jpg"
@@ -1282,7 +2133,13 @@
       "sku_id": "10143",
       "title": "吉列 剃须刀手动5层刀片",
       "category": "数码电器",
-      "tags": ["剃须刀", "吉列", "手动", "男士", "护理"],
+      "tags": [
+        "剃须刀",
+        "吉列",
+        "手动",
+        "男士",
+        "护理"
+      ],
       "price": 49.0,
       "stock": 1000,
       "image_url": "/gillette.jpg"
@@ -1291,7 +2148,13 @@
       "sku_id": "10144",
       "title": "欧乐B 电动牙刷成人款",
       "category": "数码电器",
-      "tags": ["电动牙刷", "欧乐B", "口腔护理", "旋转", "清洁"],
+      "tags": [
+        "电动牙刷",
+        "欧乐B",
+        "口腔护理",
+        "旋转",
+        "清洁"
+      ],
       "price": 299.0,
       "stock": 400,
       "image_url": "/oralb.jpg"
@@ -1300,7 +2163,13 @@
       "sku_id": "10145",
       "title": "超人 电动剃须刀男士便携",
       "category": "数码电器",
-      "tags": ["剃须刀", "超人", "男士", "电动", "便携"],
+      "tags": [
+        "剃须刀",
+        "超人",
+        "男士",
+        "电动",
+        "便携"
+      ],
       "price": 89.0,
       "stock": 600,
       "image_url": "/sid_shaver.jpg"
@@ -1309,7 +2178,13 @@
       "sku_id": "10146",
       "title": "昂跑 On Cloud 跑步鞋",
       "category": "服饰鞋帽",
-      "tags": ["跑步鞋", "昂跑", "On", "运动", "缓震"],
+      "tags": [
+        "跑步鞋",
+        "昂跑",
+        "On",
+        "运动",
+        "缓震"
+      ],
       "price": 1099.0,
       "stock": 150,
       "image_url": "/on_running.jpg"
@@ -1318,7 +2193,13 @@
       "sku_id": "10147",
       "title": "HOKA ONE ONE 跑步鞋缓震",
       "category": "服饰鞋帽",
-      "tags": ["跑步鞋", "HOKA", "运动", "缓震", "户外"],
+      "tags": [
+        "跑步鞋",
+        "HOKA",
+        "运动",
+        "缓震",
+        "户外"
+      ],
       "price": 999.0,
       "stock": 120,
       "image_url": "/hoka.jpg"
@@ -1327,7 +2208,13 @@
       "sku_id": "10148",
       "title": "始祖鸟 Arc'teryx 户外冲锋衣",
       "category": "服饰鞋帽",
-      "tags": ["冲锋衣", "始祖鸟", "户外", "防水", "透气"],
+      "tags": [
+        "冲锋衣",
+        "始祖鸟",
+        "户外",
+        "防水",
+        "透气"
+      ],
       "price": 4200.0,
       "stock": 30,
       "image_url": "/arcteryx.jpg"
@@ -1336,7 +2223,13 @@
       "sku_id": "10149",
       "title": "北面 The North Face 户外羽绒服",
       "category": "服饰鞋帽",
-      "tags": ["羽绒服", "北面", "TNF", "户外", "保暖"],
+      "tags": [
+        "羽绒服",
+        "北面",
+        "TNF",
+        "户外",
+        "保暖"
+      ],
       "price": 1899.0,
       "stock": 80,
       "image_url": "/tnf.jpg"
@@ -1345,7 +2238,13 @@
       "sku_id": "10150",
       "title": "Patagonia 户外抓绒衣",
       "category": "服饰鞋帽",
-      "tags": ["抓绒衣", "Patagonia", "户外", "环保", "保暖"],
+      "tags": [
+        "抓绒衣",
+        "Patagonia",
+        "户外",
+        "环保",
+        "保暖"
+      ],
       "price": 799.0,
       "stock": 100,
       "image_url": "/patagonia.jpg"
@@ -1354,7 +2253,13 @@
       "sku_id": "10151",
       "title": "优衣库 HeatTech 保暖内衣套装",
       "category": "服饰鞋帽",
-      "tags": ["保暖内衣", "优衣库", "HeatTech", "冬季", "保暖"],
+      "tags": [
+        "保暖内衣",
+        "优衣库",
+        "HeatTech",
+        "冬季",
+        "保暖"
+      ],
       "price": 149.0,
       "stock": 500,
       "image_url": "/uniqlo_heattech.jpg"
@@ -1363,7 +2268,13 @@
       "sku_id": "10152",
       "title": "无印良品 MUJI 棉麻休闲裤",
       "category": "服饰鞋帽",
-      "tags": ["休闲裤", "MUJI", "无印良品", "棉麻", "简约"],
+      "tags": [
+        "休闲裤",
+        "MUJI",
+        "无印良品",
+        "棉麻",
+        "简约"
+      ],
       "price": 199.0,
       "stock": 300,
       "image_url": "/muji_pants.jpg"
@@ -1372,7 +2283,13 @@
       "sku_id": "10153",
       "title": "Levi's 501 牛仔裤经典直筒",
       "category": "服饰鞋帽",
-      "tags": ["牛仔裤", "Levi's", "经典", "牛仔", "直筒"],
+      "tags": [
+        "牛仔裤",
+        "Levi's",
+        "经典",
+        "牛仔",
+        "直筒"
+      ],
       "price": 599.0,
       "stock": 200,
       "image_url": "/levis_501.jpg"
@@ -1381,7 +2298,13 @@
       "sku_id": "10154",
       "title": "Dickies 工装裤男款宽松",
       "category": "服饰鞋帽",
-      "tags": ["工装裤", "Dickies", "工装", "休闲", "耐磨"],
+      "tags": [
+        "工装裤",
+        "Dickies",
+        "工装",
+        "休闲",
+        "耐磨"
+      ],
       "price": 299.0,
       "stock": 300,
       "image_url": "/dickies.jpg"
@@ -1390,7 +2313,13 @@
       "sku_id": "10155",
       "title": "Carhartt 工装外套工装风",
       "category": "服饰鞋帽",
-      "tags": ["工装外套", "Carhartt", "工装", "保暖", "复古"],
+      "tags": [
+        "工装外套",
+        "Carhartt",
+        "工装",
+        "保暖",
+        "复古"
+      ],
       "price": 699.0,
       "stock": 120,
       "image_url": "/carhartt.jpg"
@@ -1399,7 +2328,13 @@
       "sku_id": "10156",
       "title": "VANS Old Skool 经典帆布鞋",
       "category": "服饰鞋帽",
-      "tags": ["帆布鞋", "VANS", "经典", "休闲", "滑板"],
+      "tags": [
+        "帆布鞋",
+        "VANS",
+        "经典",
+        "休闲",
+        "滑板"
+      ],
       "price": 465.0,
       "stock": 400,
       "image_url": "/vans_oldskool.jpg"
@@ -1408,7 +2343,13 @@
       "sku_id": "10157",
       "title": "Converse Chuck 70 帆布鞋",
       "category": "服饰鞋帽",
-      "tags": ["帆布鞋", "Converse", "匡威", "经典", "复古"],
+      "tags": [
+        "帆布鞋",
+        "Converse",
+        "匡威",
+        "经典",
+        "复古"
+      ],
       "price": 499.0,
       "stock": 500,
       "image_url": "/converse.jpg"
@@ -1417,7 +2358,13 @@
       "sku_id": "10158",
       "title": "Timberland 大黄靴10061",
       "category": "服饰鞋帽",
-      "tags": ["大黄靴", "Timberland", "踢不烂", "工装", "经典"],
+      "tags": [
+        "大黄靴",
+        "Timberland",
+        "踢不烂",
+        "工装",
+        "经典"
+      ],
       "price": 1299.0,
       "stock": 150,
       "image_url": "/timberland.jpg"
@@ -1426,7 +2373,13 @@
       "sku_id": "10159",
       "title": "Dr. Martens 1460 八孔马丁靴",
       "category": "服饰鞋帽",
-      "tags": ["马丁靴", "Dr. Martens", "1460", "英伦", "经典"],
+      "tags": [
+        "马丁靴",
+        "Dr. Martens",
+        "1460",
+        "英伦",
+        "经典"
+      ],
       "price": 1399.0,
       "stock": 100,
       "image_url": "/drmartens.jpg"
@@ -1435,7 +2388,13 @@
       "sku_id": "10160",
       "title": "New Balance 574 复古跑鞋",
       "category": "服饰鞋帽",
-      "tags": ["跑鞋", "NB", "New Balance", "复古", "休闲"],
+      "tags": [
+        "跑鞋",
+        "NB",
+        "New Balance",
+        "复古",
+        "休闲"
+      ],
       "price": 599.0,
       "stock": 300,
       "image_url": "/nb_574.jpg"
@@ -1444,7 +2403,13 @@
       "sku_id": "10161",
       "title": "Asics Gel-Kayano 跑步鞋",
       "category": "服饰鞋帽",
-      "tags": ["跑步鞋", "Asics", "亚瑟士", "运动", "缓震"],
+      "tags": [
+        "跑步鞋",
+        "Asics",
+        "亚瑟士",
+        "运动",
+        "缓震"
+      ],
       "price": 890.0,
       "stock": 180,
       "image_url": "/asics_kayano.jpg"
@@ -1453,7 +2418,13 @@
       "sku_id": "10162",
       "title": "Pegasus 40 跑步鞋Nike",
       "category": "服饰鞋帽",
-      "tags": ["跑步鞋", "Nike", "耐克", "Pegasus", "运动"],
+      "tags": [
+        "跑步鞋",
+        "Nike",
+        "耐克",
+        "Pegasus",
+        "运动"
+      ],
       "price": 799.0,
       "stock": 250,
       "image_url": "/nike_pegasus.jpg"
@@ -1462,7 +2433,13 @@
       "sku_id": "10163",
       "title": "Nike Air Force 1 空军一号",
       "category": "服饰鞋帽",
-      "tags": ["休闲鞋", "Nike", "空军一号", "AF1", "经典"],
+      "tags": [
+        "休闲鞋",
+        "Nike",
+        "空军一号",
+        "AF1",
+        "经典"
+      ],
       "price": 749.0,
       "stock": 400,
       "image_url": "/af1.jpg"
@@ -1471,7 +2448,13 @@
       "sku_id": "10164",
       "title": "Adidas Ultra Boost 跑鞋",
       "category": "服饰鞋帽",
-      "tags": ["跑鞋", "Adidas", "Ultra Boost", "缓震", "运动"],
+      "tags": [
+        "跑鞋",
+        "Adidas",
+        "Ultra Boost",
+        "缓震",
+        "运动"
+      ],
       "price": 1099.0,
       "stock": 200,
       "image_url": "/ultra_boost.jpg"
@@ -1480,7 +2463,13 @@
       "sku_id": "10165",
       "title": "Puma RS-X 复古休闲鞋",
       "category": "服饰鞋帽",
-      "tags": ["休闲鞋", "Puma", "复古", "潮流", "运动"],
+      "tags": [
+        "休闲鞋",
+        "Puma",
+        "复古",
+        "潮流",
+        "运动"
+      ],
       "price": 699.0,
       "stock": 250,
       "image_url": "/puma_rs.jpg"
@@ -1489,7 +2478,13 @@
       "sku_id": "10166",
       "title": "Reebok Classic 复古运动鞋",
       "category": "服饰鞋帽",
-      "tags": ["运动鞋", "Reebok", "锐步", "复古", "经典"],
+      "tags": [
+        "运动鞋",
+        "Reebok",
+        "锐步",
+        "复古",
+        "经典"
+      ],
       "price": 499.0,
       "stock": 200,
       "image_url": "/reebok.jpg"
@@ -1498,7 +2493,13 @@
       "sku_id": "10167",
       "title": "Salomon XT-6 户外徒步鞋",
       "category": "服饰鞋帽",
-      "tags": ["徒步鞋", "Salomon", "户外", "越野", "潮流"],
+      "tags": [
+        "徒步鞋",
+        "Salomon",
+        "户外",
+        "越野",
+        "潮流"
+      ],
       "price": 1299.0,
       "stock": 120,
       "image_url": "/salomon_xt6.jpg"
@@ -1507,7 +2508,13 @@
       "sku_id": "10168",
       "title": "La Sportiva 攀岩鞋",
       "category": "运动户外",
-      "tags": ["攀岩鞋", "La Sportiva", "户外", "攀岩", "专业"],
+      "tags": [
+        "攀岩鞋",
+        "La Sportiva",
+        "户外",
+        "攀岩",
+        "专业"
+      ],
       "price": 899.0,
       "stock": 80,
       "image_url": "/lasportiva.jpg"
@@ -1516,7 +2523,13 @@
       "sku_id": "10169",
       "title": "Black Diamond 登山杖",
       "category": "运动户外",
-      "tags": ["登山杖", "Black Diamond", "户外", "徒步", "登山"],
+      "tags": [
+        "登山杖",
+        "Black Diamond",
+        "户外",
+        "徒步",
+        "登山"
+      ],
       "price": 399.0,
       "stock": 200,
       "image_url": "/bd_pole.jpg"
@@ -1525,7 +2538,13 @@
       "sku_id": "10170",
       "title": "Osprey 户外登山包30L",
       "category": "运动户外",
-      "tags": ["登山包", "Osprey", "户外", "背包", "徒步"],
+      "tags": [
+        "登山包",
+        "Osprey",
+        "户外",
+        "背包",
+        "徒步"
+      ],
       "price": 899.0,
       "stock": 150,
       "image_url": "/osprey.jpg"
@@ -1534,7 +2553,13 @@
       "sku_id": "10171",
       "title": "Garmin Fenix 7 运动手表",
       "category": "数码电器",
-      "tags": ["运动手表", "Garmin", "户外", "GPS", "运动"],
+      "tags": [
+        "运动手表",
+        "Garmin",
+        "户外",
+        "GPS",
+        "运动"
+      ],
       "price": 4980.0,
       "stock": 50,
       "image_url": "/garmin_fenix.jpg"
@@ -1543,7 +2568,13 @@
       "sku_id": "10172",
       "title": "Suunto 颂拓 运动手表9 Peak",
       "category": "数码电器",
-      "tags": ["运动手表", "Suunto", "颂拓", "户外", "精致"],
+      "tags": [
+        "运动手表",
+        "Suunto",
+        "颂拓",
+        "户外",
+        "精致"
+      ],
       "price": 3999.0,
       "stock": 60,
       "image_url": "/suunto.jpg"
@@ -1552,7 +2583,13 @@
       "sku_id": "10173",
       "title": "COROS 高驰 运动手表Apex 2",
       "category": "数码电器",
-      "tags": ["运动手表", "COROS", "高驰", "户外", "铁三"],
+      "tags": [
+        "运动手表",
+        "COROS",
+        "高驰",
+        "户外",
+        "铁三"
+      ],
       "price": 2999.0,
       "stock": 80,
       "image_url": "/coros.jpg"
@@ -1561,7 +2598,13 @@
       "sku_id": "10174",
       "title": "北面 TNF 户外背包25L",
       "category": "运动户外",
-      "tags": ["背包", "TNF", "北面", "户外", "通勤"],
+      "tags": [
+        "背包",
+        "TNF",
+        "北面",
+        "户外",
+        "通勤"
+      ],
       "price": 599.0,
       "stock": 200,
       "image_url": "/tnf_pack.jpg"
@@ -1570,7 +2613,13 @@
       "sku_id": "10175",
       "title": "Gregory 户外登山包55L",
       "category": "运动户外",
-      "tags": ["登山包", "Gregory", "户外", "徒步", "大容量"],
+      "tags": [
+        "登山包",
+        "Gregory",
+        "户外",
+        "徒步",
+        "大容量"
+      ],
       "price": 1599.0,
       "stock": 80,
       "image_url": "/gregory.jpg"
@@ -1579,7 +2628,13 @@
       "sku_id": "10176",
       "title": "Mountain Hardwear 帐篷双人",
       "category": "运动户外",
-      "tags": ["帐篷", "Mountain Hardwear", "户外", "露营", "双人"],
+      "tags": [
+        "帐篷",
+        "Mountain Hardwear",
+        "户外",
+        "露营",
+        "双人"
+      ],
       "price": 1899.0,
       "stock": 60,
       "image_url": "/mhw_tent.jpg"
@@ -1588,7 +2643,13 @@
       "sku_id": "10177",
       "title": "Snow Peak 露营装备套装",
       "category": "运动户外",
-      "tags": ["露营", "Snow Peak", "户外", "精致", "日系"],
+      "tags": [
+        "露营",
+        "Snow Peak",
+        "户外",
+        "精致",
+        "日系"
+      ],
       "price": 2999.0,
       "stock": 40,
       "image_url": "/snowpeak.jpg"
@@ -1597,7 +2658,13 @@
       "sku_id": "10178",
       "title": "Coleman 户外露营灯",
       "category": "运动户外",
-      "tags": ["露营灯", "Coleman", "户外", "露营", "照明"],
+      "tags": [
+        "露营灯",
+        "Coleman",
+        "户外",
+        "露营",
+        "照明"
+      ],
       "price": 299.0,
       "stock": 200,
       "image_url": "/coleman.jpg"
@@ -1606,7 +2673,13 @@
       "sku_id": "10179",
       "title": "Jetboil 户外炉具",
       "category": "运动户外",
-      "tags": ["炉具", "Jetboil", "户外", "露营", "烧水"],
+      "tags": [
+        "炉具",
+        "Jetboil",
+        "户外",
+        "露营",
+        "烧水"
+      ],
       "price": 699.0,
       "stock": 100,
       "image_url": "/jetboil.jpg"
@@ -1615,7 +2688,13 @@
       "sku_id": "10180",
       "title": "MSR 超轻露营炉具",
       "category": "运动户外",
-      "tags": ["炉具", "MSR", "户外", "超轻", "露营"],
+      "tags": [
+        "炉具",
+        "MSR",
+        "户外",
+        "超轻",
+        "露营"
+      ],
       "price": 899.0,
       "stock": 80,
       "image_url": "/msr_stove.jpg"
@@ -1624,7 +2703,13 @@
       "sku_id": "10181",
       "title": "Therm-a-Rest 户外睡垫",
       "category": "运动户外",
-      "tags": ["睡垫", "Therm-a-Rest", "户外", "露营", "充气"],
+      "tags": [
+        "睡垫",
+        "Therm-a-Rest",
+        "户外",
+        "露营",
+        "充气"
+      ],
       "price": 499.0,
       "stock": 150,
       "image_url": "/thermarest.jpg"
@@ -1633,7 +2718,13 @@
       "sku_id": "10182",
       "title": "Big Agnes 超轻帐篷",
       "category": "运动户外",
-      "tags": ["帐篷", "Big Agnes", "户外", "超轻", "单人"],
+      "tags": [
+        "帐篷",
+        "Big Agnes",
+        "户外",
+        "超轻",
+        "单人"
+      ],
       "price": 2499.0,
       "stock": 40,
       "image_url": "/bigagnes.jpg"
@@ -1642,7 +2733,13 @@
       "sku_id": "10183",
       "title": "MSR 汽油炉户外炊具",
       "category": "运动户外",
-      "tags": ["汽油炉", "MSR", "户外", "炊具", "专业"],
+      "tags": [
+        "汽油炉",
+        "MSR",
+        "户外",
+        "炊具",
+        "专业"
+      ],
       "price": 1299.0,
       "stock": 60,
       "image_url": "/msr_xgk.jpg"
@@ -1651,7 +2748,13 @@
       "sku_id": "10184",
       "title": "Katadyn 户外净水器",
       "category": "运动户外",
-      "tags": ["净水器", "Katadyn", "户外", "安全", "过滤"],
+      "tags": [
+        "净水器",
+        "Katadyn",
+        "户外",
+        "安全",
+        "过滤"
+      ],
       "price": 899.0,
       "stock": 80,
       "image_url": "/katadyn.jpg"
@@ -1660,7 +2763,13 @@
       "sku_id": "10185",
       "title": "Leki 登山杖碳纤维超轻",
       "category": "运动户外",
-      "tags": ["登山杖", "Leki", "户外", "碳纤维", "超轻"],
+      "tags": [
+        "登山杖",
+        "Leki",
+        "户外",
+        "碳纤维",
+        "超轻"
+      ],
       "price": 799.0,
       "stock": 100,
       "image_url": "/leki.jpg"
@@ -1669,7 +2778,13 @@
       "sku_id": "10186",
       "title": "Petzl 头灯户外照明",
       "category": "运动户外",
-      "tags": ["头灯", "Petzl", "户外", "露营", "照明"],
+      "tags": [
+        "头灯",
+        "Petzl",
+        "户外",
+        "露营",
+        "照明"
+      ],
       "price": 499.0,
       "stock": 150,
       "image_url": "/petzl.jpg"
@@ -1678,7 +2793,13 @@
       "sku_id": "10187",
       "title": "Black Diamond 头灯Recharge",
       "category": "运动户外",
-      "tags": ["头灯", "Black Diamond", "户外", "充电", "露营"],
+      "tags": [
+        "头灯",
+        "Black Diamond",
+        "户外",
+        "充电",
+        "露营"
+      ],
       "price": 599.0,
       "stock": 120,
       "image_url": "/bd_headlamp.jpg"
@@ -1687,7 +2808,13 @@
       "sku_id": "10188",
       "title": "CAMELBAK 户外水袋3L",
       "category": "运动户外",
-      "tags": ["水袋", "CAMELBAK", "户外", "骑行", "徒步"],
+      "tags": [
+        "水袋",
+        "CAMELBAK",
+        "户外",
+        "骑行",
+        "徒步"
+      ],
       "price": 299.0,
       "stock": 200,
       "image_url": "/camelbak.jpg"
@@ -1696,7 +2823,13 @@
       "sku_id": "10189",
       "title": "HydraPak 户外水袋超轻",
       "category": "运动户外",
-      "tags": ["水袋", "HydraPak", "户外", "超轻", "骑行"],
+      "tags": [
+        "水袋",
+        "HydraPak",
+        "户外",
+        "超轻",
+        "骑行"
+      ],
       "price": 199.0,
       "stock": 180,
       "image_url": "/hydrapak.jpg"
@@ -1705,7 +2838,13 @@
       "sku_id": "10190",
       "title": "Sea to Summit 户外睡袋",
       "category": "运动户外",
-      "tags": ["睡袋", "Sea to Summit", "户外", "露营", "保暖"],
+      "tags": [
+        "睡袋",
+        "Sea to Summit",
+        "户外",
+        "露营",
+        "保暖"
+      ],
       "price": 899.0,
       "stock": 100,
       "image_url": "/sts_bag.jpg"
@@ -1714,7 +2853,13 @@
       "sku_id": "10191",
       "title": "Marmot 土拨鼠 户外睡袋",
       "category": "运动户外",
-      "tags": ["睡袋", "Marmot", "户外", "保暖", "羽绒"],
+      "tags": [
+        "睡袋",
+        "Marmot",
+        "户外",
+        "保暖",
+        "羽绒"
+      ],
       "price": 1299.0,
       "stock": 80,
       "image_url": "/marmot.jpg"
@@ -1723,7 +2868,13 @@
       "sku_id": "10192",
       "title": "Montbell 日本户外睡袋",
       "category": "运动户外",
-      "tags": ["睡袋", "Montbell", "户外", "超轻", "日系"],
+      "tags": [
+        "睡袋",
+        "Montbell",
+        "户外",
+        "超轻",
+        "日系"
+      ],
       "price": 1599.0,
       "stock": 60,
       "image_url": "/montbell.jpg"
@@ -1732,7 +2883,13 @@
       "sku_id": "10193",
       "title": "Yeti 户外保温箱",
       "category": "运动户外",
-      "tags": ["保温箱", "Yeti", "户外", "露营", "野餐"],
+      "tags": [
+        "保温箱",
+        "Yeti",
+        "户外",
+        "露营",
+        "野餐"
+      ],
       "price": 1999.0,
       "stock": 40,
       "image_url": "/yeti.jpg"
@@ -1741,7 +2898,13 @@
       "sku_id": "10194",
       "title": "Stanley 保温杯1L户外",
       "category": "运动户外",
-      "tags": ["保温杯", "Stanley", "户外", "大容量", "耐用"],
+      "tags": [
+        "保温杯",
+        "Stanley",
+        "户外",
+        "大容量",
+        "耐用"
+      ],
       "price": 299.0,
       "stock": 300,
       "image_url": "/stanley.jpg"
@@ -1750,7 +2913,13 @@
       "sku_id": "10195",
       "title": "Hydro Flask 保温杯32oz",
       "category": "运动户外",
-      "tags": ["保温杯", "Hydro Flask", "户外", "保温", "环保"],
+      "tags": [
+        "保温杯",
+        "Hydro Flask",
+        "户外",
+        "保温",
+        "环保"
+      ],
       "price": 199.0,
       "stock": 400,
       "image_url": "/hydroflask.jpg"
@@ -1759,7 +2928,13 @@
       "sku_id": "10196",
       "title": "Klean Kanteen 不锈钢保温杯",
       "category": "运动户外",
-      "tags": ["保温杯", "Klean Kanteen", "户外", "环保", "不锈钢"],
+      "tags": [
+        "保温杯",
+        "Klean Kanteen",
+        "户外",
+        "环保",
+        "不锈钢"
+      ],
       "price": 179.0,
       "stock": 350,
       "image_url": "/kleankanteen.jpg"
@@ -1768,7 +2943,13 @@
       "sku_id": "10197",
       "title": "YETI Rambler 保温杯30oz",
       "category": "运动户外",
-      "tags": ["保温杯", "YETI", "户外", "保冷", "耐用"],
+      "tags": [
+        "保温杯",
+        "YETI",
+        "户外",
+        "保冷",
+        "耐用"
+      ],
       "price": 299.0,
       "stock": 200,
       "image_url": "/yeti_rambler.jpg"
@@ -1777,7 +2958,13 @@
       "sku_id": "10198",
       "title": "优酷花园 瑜伽服运动套装",
       "category": "运动户外",
-      "tags": ["瑜伽服", "运动套装", "优酷花园", "健身", "女"],
+      "tags": [
+        "瑜伽服",
+        "运动套装",
+        "优酷花园",
+        "健身",
+        "女"
+      ],
       "price": 199.0,
       "stock": 400,
       "image_url": "/yoga_set.jpg"
@@ -1786,7 +2973,13 @@
       "sku_id": "10199",
       "title": "Maia Active 瑜伽裤高腰",
       "category": "运动户外",
-      "tags": ["瑜伽裤", "Maia Active", "高腰", "健身", "女"],
+      "tags": [
+        "瑜伽裤",
+        "Maia Active",
+        "高腰",
+        "健身",
+        "女"
+      ],
       "price": 299.0,
       "stock": 300,
       "image_url": "/maia_leggings.jpg"
@@ -1795,7 +2988,13 @@
       "sku_id": "10200",
       "title": "VFU 健身手套防滑护腕",
       "category": "运动户外",
-      "tags": ["健身手套", "VFU", "防滑", "护腕", "力量训练"],
+      "tags": [
+        "健身手套",
+        "VFU",
+        "防滑",
+        "护腕",
+        "力量训练"
+      ],
       "price": 59.0,
       "stock": 500,
       "image_url": "/gym_gloves.jpg"
@@ -1804,7 +3003,13 @@
       "sku_id": "10201",
       "title": "Keep 健身阻力带套装",
       "category": "运动户外",
-      "tags": ["阻力带", "Keep", "健身", "居家", "塑形"],
+      "tags": [
+        "阻力带",
+        "Keep",
+        "健身",
+        "居家",
+        "塑形"
+      ],
       "price": 79.0,
       "stock": 600,
       "image_url": "/resistance_bands.jpg"
@@ -1813,7 +3018,13 @@
       "sku_id": "10202",
       "title": "动境 壶铃可调节重量",
       "category": "运动户外",
-      "tags": ["壶铃", "动境", "力量", "健身", "可调节"],
+      "tags": [
+        "壶铃",
+        "动境",
+        "力量",
+        "健身",
+        "可调节"
+      ],
       "price": 399.0,
       "stock": 200,
       "image_url": "/kettlebell.jpg"
@@ -1822,7 +3033,13 @@
       "sku_id": "10203",
       "title": "迪卡侬 单车山地车户外",
       "category": "运动户外",
-      "tags": ["自行车", "迪卡侬", "山地车", "户外", "骑行"],
+      "tags": [
+        "自行车",
+        "迪卡侬",
+        "山地车",
+        "户外",
+        "骑行"
+      ],
       "price": 1999.0,
       "stock": 50,
       "image_url": "/decathlon_bike.jpg"
@@ -1831,7 +3048,13 @@
       "sku_id": "10204",
       "title": "GRC 折叠自行车通勤便携",
       "category": "运动户外",
-      "tags": ["折叠车", "GRC", "通勤", "便携", "城市"],
+      "tags": [
+        "折叠车",
+        "GRC",
+        "通勤",
+        "便携",
+        "城市"
+      ],
       "price": 1299.0,
       "stock": 80,
       "image_url": "/grc_bike.jpg"
@@ -1840,7 +3063,13 @@
       "sku_id": "10205",
       "title": "Specialized 公路自行车",
       "category": "运动户外",
-      "tags": ["公路车", "Specialized", "闪电", "竞速", "专业"],
+      "tags": [
+        "公路车",
+        "Specialized",
+        "闪电",
+        "竞速",
+        "专业"
+      ],
       "price": 8999.0,
       "stock": 20,
       "image_url": "/specialized.jpg"
@@ -1849,7 +3078,13 @@
       "sku_id": "10206",
       "title": "Trek 山地自行车户外",
       "category": "运动户外",
-      "tags": ["山地车", "Trek", "户外", "专业", "骑行"],
+      "tags": [
+        "山地车",
+        "Trek",
+        "户外",
+        "专业",
+        "骑行"
+      ],
       "price": 7999.0,
       "stock": 25,
       "image_url": "/trek.jpg"
@@ -1858,7 +3093,13 @@
       "sku_id": "10207",
       "title": "Giant 捷安特 公路自行车",
       "category": "运动户外",
-      "tags": ["公路车", "Giant", "捷安特", "入门", "骑行"],
+      "tags": [
+        "公路车",
+        "Giant",
+        "捷安特",
+        "入门",
+        "骑行"
+      ],
       "price": 3999.0,
       "stock": 40,
       "image_url": "/giant.jpg"
@@ -1867,7 +3108,13 @@
       "sku_id": "10208",
       "title": "POC 公路骑行头盔空气动力",
       "category": "运动户外",
-      "tags": ["头盔", "POC", "骑行", "安全", "公路"],
+      "tags": [
+        "头盔",
+        "POC",
+        "骑行",
+        "安全",
+        "公路"
+      ],
       "price": 999.0,
       "stock": 100,
       "image_url": "/poc_helmet.jpg"
@@ -1876,7 +3123,13 @@
       "sku_id": "10209",
       "title": "Oakley 骑行眼镜偏光",
       "category": "运动户外",
-      "tags": ["骑行眼镜", "Oakley", "偏光", "骑行", "防护"],
+      "tags": [
+        "骑行眼镜",
+        "Oakley",
+        "偏光",
+        "骑行",
+        "防护"
+      ],
       "price": 899.0,
       "stock": 150,
       "image_url": "/oakley_glasses.jpg"
@@ -1885,7 +3138,13 @@
       "sku_id": "10210",
       "title": "GRC 骑行手套透气防滑",
       "category": "运动户外",
-      "tags": ["骑行手套", "GRC", "骑行", "防滑", "透气"],
+      "tags": [
+        "骑行手套",
+        "GRC",
+        "骑行",
+        "防滑",
+        "透气"
+      ],
       "price": 89.0,
       "stock": 400,
       "image_url": "/cycling_gloves.jpg"
@@ -1894,7 +3153,13 @@
       "sku_id": "10211",
       "title": "Assos 骑行服长袖透气",
       "category": "运动户外",
-      "tags": ["骑行服", "Assos", "专业", "透气", "高端"],
+      "tags": [
+        "骑行服",
+        "Assos",
+        "专业",
+        "透气",
+        "高端"
+      ],
       "price": 1299.0,
       "stock": 80,
       "image_url": "/assos_jersey.jpg"
@@ -1903,7 +3168,13 @@
       "sku_id": "10212",
       "title": "Rapha 骑行服经典款",
       "category": "运动户外",
-      "tags": ["骑行服", "Rapha", "经典", "专业", "高端"],
+      "tags": [
+        "骑行服",
+        "Rapha",
+        "经典",
+        "专业",
+        "高端"
+      ],
       "price": 1599.0,
       "stock": 60,
       "image_url": "/rapha_jersey.jpg"
@@ -1912,7 +3183,13 @@
       "sku_id": "10213",
       "title": "GRC 骑行裤加垫骑行",
       "category": "运动户外",
-      "tags": ["骑行裤", "GRC", "骑行", "加垫", "舒适"],
+      "tags": [
+        "骑行裤",
+        "GRC",
+        "骑行",
+        "加垫",
+        "舒适"
+      ],
       "price": 299.0,
       "stock": 300,
       "image_url": "/cycling_bibs.jpg"
@@ -1921,7 +3198,13 @@
       "sku_id": "10214",
       "title": "CatEye 自行车尾灯",
       "category": "运动户外",
-      "tags": ["尾灯", "CatEye", "自行车", "安全", "骑行"],
+      "tags": [
+        "尾灯",
+        "CatEye",
+        "自行车",
+        "安全",
+        "骑行"
+      ],
       "price": 99.0,
       "stock": 500,
       "image_url": "/cateye_light.jpg"
@@ -1930,7 +3213,13 @@
       "sku_id": "10215",
       "title": "Topeak 自行车打气筒便携",
       "category": "运动户外",
-      "tags": ["打气筒", "Topeak", "自行车", "便携", "骑行"],
+      "tags": [
+        "打气筒",
+        "Topeak",
+        "自行车",
+        "便携",
+        "骑行"
+      ],
       "price": 79.0,
       "stock": 400,
       "image_url": "/topeak_pump.jpg"
@@ -1939,7 +3228,13 @@
       "sku_id": "10216",
       "title": "Park Tool 自行车维修工具组",
       "category": "运动户外",
-      "tags": ["维修工具", "Park Tool", "自行车", "专业", "维修"],
+      "tags": [
+        "维修工具",
+        "Park Tool",
+        "自行车",
+        "专业",
+        "维修"
+      ],
       "price": 499.0,
       "stock": 150,
       "image_url": "/parktool.jpg"
@@ -1948,7 +3243,13 @@
       "sku_id": "10217",
       "title": "Wahoo Fitness 骑行台智能",
       "category": "运动户外",
-      "tags": ["骑行台", "Wahoo", "智能", "室内", "训练"],
+      "tags": [
+        "骑行台",
+        "Wahoo",
+        "智能",
+        "室内",
+        "训练"
+      ],
       "price": 4999.0,
       "stock": 40,
       "image_url": "/wahoo_bkool.jpg"
@@ -1957,7 +3258,13 @@
       "sku_id": "10218",
       "title": "Tacx 骑行台智能trainer",
       "category": "运动户外",
-      "tags": ["骑行台", "Tacx", "智能", "室内", "训练"],
+      "tags": [
+        "骑行台",
+        "Tacx",
+        "智能",
+        "室内",
+        "训练"
+      ],
       "price": 6999.0,
       "stock": 30,
       "image_url": "/tacx.jpg"
@@ -1966,7 +3273,13 @@
       "sku_id": "10219",
       "title": "Garmin 码表Edge 540",
       "category": "数码电器",
-      "tags": ["码表", "Garmin", "骑行", "GPS", "导航"],
+      "tags": [
+        "码表",
+        "Garmin",
+        "骑行",
+        "GPS",
+        "导航"
+      ],
       "price": 2480.0,
       "stock": 80,
       "image_url": "/garmin_edge.jpg"
@@ -1975,7 +3288,13 @@
       "sku_id": "10220",
       "title": "iBike 室内健身自行车",
       "category": "运动户外",
-      "tags": ["健身车", "iBike", "室内", "居家", "有氧"],
+      "tags": [
+        "健身车",
+        "iBike",
+        "室内",
+        "居家",
+        "有氧"
+      ],
       "price": 1299.0,
       "stock": 100,
       "image_url": "/ibike_bike.jpg"
@@ -1984,7 +3303,13 @@
       "sku_id": "10221",
       "title": "Peloton 智能健身单车",
       "category": "运动户外",
-      "tags": ["健身车", "Peloton", "智能", "室内", "高端"],
+      "tags": [
+        "健身车",
+        "Peloton",
+        "智能",
+        "室内",
+        "高端"
+      ],
       "price": 8999.0,
       "stock": 20,
       "image_url": "/peloton.jpg"
@@ -1993,7 +3318,13 @@
       "sku_id": "10222",
       "title": "Keep 智能健身单车",
       "category": "运动户外",
-      "tags": ["健身车", "Keep", "智能", "居家", "有氧"],
+      "tags": [
+        "健身车",
+        "Keep",
+        "智能",
+        "居家",
+        "有氧"
+      ],
       "price": 1999.0,
       "stock": 80,
       "image_url": "/keep_bike.jpg"
@@ -2002,7 +3333,13 @@
       "sku_id": "10223",
       "title": "迈宝赫 壶铃家用健身",
       "category": "运动户外",
-      "tags": ["壶铃", "迈宝赫", "家用", "健身", "力量"],
+      "tags": [
+        "壶铃",
+        "迈宝赫",
+        "家用",
+        "健身",
+        "力量"
+      ],
       "price": 159.0,
       "stock": 300,
       "image_url": "/maibaohe_kb.jpg"
@@ -2011,7 +3348,13 @@
       "sku_id": "10224",
       "title": "迪卡侬 腹肌板家用健腹",
       "category": "运动户外",
-      "tags": ["健腹板", "迪卡侬", "腹肌", "家用", "健身"],
+      "tags": [
+        "健腹板",
+        "迪卡侬",
+        "腹肌",
+        "家用",
+        "健身"
+      ],
       "price": 199.0,
       "stock": 400,
       "image_url": "/decathlon_ab.jpg"
@@ -2020,7 +3363,13 @@
       "sku_id": "10225",
       "title": "动境 哑铃可调节重量",
       "category": "运动户外",
-      "tags": ["哑铃", "动境", "可调节", "力量", "家用"],
+      "tags": [
+        "哑铃",
+        "动境",
+        "可调节",
+        "力量",
+        "家用"
+      ],
       "price": 299.0,
       "stock": 500,
       "image_url": "/adjustable_dumbbell.jpg"
@@ -2029,7 +3378,13 @@
       "sku_id": "10226",
       "title": "迪卡侬 瑜伽垫TPE防滑",
       "category": "运动户外",
-      "tags": ["瑜伽垫", "迪卡侬", "TPE", "防滑", "环保"],
+      "tags": [
+        "瑜伽垫",
+        "迪卡侬",
+        "TPE",
+        "防滑",
+        "环保"
+      ],
       "price": 79.0,
       "stock": 600,
       "image_url": "/decathlon_mat.jpg"
@@ -2038,7 +3393,13 @@
       "sku_id": "10227",
       "title": "Lululemon 瑜伽垫5mm",
       "category": "运动户外",
-      "tags": ["瑜伽垫", "Lululemon", "瑜伽", "高端", "防滑"],
+      "tags": [
+        "瑜伽垫",
+        "Lululemon",
+        "瑜伽",
+        "高端",
+        "防滑"
+      ],
       "price": 480.0,
       "stock": 150,
       "image_url": "/lulu_mat.jpg"
@@ -2047,7 +3408,13 @@
       "sku_id": "10228",
       "title": "Manduka 瑜伽垫专业Pro",
       "category": "运动户外",
-      "tags": ["瑜伽垫", "Manduka", "专业", "耐用", "高端"],
+      "tags": [
+        "瑜伽垫",
+        "Manduka",
+        "专业",
+        "耐用",
+        "高端"
+      ],
       "price": 780.0,
       "stock": 80,
       "image_url": "/manduka.jpg"
@@ -2056,7 +3423,13 @@
       "sku_id": "10229",
       "title": "Keep 泡沫轴按摩滚轴",
       "category": "运动户外",
-      "tags": ["泡沫轴", "Keep", "按摩", "放松", "肌肉"],
+      "tags": [
+        "泡沫轴",
+        "Keep",
+        "按摩",
+        "放松",
+        "肌肉"
+      ],
       "price": 59.0,
       "stock": 500,
       "image_url": "/keep_roller.jpg"
@@ -2065,7 +3438,13 @@
       "sku_id": "10230",
       "title": "迪卡侬 弹力带健身阻力",
       "category": "运动户外",
-      "tags": ["弹力带", "迪卡侬", "阻力", "健身", "便携"],
+      "tags": [
+        "弹力带",
+        "迪卡侬",
+        "阻力",
+        "健身",
+        "便携"
+      ],
       "price": 29.0,
       "stock": 1000,
       "image_url": "/decathlon_band.jpg"
@@ -2074,7 +3453,13 @@
       "sku_id": "10231",
       "title": "Keep 跳绳可调节",
       "category": "运动户外",
-      "tags": ["跳绳", "Keep", "健身", "有氧", "居家"],
+      "tags": [
+        "跳绳",
+        "Keep",
+        "健身",
+        "有氧",
+        "居家"
+      ],
       "price": 39.0,
       "stock": 800,
       "image_url": "/keep_rope.jpg"
@@ -2083,7 +3468,13 @@
       "sku_id": "10232",
       "title": "75帕 跳绳智能计数",
       "category": "运动户外",
-      "tags": ["跳绳", "75帕", "智能", "计数", "健身"],
+      "tags": [
+        "跳绳",
+        "75帕",
+        "智能",
+        "计数",
+        "健身"
+      ],
       "price": 79.0,
       "stock": 600,
       "image_url": "/75pa_rope.jpg"
@@ -2092,7 +3483,13 @@
       "sku_id": "10233",
       "title": "迪卡侬 瑜伽砖泡沫EVA",
       "category": "运动户外",
-      "tags": ["瑜伽砖", "迪卡侬", "瑜伽", "辅助", "EVA"],
+      "tags": [
+        "瑜伽砖",
+        "迪卡侬",
+        "瑜伽",
+        "辅助",
+        "EVA"
+      ],
       "price": 35.0,
       "stock": 800,
       "image_url": "/yoga_block.jpg"
@@ -2101,7 +3498,13 @@
       "sku_id": "10234",
       "title": "Keep 瑜伽铺巾防滑",
       "category": "运动户外",
-      "tags": ["瑜伽铺巾", "Keep", "瑜伽", "防滑", "卫生"],
+      "tags": [
+        "瑜伽铺巾",
+        "Keep",
+        "瑜伽",
+        "防滑",
+        "卫生"
+      ],
       "price": 49.0,
       "stock": 600,
       "image_url": "/yoga_towel.jpg"
@@ -2110,7 +3513,13 @@
       "sku_id": "10235",
       "title": "Lululemon 瑜伽铺巾防滑",
       "category": "运动户外",
-      "tags": ["瑜伽铺巾", "Lululemon", "瑜伽", "高端", "防滑"],
+      "tags": [
+        "瑜伽铺巾",
+        "Lululemon",
+        "瑜伽",
+        "高端",
+        "防滑"
+      ],
       "price": 180.0,
       "stock": 200,
       "image_url": "/lulu_towel.jpg"
@@ -2119,7 +3528,13 @@
       "sku_id": "10236",
       "title": "迪卡侬 跑步腰包5L",
       "category": "运动户外",
-      "tags": ["腰包", "迪卡侬", "跑步", "大容量", "户外"],
+      "tags": [
+        "腰包",
+        "迪卡侬",
+        "跑步",
+        "大容量",
+        "户外"
+      ],
       "price": 79.0,
       "stock": 500,
       "image_url": "/decathlon_pack.jpg"
@@ -2128,7 +3543,13 @@
       "sku_id": "10237",
       "title": "Keep 跑步臂包手机臂包",
       "category": "运动户外",
-      "tags": ["臂包", "Keep", "跑步", "手机", "防水"],
+      "tags": [
+        "臂包",
+        "Keep",
+        "跑步",
+        "手机",
+        "防水"
+      ],
       "price": 39.0,
       "stock": 800,
       "image_url": "/keep_armband.jpg"
@@ -2137,7 +3558,13 @@
       "sku_id": "10238",
       "title": "迪卡侬 跑步帽空顶遮阳",
       "category": "运动户外",
-      "tags": ["跑步帽", "迪卡侬", "空顶", "遮阳", "透气"],
+      "tags": [
+        "跑步帽",
+        "迪卡侬",
+        "空顶",
+        "遮阳",
+        "透气"
+      ],
       "price": 59.0,
       "stock": 600,
       "image_url": "/running_cap.jpg"
@@ -2146,7 +3573,13 @@
       "sku_id": "10239",
       "title": "Keep 健身包大容量干湿分离",
       "category": "运动户外",
-      "tags": ["健身包", "Keep", "大容量", "干湿分离", "运动"],
+      "tags": [
+        "健身包",
+        "Keep",
+        "大容量",
+        "干湿分离",
+        "运动"
+      ],
       "price": 159.0,
       "stock": 400,
       "image_url": "/gym_bag.jpg"
@@ -2155,7 +3588,13 @@
       "sku_id": "10240",
       "title": "Nike 跑步短裤Dri-FIT",
       "category": "运动户外",
-      "tags": ["跑步裤", "Nike", "Dri-FIT", "透气", "运动"],
+      "tags": [
+        "跑步裤",
+        "Nike",
+        "Dri-FIT",
+        "透气",
+        "运动"
+      ],
       "price": 229.0,
       "stock": 500,
       "image_url": "/nike_shorts.jpg"
@@ -2164,7 +3603,13 @@
       "sku_id": "10241",
       "title": "Adidas 跑步上衣climalite",
       "category": "运动户外",
-      "tags": ["跑步衣", "Adidas", "climalite", "透气", "吸汗"],
+      "tags": [
+        "跑步衣",
+        "Adidas",
+        "climalite",
+        "透气",
+        "吸汗"
+      ],
       "price": 199.0,
       "stock": 400,
       "image_url": "/adi_top.jpg"
@@ -2173,7 +3618,13 @@
       "sku_id": "10242",
       "title": "Under Armour 跑步紧身衣",
       "category": "运动户外",
-      "tags": ["紧身衣", "Under Armour", "压缩", "跑步", "运动"],
+      "tags": [
+        "紧身衣",
+        "Under Armour",
+        "压缩",
+        "跑步",
+        "运动"
+      ],
       "price": 299.0,
       "stock": 300,
       "image_url": "/ua_compression.jpg"
@@ -2182,7 +3633,13 @@
       "sku_id": "10243",
       "title": "Craft 跑步风衣透气防风",
       "category": "运动户外",
-      "tags": ["风衣", "Craft", "跑步", "防风", "透气"],
+      "tags": [
+        "风衣",
+        "Craft",
+        "跑步",
+        "防风",
+        "透气"
+      ],
       "price": 499.0,
       "stock": 200,
       "image_url": "/craft_jacket.jpg"
@@ -2191,7 +3648,13 @@
       "sku_id": "10244",
       "title": "Salomon 跑步越野鞋Speedcross",
       "category": "运动户外",
-      "tags": ["越野鞋", "Salomon", "跑步", "户外", "抓地"],
+      "tags": [
+        "越野鞋",
+        "Salomon",
+        "跑步",
+        "户外",
+        "抓地"
+      ],
       "price": 1199.0,
       "stock": 150,
       "image_url": "/salomon_speed.jpg"
@@ -2200,7 +3663,13 @@
       "sku_id": "10245",
       "title": "Hoka 跑步鞋Speedgoat",
       "category": "运动户外",
-      "tags": ["越野鞋", "Hoka", "Speedgoat", "跑步", "缓震"],
+      "tags": [
+        "越野鞋",
+        "Hoka",
+        "Speedgoat",
+        "跑步",
+        "缓震"
+      ],
       "price": 1099.0,
       "stock": 180,
       "image_url": "/hoka_speedgoat.jpg"
@@ -2209,7 +3678,13 @@
       "sku_id": "10246",
       "title": "Altra 跑步鞋零落差",
       "category": "运动户外",
-      "tags": ["跑步鞋", "Altra", "零落差", "越野", "自然"],
+      "tags": [
+        "跑步鞋",
+        "Altra",
+        "零落差",
+        "越野",
+        "自然"
+      ],
       "price": 999.0,
       "stock": 120,
       "image_url": "/altra.jpg"
@@ -2218,7 +3693,13 @@
       "sku_id": "10247",
       "title": "La Sportiva 越野跑鞋",
       "category": "运动户外",
-      "tags": ["越野鞋", "La Sportiva", "跑步", "户外", "抓地"],
+      "tags": [
+        "越野鞋",
+        "La Sportiva",
+        "跑步",
+        "户外",
+        "抓地"
+      ],
       "price": 1299.0,
       "stock": 100,
       "image_url": "/ls_trail.jpg"
@@ -2227,7 +3708,13 @@
       "sku_id": "10248",
       "title": "Nathan 跑步水壶腰带",
       "category": "运动户外",
-      "tags": ["水壶腰带", "Nathan", "跑步", "补水", "长距离"],
+      "tags": [
+        "水壶腰带",
+        "Nathan",
+        "跑步",
+        "补水",
+        "长距离"
+      ],
       "price": 299.0,
       "stock": 300,
       "image_url": "/nathan_belt.jpg"
@@ -2236,7 +3723,13 @@
       "sku_id": "10249",
       "title": "Ultimate Direction 越野背包",
       "category": "运动户外",
-      "tags": ["越野背包", "UD", "跑步", "长距离", "户外"],
+      "tags": [
+        "越野背包",
+        "UD",
+        "跑步",
+        "长距离",
+        "户外"
+      ],
       "price": 699.0,
       "stock": 150,
       "image_url": "/ud_vest.jpg"
@@ -2245,7 +3738,13 @@
       "sku_id": "10250",
       "title": "Salomon 越野背包SLAB",
       "category": "运动户外",
-      "tags": ["越野背包", "Salomon", "跑步", "户外", "专业"],
+      "tags": [
+        "越野背包",
+        "Salomon",
+        "跑步",
+        "户外",
+        "专业"
+      ],
       "price": 899.0,
       "stock": 120,
       "image_url": "/salomon_vest.jpg"
@@ -2254,7 +3753,13 @@
       "sku_id": "10251",
       "title": "Garmin 越野手表Fenix 7S",
       "category": "数码电器",
-      "tags": ["运动手表", "Garmin", "越野", "GPS", "长续航"],
+      "tags": [
+        "运动手表",
+        "Garmin",
+        "越野",
+        "GPS",
+        "长续航"
+      ],
       "price": 5980.0,
       "stock": 40,
       "image_url": "/fenix_7s.jpg"
@@ -2263,7 +3768,13 @@
       "sku_id": "10252",
       "title": "Suunto 越野手表Race",
       "category": "数码电器",
-      "tags": ["运动手表", "Suunto", "越野", "Race", "轻薄"],
+      "tags": [
+        "运动手表",
+        "Suunto",
+        "越野",
+        "Race",
+        "轻薄"
+      ],
       "price": 4299.0,
       "stock": 50,
       "image_url": "/suunto_race.jpg"
@@ -2272,7 +3783,13 @@
       "sku_id": "10253",
       "title": "COROS 越野手表Apex 2 Pro",
       "category": "数码电器",
-      "tags": ["运动手表", "COROS", "越野", "Apex", "长续航"],
+      "tags": [
+        "运动手表",
+        "COROS",
+        "越野",
+        "Apex",
+        "长续航"
+      ],
       "price": 3999.0,
       "stock": 60,
       "image_url": "/coros_pro.jpg"
@@ -2281,7 +3798,13 @@
       "sku_id": "10254",
       "title": "Petzl 头灯 swift RL",
       "category": "运动户外",
-      "tags": ["头灯", "Petzl", "越野", "夜跑", "超亮"],
+      "tags": [
+        "头灯",
+        "Petzl",
+        "越野",
+        "夜跑",
+        "超亮"
+      ],
       "price": 699.0,
       "stock": 150,
       "image_url": "/petzl_swift.jpg"
@@ -2290,7 +3813,13 @@
       "sku_id": "10255",
       "title": "Black Diamond 头灯Spot",
       "category": "运动户外",
-      "tags": ["头灯", "Black Diamond", "越野", "夜跑", "经典"],
+      "tags": [
+        "头灯",
+        "Black Diamond",
+        "越野",
+        "夜跑",
+        "经典"
+      ],
       "price": 299.0,
       "stock": 300,
       "image_url": "/bd_spot.jpg"
@@ -2299,7 +3828,13 @@
       "sku_id": "10256",
       "title": "可优比 母婴腰凳婴儿背带",
       "category": "母婴用品",
-      "tags": ["腰凳", "可优比", "婴儿背带", "母婴", "解放双手"],
+      "tags": [
+        "腰凳",
+        "可优比",
+        "婴儿背带",
+        "母婴",
+        "解放双手"
+      ],
       "price": 199.0,
       "stock": 400,
       "image_url": "/kub_hipseat.jpg"
@@ -2308,7 +3843,13 @@
       "sku_id": "10257",
       "title": "Ergobaby 婴儿背带360度",
       "category": "母婴用品",
-      "tags": ["婴儿背带", "Ergobaby", "腰凳", "母婴", "护脊"],
+      "tags": [
+        "婴儿背带",
+        "Ergobaby",
+        "腰凳",
+        "母婴",
+        "护脊"
+      ],
       "price": 899.0,
       "stock": 150,
       "image_url": "/ergobaby.jpg"
@@ -2317,7 +3858,13 @@
       "sku_id": "10258",
       "title": "好孩子 婴儿推车轻便折叠",
       "category": "母婴用品",
-      "tags": ["婴儿推车", "好孩子", "轻便", "折叠", "出行"],
+      "tags": [
+        "婴儿推车",
+        "好孩子",
+        "轻便",
+        "折叠",
+        "出行"
+      ],
       "price": 599.0,
       "stock": 200,
       "image_url": "/gb_stroller.jpg"
@@ -2326,7 +3873,13 @@
       "sku_id": "10259",
       "title": "Bugaboo 高景观婴儿推车",
       "category": "母婴用品",
-      "tags": ["婴儿推车", "Bugaboo", "高景观", "高端", "舒适"],
+      "tags": [
+        "婴儿推车",
+        "Bugaboo",
+        "高景观",
+        "高端",
+        "舒适"
+      ],
       "price": 6999.0,
       "stock": 30,
       "image_url": "/bugaboo.jpg"
@@ -2335,7 +3888,13 @@
       "sku_id": "10260",
       "title": "Stokke 婴儿推车Xplory",
       "category": "母婴用品",
-      "tags": ["婴儿推车", "Stokke", "高景观", "高端", "设计"],
+      "tags": [
+        "婴儿推车",
+        "Stokke",
+        "高景观",
+        "高端",
+        "设计"
+      ],
       "price": 8999.0,
       "stock": 20,
       "image_url": "/stokke.jpg"
@@ -2344,7 +3903,13 @@
       "sku_id": "10261",
       "title": "Cybex 婴儿安全座椅",
       "category": "母婴用品",
-      "tags": ["安全座椅", "Cybex", "汽车", "安全", "高端"],
+      "tags": [
+        "安全座椅",
+        "Cybex",
+        "汽车",
+        "安全",
+        "高端"
+      ],
       "price": 2999.0,
       "stock": 50,
       "image_url": "/cybex_seat.jpg"
@@ -2353,7 +3918,13 @@
       "sku_id": "10262",
       "title": "Britax 儿童安全座椅",
       "category": "母婴用品",
-      "tags": ["安全座椅", "Britax", "汽车", "安全", "进口"],
+      "tags": [
+        "安全座椅",
+        "Britax",
+        "汽车",
+        "安全",
+        "进口"
+      ],
       "price": 2299.0,
       "stock": 60,
       "image_url": "/britax.jpg"
@@ -2362,7 +3933,13 @@
       "sku_id": "10263",
       "title": "感恩 儿童安全座椅isofix",
       "category": "母婴用品",
-      "tags": ["安全座椅", "感恩", "isofix", "汽车", "安全"],
+      "tags": [
+        "安全座椅",
+        "感恩",
+        "isofix",
+        "汽车",
+        "安全"
+      ],
       "price": 899.0,
       "stock": 200,
       "image_url": "/ganen_seat.jpg"
@@ -2371,7 +3948,13 @@
       "sku_id": "10264",
       "title": "费雪 婴儿摇椅安抚",
       "category": "母婴用品",
-      "tags": ["摇椅", "费雪", "婴儿", "安抚", "安抚"],
+      "tags": [
+        "摇椅",
+        "费雪",
+        "婴儿",
+        "安抚",
+        "安抚"
+      ],
       "price": 399.0,
       "stock": 300,
       "image_url": "/fisher_rocker.jpg"
@@ -2380,7 +3963,13 @@
       "sku_id": "10265",
       "title": "4moms 婴儿摇椅智能",
       "category": "母婴用品",
-      "tags": ["摇椅", "4moms", "智能", "婴儿", "高端"],
+      "tags": [
+        "摇椅",
+        "4moms",
+        "智能",
+        "婴儿",
+        "高端"
+      ],
       "price": 1599.0,
       "stock": 80,
       "image_url": "/4moms_rocker.jpg"
@@ -2389,7 +3978,13 @@
       "sku_id": "10266",
       "title": "澳贝 婴儿健身架脚踏琴",
       "category": "母婴用品",
-      "tags": ["健身架", "澳贝", "婴儿", "早教", "益智"],
+      "tags": [
+        "健身架",
+        "澳贝",
+        "婴儿",
+        "早教",
+        "益智"
+      ],
       "price": 169.0,
       "stock": 400,
       "image_url": "/auby_gym.jpg"
@@ -2398,7 +3993,13 @@
       "sku_id": "10267",
       "title": "曼龙 婴儿爬行垫加厚",
       "category": "母婴用品",
-      "tags": ["爬行垫", "曼龙", "婴儿", "加厚", "环保"],
+      "tags": [
+        "爬行垫",
+        "曼龙",
+        "婴儿",
+        "加厚",
+        "环保"
+      ],
       "price": 129.0,
       "stock": 500,
       "image_url": "/manlong_crawling.jpg"
@@ -2407,7 +4008,13 @@
       "sku_id": "10268",
       "title": "帕克伦 婴儿爬行垫折叠",
       "category": "母婴用品",
-      "tags": ["爬行垫", "帕克伦", "折叠", "婴儿", "便携"],
+      "tags": [
+        "爬行垫",
+        "帕克伦",
+        "折叠",
+        "婴儿",
+        "便携"
+      ],
       "price": 199.0,
       "stock": 400,
       "image_url": "/parklon_mat.jpg"
@@ -2416,7 +4023,13 @@
       "sku_id": "10269",
       "title": "babycare 婴儿辅食碗套装",
       "category": "母婴用品",
-      "tags": ["辅食碗", "babycare", "婴儿", "硅胶", "安全"],
+      "tags": [
+        "辅食碗",
+        "babycare",
+        "婴儿",
+        "硅胶",
+        "安全"
+      ],
       "price": 89.0,
       "stock": 600,
       "image_url": "/bc_bowl.jpg"
@@ -2425,7 +4038,13 @@
       "sku_id": "10270",
       "title": "贝亲 Pigeon 辅食研磨碗",
       "category": "母婴用品",
-      "tags": ["辅食碗", "贝亲", "研磨", "婴儿", "辅食"],
+      "tags": [
+        "辅食碗",
+        "贝亲",
+        "研磨",
+        "婴儿",
+        "辅食"
+      ],
       "price": 79.0,
       "stock": 500,
       "image_url": "/pigeon_bowl.jpg"
@@ -2434,7 +4053,13 @@
       "sku_id": "10271",
       "title": "NUK 儿童学习杯吸管杯",
       "category": "母婴用品",
-      "tags": ["学习杯", "NUK", "儿童", "吸管", "训练"],
+      "tags": [
+        "学习杯",
+        "NUK",
+        "儿童",
+        "吸管",
+        "训练"
+      ],
       "price": 69.0,
       "stock": 700,
       "image_url": "/nuk_cup.jpg"
@@ -2443,7 +4068,13 @@
       "sku_id": "10272",
       "title": "膳魔师 儿童保温杯350ml",
       "category": "母婴用品",
-      "tags": ["保温杯", "膳魔师", "儿童", "保温", "安全"],
+      "tags": [
+        "保温杯",
+        "膳魔师",
+        "儿童",
+        "保温",
+        "安全"
+      ],
       "price": 159.0,
       "stock": 500,
       "image_url": "/thermos_cup.jpg"
@@ -2452,7 +4083,13 @@
       "sku_id": "10273",
       "title": "象印 儿童保温杯300ml",
       "category": "母婴用品",
-      "tags": ["保温杯", "象印", "儿童", "保温", "可爱"],
+      "tags": [
+        "保温杯",
+        "象印",
+        "儿童",
+        "保温",
+        "可爱"
+      ],
       "price": 179.0,
       "stock": 450,
       "image_url": "/zojirushi_cup.jpg"
@@ -2461,7 +4098,13 @@
       "sku_id": "10274",
       "title": "虎牌 儿童保温杯直饮型",
       "category": "母婴用品",
-      "tags": ["保温杯", "虎牌", "儿童", "直饮", "安全"],
+      "tags": [
+        "保温杯",
+        "虎牌",
+        "儿童",
+        "直饮",
+        "安全"
+      ],
       "price": 169.0,
       "stock": 500,
       "image_url": "/tiger_cup.jpg"
@@ -2470,7 +4113,13 @@
       "sku_id": "10275",
       "title": "Munchkin 满趣健 儿童餐具",
       "category": "母婴用品",
-      "tags": ["餐具", "Munchkin", "儿童", "硅胶", "安全"],
+      "tags": [
+        "餐具",
+        "Munchkin",
+        "儿童",
+        "硅胶",
+        "安全"
+      ],
       "price": 99.0,
       "stock": 400,
       "image_url": "/munchkin.jpg"
@@ -2479,7 +4128,13 @@
       "sku_id": "10276",
       "title": "OXO 儿童学习餐具套装",
       "category": "母婴用品",
-      "tags": ["餐具", "OXO", "儿童", "学习", "人体工学"],
+      "tags": [
+        "餐具",
+        "OXO",
+        "儿童",
+        "学习",
+        "人体工学"
+      ],
       "price": 129.0,
       "stock": 350,
       "image_url": "/oxo_utensil.jpg"
@@ -2488,7 +4143,13 @@
       "sku_id": "10277",
       "title": "美赞臣 婴儿奶粉蓝臻3段",
       "category": "母婴用品",
-      "tags": ["奶粉", "美赞臣", "蓝臻", "婴儿", "营养"],
+      "tags": [
+        "奶粉",
+        "美赞臣",
+        "蓝臻",
+        "婴儿",
+        "营养"
+      ],
       "price": 328.0,
       "stock": 400,
       "image_url": "/meadjohnson.jpg"
@@ -2497,7 +4158,13 @@
       "sku_id": "10278",
       "title": "惠氏 启赋 婴儿奶粉3段",
       "category": "母婴用品",
-      "tags": ["奶粉", "惠氏", "启赋", "婴儿", "高端"],
+      "tags": [
+        "奶粉",
+        "惠氏",
+        "启赋",
+        "婴儿",
+        "高端"
+      ],
       "price": 398.0,
       "stock": 350,
       "image_url": "/wyeth_illum.jpg"
@@ -2506,7 +4173,13 @@
       "sku_id": "10279",
       "title": "雀巢 BEBA 婴儿奶粉",
       "category": "母婴用品",
-      "tags": ["奶粉", "雀巢", "BEBA", "婴儿", "德国"],
+      "tags": [
+        "奶粉",
+        "雀巢",
+        "BEBA",
+        "婴儿",
+        "德国"
+      ],
       "price": 298.0,
       "stock": 300,
       "image_url": "/nestle_beba.jpg"
@@ -2515,7 +4188,13 @@
       "sku_id": "10280",
       "title": "喜宝 婴儿奶粉有机",
       "category": "母婴用品",
-      "tags": ["奶粉", "喜宝", "HiPP", "有机", "德国"],
+      "tags": [
+        "奶粉",
+        "喜宝",
+        "HiPP",
+        "有机",
+        "德国"
+      ],
       "price": 268.0,
       "stock": 400,
       "image_url": "/hipp.jpg"
@@ -2524,7 +4203,13 @@
       "sku_id": "10281",
       "title": "a2 至初 婴儿奶粉3段",
       "category": "母婴用品",
-      "tags": ["奶粉", "a2", "至初", "婴儿", "A2蛋白"],
+      "tags": [
+        "奶粉",
+        "a2",
+        "至初",
+        "婴儿",
+        "A2蛋白"
+      ],
       "price": 358.0,
       "stock": 350,
       "image_url": "/a2_premium.jpg"
@@ -2533,7 +4218,13 @@
       "sku_id": "10282",
       "title": "贝拉米 婴儿奶粉有机",
       "category": "母婴用品",
-      "tags": ["奶粉", "贝拉米", "Bellamy's", "有机", "澳洲"],
+      "tags": [
+        "奶粉",
+        "贝拉米",
+        "Bellamy's",
+        "有机",
+        "澳洲"
+      ],
       "price": 288.0,
       "stock": 300,
       "image_url": "/bellamys.jpg"
@@ -2542,7 +4233,13 @@
       "sku_id": "10283",
       "title": "好奇 铂金纸尿裤NB",
       "category": "母婴用品",
-      "tags": ["纸尿裤", "好奇", "铂金", "NB", "透气"],
+      "tags": [
+        "纸尿裤",
+        "好奇",
+        "铂金",
+        "NB",
+        "透气"
+      ],
       "price": 169.0,
       "stock": 500,
       "image_url": "/huggies_nb.jpg"
@@ -2551,7 +4248,13 @@
       "sku_id": "10284",
       "title": "花王妙而舒纸尿裤S码",
       "category": "母婴用品",
-      "tags": ["纸尿裤", "花王", "妙而舒", "日本", "透气"],
+      "tags": [
+        "纸尿裤",
+        "花王",
+        "妙而舒",
+        "日本",
+        "透气"
+      ],
       "price": 149.0,
       "stock": 600,
       "image_url": "/kao_merries.jpg"
@@ -2560,7 +4263,13 @@
       "sku_id": "10285",
       "title": "大王天使纸尿裤M码",
       "category": "母婴用品",
-      "tags": ["纸尿裤", "大王", "天使", "轻薄", "透气"],
+      "tags": [
+        "纸尿裤",
+        "大王",
+        "天使",
+        "轻薄",
+        "透气"
+      ],
       "price": 159.0,
       "stock": 550,
       "image_url": "/goon_angel.jpg"
@@ -2569,7 +4278,13 @@
       "sku_id": "10286",
       "title": "尤妮佳 皇家纸尿裤",
       "category": "母婴用品",
-      "tags": ["纸尿裤", "尤妮佳", "皇家", "日本", "舒适"],
+      "tags": [
+        "纸尿裤",
+        "尤妮佳",
+        "皇家",
+        "日本",
+        "舒适"
+      ],
       "price": 139.0,
       "stock": 600,
       "image_url": "/moony_royal.jpg"
@@ -2578,7 +4293,13 @@
       "sku_id": "10287",
       "title": "碧芭宝贝 纸尿裤",
       "category": "母婴用品",
-      "tags": ["纸尿裤", "碧芭", "国货", "透气", "薄"],
+      "tags": [
+        "纸尿裤",
+        "碧芭",
+        "国货",
+        "透气",
+        "薄"
+      ],
       "price": 119.0,
       "stock": 700,
       "image_url": "/beaba_diaper.jpg"
@@ -2587,7 +4308,13 @@
       "sku_id": "10288",
       "title": "露安适 纸尿裤日夜",
       "category": "母婴用品",
-      "tags": ["纸尿裤", "露安适", "日夜", "分护", "薄"],
+      "tags": [
+        "纸尿裤",
+        "露安适",
+        "日夜",
+        "分护",
+        "薄"
+      ],
       "price": 129.0,
       "stock": 650,
       "image_url": "/lels.jpg"
@@ -2596,7 +4323,13 @@
       "sku_id": "10289",
       "title": "Babycare 婴儿湿巾大包",
       "category": "母婴用品",
-      "tags": ["湿巾", "babycare", "婴儿", "大包", "温和"],
+      "tags": [
+        "湿巾",
+        "babycare",
+        "婴儿",
+        "大包",
+        "温和"
+      ],
       "price": 79.0,
       "stock": 800,
       "image_url": "/bc_wipes_big.jpg"
@@ -2605,7 +4338,13 @@
       "sku_id": "10290",
       "title": "可心柔 婴儿抽纸",
       "category": "母婴用品",
-      "tags": ["抽纸", "可心柔", "婴儿", "柔", "云柔"],
+      "tags": [
+        "抽纸",
+        "可心柔",
+        "婴儿",
+        "柔",
+        "云柔"
+      ],
       "price": 49.0,
       "stock": 1200,
       "image_url": "/viversal.jpg"
@@ -2614,7 +4353,13 @@
       "sku_id": "10291",
       "title": "德佑 婴儿口罩小号",
       "category": "母婴用品",
-      "tags": ["口罩", "德佑", "婴儿", "小号", "防护"],
+      "tags": [
+        "口罩",
+        "德佑",
+        "婴儿",
+        "小号",
+        "防护"
+      ],
       "price": 39.0,
       "stock": 1000,
       "image_url": "/deyou_mask.jpg"
@@ -2623,7 +4368,13 @@
       "sku_id": "10292",
       "title": "全棉时代 婴儿棉柔巾",
       "category": "母婴用品",
-      "tags": ["棉柔巾", "全棉时代", "婴儿", "纯棉", "温和"],
+      "tags": [
+        "棉柔巾",
+        "全棉时代",
+        "婴儿",
+        "纯棉",
+        "温和"
+      ],
       "price": 39.0,
       "stock": 1500,
       "image_url": "/cotton_baby.jpg"
@@ -2632,7 +4383,13 @@
       "sku_id": "10293",
       "title": "Babycare 婴儿洗衣液",
       "category": "母婴用品",
-      "tags": ["洗衣液", "babycare", "婴儿", "温和", "除菌"],
+      "tags": [
+        "洗衣液",
+        "babycare",
+        "婴儿",
+        "温和",
+        "除菌"
+      ],
       "price": 49.0,
       "stock": 1000,
       "image_url": "/bc_detergent.jpg"
@@ -2641,7 +4398,13 @@
       "sku_id": "10294",
       "title": "保宁 婴儿洗衣液",
       "category": "母婴用品",
-      "tags": ["洗衣液", "保宁", "婴儿", "进口", "温和"],
+      "tags": [
+        "洗衣液",
+        "保宁",
+        "婴儿",
+        "进口",
+        "温和"
+      ],
       "price": 69.0,
       "stock": 800,
       "image_url": "/bobl_detergent.jpg"
@@ -2650,7 +4413,13 @@
       "sku_id": "10295",
       "title": "红色小象 婴儿润肤乳",
       "category": "母婴用品",
-      "tags": ["润肤乳", "红色小象", "婴儿", "保湿", "温和"],
+      "tags": [
+        "润肤乳",
+        "红色小象",
+        "婴儿",
+        "保湿",
+        "温和"
+      ],
       "price": 59.0,
       "stock": 900,
       "image_url": "/red_elephant.jpg"
@@ -2659,7 +4428,13 @@
       "sku_id": "10296",
       "title": "施巴 婴儿沐浴露",
       "category": "母婴用品",
-      "tags": ["沐浴露", "施巴", "婴儿", "温和", "无泪配方"],
+      "tags": [
+        "沐浴露",
+        "施巴",
+        "婴儿",
+        "温和",
+        "无泪配方"
+      ],
       "price": 89.0,
       "stock": 600,
       "image_url": "/seba_baby.jpg"
@@ -2668,7 +4443,13 @@
       "sku_id": "10297",
       "title": "加州宝宝 婴儿防晒霜",
       "category": "母婴用品",
-      "tags": ["防晒霜", "加州宝宝", "婴儿", "物理防晒", "温和"],
+      "tags": [
+        "防晒霜",
+        "加州宝宝",
+        "婴儿",
+        "物理防晒",
+        "温和"
+      ],
       "price": 99.0,
       "stock": 500,
       "image_url": "/california_baby.jpg"
@@ -2677,7 +4458,13 @@
       "sku_id": "10298",
       "title": "Thinkbaby 儿童防晒霜",
       "category": "母婴用品",
-      "tags": ["防晒霜", "Thinkbaby", "儿童", "物理防晒", "安全"],
+      "tags": [
+        "防晒霜",
+        "Thinkbaby",
+        "儿童",
+        "物理防晒",
+        "安全"
+      ],
       "price": 129.0,
       "stock": 400,
       "image_url": "/thinkbaby.jpg"
@@ -2686,7 +4473,13 @@
       "sku_id": "10299",
       "title": "戴可思 婴儿护臀膏",
       "category": "母婴用品",
-      "tags": ["护臀膏", "戴可思", "婴儿", "红屁屁", "氧化锌"],
+      "tags": [
+        "护臀膏",
+        "戴可思",
+        "婴儿",
+        "红屁屁",
+        "氧化锌"
+      ],
       "price": 49.0,
       "stock": 800,
       "image_url": "/dexterin.jpg"
@@ -2695,10 +4488,1256 @@
       "sku_id": "10300",
       "title": "康乃馨 婴儿护臀膏",
       "category": "母婴用品",
-      "tags": ["护臀膏", "康乃馨", "婴儿", "红屁屁", "修护"],
+      "tags": [
+        "护臀膏",
+        "康乃馨",
+        "婴儿",
+        "红屁屁",
+        "修护"
+      ],
       "price": 39.0,
       "stock": 1000,
       "image_url": "/carnation.jpg"
+    },
+    {
+      "sku_id": "10301",
+      "title": "方回春堂 秋梨膏 300g",
+      "category": "食品饮料",
+      "tags": "秋梨膏,润肺,止咳,秋冬,膏方",
+      "price": 68.0,
+      "stock": 200,
+      "image_url": "/images/prod_10301.jpg"
+    },
+    {
+      "sku_id": "10302",
+      "title": "楼上 精选银耳 200g",
+      "category": "食品饮料",
+      "tags": "银耳,干货,润肺,煲汤,滋补",
+      "price": 39.9,
+      "stock": 200,
+      "image_url": "/images/prod_10302.jpg"
+    },
+    {
+      "sku_id": "10303",
+      "title": "北大荒 椴树蜂蜜 500g",
+      "category": "食品饮料",
+      "tags": "蜂蜜,天然,滋补,润燥,花蜜",
+      "price": 49.0,
+      "stock": 200,
+      "image_url": "/images/prod_10303.jpg"
+    },
+    {
+      "sku_id": "10304",
+      "title": "寿全斋 酸梅汤原料包 150g×5",
+      "category": "食品饮料",
+      "tags": "酸梅汤,消暑,自制,饮品,乌梅",
+      "price": 29.9,
+      "stock": 200,
+      "image_url": "/images/prod_10304.jpg"
+    },
+    {
+      "sku_id": "10305",
+      "title": "同仁堂 百合干 250g",
+      "category": "食品饮料",
+      "tags": "百合,润肺,安神,干货,煲汤",
+      "price": 35.0,
+      "stock": 200,
+      "image_url": "/images/prod_10305.jpg"
+    },
+    {
+      "sku_id": "10306",
+      "title": "西湖 龙井绿茶 250g",
+      "category": "食品饮料",
+      "tags": "龙井,绿茶,送礼,茶饮,清香",
+      "price": 88.0,
+      "stock": 200,
+      "image_url": "/images/prod_10306.jpg"
+    },
+    {
+      "sku_id": "10307",
+      "title": "艺福堂 菊花茶 胎菊 100g",
+      "category": "食品饮料",
+      "tags": "菊花,清热,茶饮,胎菊,养生",
+      "price": 32.0,
+      "stock": 200,
+      "image_url": "/images/prod_10307.jpg"
+    },
+    {
+      "sku_id": "10308",
+      "title": "方家铺子 绿豆 1kg",
+      "category": "食品饮料",
+      "tags": "绿豆,消暑,杂粮,汤料,解暑",
+      "price": 19.9,
+      "stock": 200,
+      "image_url": "/images/prod_10308.jpg"
+    },
+    {
+      "sku_id": "10309",
+      "title": "燕之屋 即食燕窝 70g×6",
+      "category": "食品饮料",
+      "tags": "燕窝,送礼,滋补,即食,高端",
+      "price": 598.0,
+      "stock": 200,
+      "image_url": "/images/prod_10309.jpg"
+    },
+    {
+      "sku_id": "10310",
+      "title": "知味观 重阳糕 礼盒装 500g",
+      "category": "食品饮料",
+      "tags": "重阳糕,传统,糕点,送礼,节日",
+      "price": 45.0,
+      "stock": 200,
+      "image_url": "/images/prod_10310.jpg"
+    },
+    {
+      "sku_id": "10311",
+      "title": "稻香村 桂花糕 300g",
+      "category": "食品饮料",
+      "tags": "桂花糕,传统,糕点,茶点,送礼",
+      "price": 28.0,
+      "stock": 200,
+      "image_url": "/images/prod_10311.jpg"
+    },
+    {
+      "sku_id": "10312",
+      "title": "西域美农 新疆红枣 500g",
+      "category": "食品饮料",
+      "tags": "红枣,补血,零食,新疆,煲汤",
+      "price": 25.0,
+      "stock": 200,
+      "image_url": "/images/prod_10312.jpg"
+    },
+    {
+      "sku_id": "10313",
+      "title": "杞里香 宁夏枸杞 250g",
+      "category": "食品饮料",
+      "tags": "枸杞,养生,泡茶,宁夏,滋补",
+      "price": 36.0,
+      "stock": 200,
+      "image_url": "/images/prod_10313.jpg"
+    },
+    {
+      "sku_id": "10314",
+      "title": "艺福堂 玫瑰花茶 80g",
+      "category": "食品饮料",
+      "tags": "玫瑰花,茶饮,养颜,花茶,女生",
+      "price": 29.9,
+      "stock": 200,
+      "image_url": "/images/prod_10314.jpg"
+    },
+    {
+      "sku_id": "10315",
+      "title": "伊芙丽 慵懒风针织开衫",
+      "category": "服饰鞋帽",
+      "tags": "针织开衫,秋装,慵懒,外搭,通勤",
+      "price": 299.0,
+      "stock": 200,
+      "image_url": "/images/prod_10315.jpg"
+    },
+    {
+      "sku_id": "10316",
+      "title": "太平鸟 中长款风衣 卡其色",
+      "category": "服饰鞋帽",
+      "tags": "风衣,春秋,通勤,气质,英伦",
+      "price": 459.0,
+      "stock": 200,
+      "image_url": "/images/prod_10316.jpg"
+    },
+    {
+      "sku_id": "10317",
+      "title": "Lily 长袖衬衫 白",
+      "category": "服饰鞋帽",
+      "tags": "长袖衬衫,通勤,OL,基础款,百搭",
+      "price": 199.0,
+      "stock": 200,
+      "image_url": "/images/prod_10317.jpg"
+    },
+    {
+      "sku_id": "10318",
+      "title": "上海故事 真丝丝巾 90×90cm",
+      "category": "服饰鞋帽",
+      "tags": "丝巾,真丝,优雅,送礼,妈妈",
+      "price": 159.0,
+      "stock": 200,
+      "image_url": "/images/prod_10318.jpg"
+    },
+    {
+      "sku_id": "10319",
+      "title": "重回汉唐 明制汉服 马面裙套装",
+      "category": "服饰鞋帽",
+      "tags": "汉服,国风,传统,拍照,文化",
+      "price": 388.0,
+      "stock": 200,
+      "image_url": "/images/prod_10319.jpg"
+    },
+    {
+      "sku_id": "10320",
+      "title": "恒源祥 男士羊毛衫 圆领",
+      "category": "服饰鞋帽",
+      "tags": "羊毛衫,保暖,秋冬,男士,针织",
+      "price": 259.0,
+      "stock": 200,
+      "image_url": "/images/prod_10320.jpg"
+    },
+    {
+      "sku_id": "10321",
+      "title": "南极人 保暖内衣套装 男女款",
+      "category": "服饰鞋帽",
+      "tags": "保暖内衣,秋冬,打底,保暖,贴身",
+      "price": 89.0,
+      "stock": 200,
+      "image_url": "/images/prod_10321.jpg"
+    },
+    {
+      "sku_id": "10322",
+      "title": "探路者 冲锋衣 防风防水",
+      "category": "服饰鞋帽",
+      "tags": "冲锋衣,户外,防风,防水,登山",
+      "price": 399.0,
+      "stock": 200,
+      "image_url": "/images/prod_10322.jpg"
+    },
+    {
+      "sku_id": "10323",
+      "title": "蕉下 防晒衣 轻薄透气 UPF50+",
+      "category": "服饰鞋帽",
+      "tags": "防晒衣,防晒,轻薄,夏,户外",
+      "price": 169.0,
+      "stock": 200,
+      "image_url": "/images/prod_10323.jpg"
+    },
+    {
+      "sku_id": "10324",
+      "title": "百丽 乐福鞋 方头粗跟",
+      "category": "服饰鞋帽",
+      "tags": "乐福鞋,通勤,秋,真皮,百搭",
+      "price": 459.0,
+      "stock": 200,
+      "image_url": "/images/prod_10324.jpg"
+    },
+    {
+      "sku_id": "10325",
+      "title": "斯凯奇 健步鞋 男女同款",
+      "category": "服饰鞋帽",
+      "tags": "健步鞋,舒适,散步,轻便,软底",
+      "price": 399.0,
+      "stock": 200,
+      "image_url": "/images/prod_10325.jpg"
+    },
+    {
+      "sku_id": "10326",
+      "title": "OhSunny 遮阳帽 大檐 UPF50+",
+      "category": "服饰鞋帽",
+      "tags": "遮阳帽,防晒,大檐,户外,夏",
+      "price": 89.0,
+      "stock": 200,
+      "image_url": "/images/prod_10326.jpg"
+    },
+    {
+      "sku_id": "10327",
+      "title": "恒源祥 羊绒围巾 纯色",
+      "category": "服饰鞋帽",
+      "tags": "羊绒围巾,保暖,秋冬,送礼,柔软",
+      "price": 199.0,
+      "stock": 200,
+      "image_url": "/images/prod_10327.jpg"
+    },
+    {
+      "sku_id": "10328",
+      "title": "有香集 旗袍 改良日常款",
+      "category": "服饰鞋帽",
+      "tags": "旗袍,国风,日常,改良,优雅",
+      "price": 288.0,
+      "stock": 200,
+      "image_url": "/images/prod_10328.jpg"
+    },
+    {
+      "sku_id": "10329",
+      "title": "森马 棉麻长裤 宽松",
+      "category": "服饰鞋帽",
+      "tags": "棉麻,长裤,透气,夏,休闲",
+      "price": 129.0,
+      "stock": 200,
+      "image_url": "/images/prod_10329.jpg"
+    },
+    {
+      "sku_id": "10330",
+      "title": "伊芙丽 薄款风衣 拼接设计",
+      "category": "服饰鞋帽",
+      "tags": "风衣,薄款,春秋,设计感,通勤",
+      "price": 389.0,
+      "stock": 200,
+      "image_url": "/images/prod_10330.jpg"
+    },
+    {
+      "sku_id": "10331",
+      "title": "探险者 户外野餐垫 防潮 200×200cm",
+      "category": "运动户外",
+      "tags": "野餐垫,防潮,户外,郊游,露营",
+      "price": 59.0,
+      "stock": 200,
+      "image_url": "/images/prod_10331.jpg"
+    },
+    {
+      "sku_id": "10332",
+      "title": "原始人 户外折叠椅 便携",
+      "category": "运动户外",
+      "tags": "折叠椅,户外,露营,钓鱼,便携",
+      "price": 79.0,
+      "stock": 200,
+      "image_url": "/images/prod_10332.jpg"
+    },
+    {
+      "sku_id": "10333",
+      "title": "探路者 登山杖 铝合金 伸缩",
+      "category": "运动户外",
+      "tags": "登山杖,徒步,登山,铝合金,伸缩",
+      "price": 89.0,
+      "stock": 200,
+      "image_url": "/images/prod_10333.jpg"
+    },
+    {
+      "sku_id": "10334",
+      "title": "骆驼 户外折叠桌 铝合金",
+      "category": "运动户外",
+      "tags": "折叠桌,露营,户外,铝合金,便携",
+      "price": 129.0,
+      "stock": 200,
+      "image_url": "/images/prod_10334.jpg"
+    },
+    {
+      "sku_id": "10335",
+      "title": "挪客 户外睡袋 羽绒 零下5度",
+      "category": "运动户外",
+      "tags": "睡袋,羽绒,露营,保暖,轻量",
+      "price": 259.0,
+      "stock": 200,
+      "image_url": "/images/prod_10335.jpg"
+    },
+    {
+      "sku_id": "10336",
+      "title": "探险者 天幕帐篷 防晒防雨",
+      "category": "运动户外",
+      "tags": "天幕,帐篷,露营,防晒,户外",
+      "price": 199.0,
+      "stock": 200,
+      "image_url": "/images/prod_10336.jpg"
+    },
+    {
+      "sku_id": "10337",
+      "title": "牧高笛 户外防风衣 男款",
+      "category": "运动户外",
+      "tags": "防风衣,户外,防风,轻量,春秋",
+      "price": 249.0,
+      "stock": 200,
+      "image_url": "/images/prod_10337.jpg"
+    },
+    {
+      "sku_id": "10338",
+      "title": "骆驼 徒步背包 40L",
+      "category": "运动户外",
+      "tags": "徒步,背包,户外,登山,40升",
+      "price": 199.0,
+      "stock": 200,
+      "image_url": "/images/prod_10338.jpg"
+    },
+    {
+      "sku_id": "10339",
+      "title": "探路者 户外速干裤 男款",
+      "category": "运动户外",
+      "tags": "速干裤,户外,徒步,透气,快干",
+      "price": 169.0,
+      "stock": 200,
+      "image_url": "/images/prod_10339.jpg"
+    },
+    {
+      "sku_id": "10340",
+      "title": "迪卡侬 户外头灯 USB充电",
+      "category": "运动户外",
+      "tags": "头灯,户外,夜跑,露营,钓鱼",
+      "price": 49.0,
+      "stock": 200,
+      "image_url": "/images/prod_10340.jpg"
+    },
+    {
+      "sku_id": "10341",
+      "title": "IRIS 桌面收纳盒 抽屉式 3层",
+      "category": "家居生活",
+      "tags": "收纳,桌面,整理,抽屉,文具",
+      "price": 69.0,
+      "stock": 200,
+      "image_url": "/images/prod_10341.jpg"
+    },
+    {
+      "sku_id": "10342",
+      "title": "小熊 制冰机 家用 小型",
+      "category": "家居生活",
+      "tags": "制冰机,冰块,夏,小型,家用",
+      "price": 199.0,
+      "stock": 200,
+      "image_url": "/images/prod_10342.jpg"
+    },
+    {
+      "sku_id": "10343",
+      "title": "摩飞 气泡水机 家用",
+      "category": "家居生活",
+      "tags": "气泡水机,饮品,夏,DIY,家用",
+      "price": 269.0,
+      "stock": 200,
+      "image_url": "/images/prod_10343.jpg"
+    },
+    {
+      "sku_id": "10344",
+      "title": "小熊 养生壶 1.5L 多功能",
+      "category": "家居生活",
+      "tags": "养生壶,煮茶,炖汤,多功能,家用",
+      "price": 129.0,
+      "stock": 200,
+      "image_url": "/images/prod_10344.jpg"
+    },
+    {
+      "sku_id": "10345",
+      "title": "德业 除湿盒 衣柜 吸湿",
+      "category": "家居生活",
+      "tags": "除湿,防潮,衣柜,吸水,防霉",
+      "price": 19.9,
+      "stock": 200,
+      "image_url": "/images/prod_10345.jpg"
+    },
+    {
+      "sku_id": "10346",
+      "title": "太力 真空压缩袋 8件套",
+      "category": "家居生活",
+      "tags": "压缩袋,收纳,换季,省空间,防潮",
+      "price": 39.9,
+      "stock": 200,
+      "image_url": "/images/prod_10346.jpg"
+    },
+    {
+      "sku_id": "10347",
+      "title": "美的 小台扇 USB充电 便携",
+      "category": "家居生活",
+      "tags": "小风扇,便携,USB,夏,桌面",
+      "price": 49.0,
+      "stock": 200,
+      "image_url": "/images/prod_10347.jpg"
+    },
+    {
+      "sku_id": "10348",
+      "title": "网易严选 懒人沙发 豆袋",
+      "category": "家居生活",
+      "tags": "懒人沙发,豆袋,舒适,租房,小户型",
+      "price": 399.0,
+      "stock": 200,
+      "image_url": "/images/prod_10348.jpg"
+    },
+    {
+      "sku_id": "10349",
+      "title": "小米 氛围灯带 2m RGB",
+      "category": "家居生活",
+      "tags": "氛围灯,RGB,智能,装饰,卧室",
+      "price": 79.0,
+      "stock": 200,
+      "image_url": "/images/prod_10349.jpg"
+    },
+    {
+      "sku_id": "10350",
+      "title": "九阳 煮茶器 玻璃 0.8L",
+      "category": "家居生活",
+      "tags": "煮茶器,茶具,玻璃,电热,养生",
+      "price": 99.0,
+      "stock": 200,
+      "image_url": "/images/prod_10350.jpg"
+    },
+    {
+      "sku_id": "10351",
+      "title": "乐扣 冷水壶 耐热玻璃 1.5L",
+      "category": "家居生活",
+      "tags": "冷水壶,玻璃,夏,耐热,饮品",
+      "price": 49.0,
+      "stock": 200,
+      "image_url": "/images/prod_10351.jpg"
+    },
+    {
+      "sku_id": "10352",
+      "title": "PILOT 百乐 钢笔礼盒 78G",
+      "category": "家居生活",
+      "tags": "钢笔,礼盒,送礼,书写,商务",
+      "price": 158.0,
+      "stock": 200,
+      "image_url": "/images/prod_10352.jpg"
+    },
+    {
+      "sku_id": "10353",
+      "title": "晨光 孔庙祈福 考试套装 12件",
+      "category": "家居生活",
+      "tags": "考试,文具,祈福,套装,学生",
+      "price": 29.0,
+      "stock": 200,
+      "image_url": "/images/prod_10353.jpg"
+    },
+    {
+      "sku_id": "10354",
+      "title": "得力 桌面洞洞板 收纳",
+      "category": "家居生活",
+      "tags": "桌面,收纳,洞洞板,整理,办公",
+      "price": 49.0,
+      "stock": 200,
+      "image_url": "/images/prod_10354.jpg"
+    },
+    {
+      "sku_id": "10355",
+      "title": "三年二班 手工贺卡材料包 30张",
+      "category": "家居生活",
+      "tags": "贺卡,手工,材料,DIY,祝福",
+      "price": 19.9,
+      "stock": 200,
+      "image_url": "/images/prod_10355.jpg"
+    },
+    {
+      "sku_id": "10356",
+      "title": "KACO 状元及第 文具礼盒",
+      "category": "家居生活",
+      "tags": "文具,状元,送礼,考试,祝福",
+      "price": 88.0,
+      "stock": 200,
+      "image_url": "/images/prod_10356.jpg"
+    },
+    {
+      "sku_id": "10357",
+      "title": "欧姆龙 电子血压计 上臂式",
+      "category": "医疗保健",
+      "tags": "血压计,电子,家用,健康,老人",
+      "price": 299.0,
+      "stock": 200,
+      "image_url": "/images/prod_10357.jpg"
+    },
+    {
+      "sku_id": "10358",
+      "title": "SKG 颈椎按摩仪 脉冲",
+      "category": "医疗保健",
+      "tags": "按摩仪,颈椎,脉冲,便携,办公",
+      "price": 269.0,
+      "stock": 200,
+      "image_url": "/images/prod_10358.jpg"
+    },
+    {
+      "sku_id": "10359",
+      "title": "金嗓子 喉宝 润喉糖 袋装",
+      "category": "医疗保健",
+      "tags": "润喉糖,护嗓,教师,清凉,糖",
+      "price": 15.0,
+      "stock": 200,
+      "image_url": "/images/prod_10359.jpg"
+    },
+    {
+      "sku_id": "10360",
+      "title": "Swisse 奶蓟草护肝片 120片",
+      "category": "医疗保健",
+      "tags": "护肝,Swisse,熬夜,解酒,保健",
+      "price": 148.0,
+      "stock": 200,
+      "image_url": "/images/prod_10360.jpg"
+    },
+    {
+      "sku_id": "10361",
+      "title": "允宝 恒温护膝 电热",
+      "category": "医疗保健",
+      "tags": "护膝,保暖,恒温,老人,关节",
+      "price": 129.0,
+      "stock": 200,
+      "image_url": "/images/prod_10361.jpg"
+    },
+    {
+      "sku_id": "10362",
+      "title": "欧姆龙 电子体温计 额温枪",
+      "category": "医疗保健",
+      "tags": "体温计,额温,家用,快速,精准",
+      "price": 99.0,
+      "stock": 200,
+      "image_url": "/images/prod_10362.jpg"
+    },
+    {
+      "sku_id": "10363",
+      "title": "若态 干花相框DIY材料包",
+      "category": "家居生活",
+      "tags": "干花,相框,DIY,手工,礼物",
+      "price": 39.0,
+      "stock": 200,
+      "image_url": "/images/prod_10363.jpg"
+    },
+    {
+      "sku_id": "10364",
+      "title": "俏手艺 扭扭棒花束材料包 50支",
+      "category": "家居生活",
+      "tags": "扭扭棒,花束,手工,DIY,材料",
+      "price": 25.0,
+      "stock": 200,
+      "image_url": "/images/prod_10364.jpg"
+    },
+    {
+      "sku_id": "10365",
+      "title": "栖凤居 香囊DIY材料包 6个装",
+      "category": "家居生活",
+      "tags": "香囊,DIY,端午,手工,艾草",
+      "price": 19.9,
+      "stock": 200,
+      "image_url": "/images/prod_10365.jpg"
+    },
+    {
+      "sku_id": "10366",
+      "title": "俏妮 滴胶挂件材料包 12件",
+      "category": "家居生活",
+      "tags": "滴胶,挂件,DIY,手工,礼物",
+      "price": 29.0,
+      "stock": 200,
+      "image_url": "/images/prod_10366.jpg"
+    },
+    {
+      "sku_id": "10367",
+      "title": "泡泡玛特 教师节限定 盲盒",
+      "category": "潮玩手办",
+      "tags": "盲盒,教师节,限定,潮玩,收藏",
+      "price": 69.0,
+      "stock": 200,
+      "image_url": "/images/prod_10367.jpg"
+    },
+    {
+      "sku_id": "10368",
+      "title": "故宫文创 祈福御守 挂件",
+      "category": "时尚配饰",
+      "tags": "祈福,御守,故宫,文创,挂件",
+      "price": 49.0,
+      "stock": 200,
+      "image_url": "/images/prod_10368.jpg"
+    },
+    {
+      "sku_id": "10369",
+      "title": "周大福 足金转运珠 0.3g",
+      "category": "时尚配饰",
+      "tags": "黄金,转运珠,手链,送礼,足金",
+      "price": 388.0,
+      "stock": 200,
+      "image_url": "/images/prod_10369.jpg"
+    },
+    {
+      "sku_id": "10370",
+      "title": "施华洛世奇 水晶笔 刻字",
+      "category": "时尚配饰",
+      "tags": "水晶,笔,送礼,刻字,高端",
+      "price": 299.0,
+      "stock": 200,
+      "image_url": "/images/prod_10370.jpg"
+    },
+    {
+      "sku_id": "10371",
+      "title": "若来 拉布布Labubu 娃衣套装",
+      "category": "潮玩手办",
+      "tags": "拉布布,娃衣,盲盒配件,潮玩,换装",
+      "price": 49.0,
+      "stock": 200,
+      "image_url": "/images/prod_10371.jpg"
+    },
+    {
+      "sku_id": "10372",
+      "title": "GOTO 潮玩展示盒 透明亚克力 5层",
+      "category": "家居生活",
+      "tags": "展示盒,潮玩,亚克力,收纳,防尘",
+      "price": 89.0,
+      "stock": 200,
+      "image_url": "/images/prod_10372.jpg"
+    },
+    {
+      "sku_id": "10373",
+      "title": "熊猫精酿 蜂蜜艾尔啤酒 330ml×6",
+      "category": "酒水饮料",
+      "tags": "精酿,啤酒,蜂蜜,国产,清爽",
+      "price": 69.0,
+      "stock": 200,
+      "image_url": "/images/prod_10373.jpg"
+    },
+    {
+      "sku_id": "10374",
+      "title": "醉鹅娘 无酒精气泡酒 750ml",
+      "category": "酒水饮料",
+      "tags": "气泡酒,无酒精,庆功,派对,女生",
+      "price": 79.0,
+      "stock": 200,
+      "image_url": "/images/prod_10374.jpg"
+    },
+    {
+      "sku_id": "10375",
+      "title": "极米 便携投影仪 Play3",
+      "category": "数码电器",
+      "tags": "投影仪,便携,观影,露营,家用",
+      "price": 1999.0,
+      "stock": 200,
+      "image_url": "/images/prod_10375.jpg"
+    },
+    {
+      "sku_id": "10376",
+      "title": "佳能 照片打印机 手机无线",
+      "category": "数码电器",
+      "tags": "打印机,照片,手机,便携,礼物",
+      "price": 899.0,
+      "stock": 200,
+      "image_url": "/images/prod_10376.jpg"
+    },
+    {
+      "sku_id": "10377",
+      "title": "大疆 便携稳定器 OM6",
+      "category": "数码电器",
+      "tags": "稳定器,手机,拍摄,便携,vlog",
+      "price": 599.0,
+      "stock": 200,
+      "image_url": "/images/prod_10377.jpg"
+    },
+    {
+      "sku_id": "10378",
+      "title": "科尔沁 风干牛肉干 250g",
+      "category": "休闲零食",
+      "tags": "牛肉干,零食,高蛋白,内蒙,充饥",
+      "price": 59.0,
+      "stock": 200,
+      "image_url": "/images/prod_10378.jpg"
+    },
+    {
+      "sku_id": "10379",
+      "title": "海底捞 自热米饭 红烧牛肉 300g",
+      "category": "休闲零食",
+      "tags": "自热米饭,方便,速食,户外,加热",
+      "price": 25.0,
+      "stock": 200,
+      "image_url": "/images/prod_10379.jpg"
+    },
+    {
+      "sku_id": "10380",
+      "title": "来伊份 坚果零食大礼包 1kg",
+      "category": "休闲零食",
+      "tags": "坚果,零食,送礼,混合,年货",
+      "price": 99.0,
+      "stock": 200,
+      "image_url": "/images/prod_10380.jpg"
+    },
+    {
+      "sku_id": "10381",
+      "title": "babycare 儿童防晒喷雾 SPF30 80ml",
+      "category": "母婴用品",
+      "tags": "防晒,儿童,喷雾,户外,亲子",
+      "price": 79.0,
+      "stock": 200,
+      "image_url": "/images/prod_10381.jpg"
+    },
+    {
+      "sku_id": "10382",
+      "title": "贝亲 儿童吸管保温杯 500ml",
+      "category": "母婴用品",
+      "tags": "保温杯,儿童,吸管,不锈钢,上学",
+      "price": 129.0,
+      "stock": 200,
+      "image_url": "/images/prod_10382.jpg"
+    },
+    {
+      "sku_id": "10383",
+      "title": "车志酷 车载充气床垫 SUV通用",
+      "category": "运动户外",
+      "tags": "车载床垫,充气,自驾,旅行,SUV",
+      "price": 199.0,
+      "stock": 200,
+      "image_url": "/images/prod_10383.jpg"
+    },
+    {
+      "sku_id": "10384",
+      "title": "宝贝第一 儿童安全座椅 0-12岁",
+      "category": "母婴用品",
+      "tags": "安全座椅,儿童,车载,出行,安全",
+      "price": 899.0,
+      "stock": 200,
+      "image_url": "/images/prod_10384.jpg"
+    },
+    {
+      "sku_id": "10385",
+      "title": "迪卡侬 旅行收纳袋 6件套",
+      "category": "运动户外",
+      "tags": "收纳袋,旅行,整理,分类,防水",
+      "price": 39.0,
+      "stock": 200,
+      "image_url": "/images/prod_10385.jpg"
+    },
+    {
+      "sku_id": "10386",
+      "title": "泡泡玛特 拉布布Labubu 娃衣套装 学院风",
+      "category": "潮玩手办",
+      "tags": [
+        "拉布布娃衣",
+        "潮玩",
+        "换装",
+        "盲盒配件"
+      ],
+      "price": 59.0,
+      "stock": 150,
+      "image_url": "/images/prod_10386.jpg"
+    },
+    {
+      "sku_id": "10387",
+      "title": "GOTO 潮玩盲盒展示盒 透明亚克力 阶梯5层",
+      "category": "潮玩手办",
+      "tags": [
+        "潮玩展示盒",
+        "收纳",
+        "亚克力",
+        "透明"
+      ],
+      "price": 89.0,
+      "stock": 150,
+      "image_url": "/images/prod_10387.jpg"
+    },
+    {
+      "sku_id": "10388",
+      "title": "泡泡玛特 盲盒收纳包 便携 12格",
+      "category": "潮玩手办",
+      "tags": [
+        "盲盒收纳包",
+        "潮玩",
+        "便携",
+        "展示"
+      ],
+      "price": 39.0,
+      "stock": 150,
+      "image_url": "/images/prod_10388.jpg"
+    },
+    {
+      "sku_id": "10389",
+      "title": "得力 模型拆盒工具套装 4件套",
+      "category": "家居生活",
+      "tags": [
+        "拆盒工具",
+        "模型",
+        "手办",
+        "开箱"
+      ],
+      "price": 19.9,
+      "stock": 150,
+      "image_url": "/images/prod_10389.jpg"
+    },
+    {
+      "sku_id": "10390",
+      "title": "故宫文创 千里江山 复古书签礼盒",
+      "category": "家居生活",
+      "tags": [
+        "非遗手作",
+        "文创",
+        "故宫",
+        "书签",
+        "送礼"
+      ],
+      "price": 128.0,
+      "stock": 150,
+      "image_url": "/images/prod_10390.jpg"
+    },
+    {
+      "sku_id": "10391",
+      "title": "景德镇 手工陶瓷茶具套装 一壶四杯",
+      "category": "家居生活",
+      "tags": [
+        "传统茶具",
+        "陶瓷",
+        "手工",
+        "送礼"
+      ],
+      "price": 299.0,
+      "stock": 150,
+      "image_url": "/images/prod_10391.jpg"
+    },
+    {
+      "sku_id": "10392",
+      "title": "敦煌文创 藻井纹样 复古丝巾",
+      "category": "家居生活",
+      "tags": [
+        "复古摆件",
+        "丝巾",
+        "敦煌",
+        "文创"
+      ],
+      "price": 89.0,
+      "stock": 150,
+      "image_url": "/images/prod_10392.jpg"
+    },
+    {
+      "sku_id": "10393",
+      "title": "若来 国风建筑拼插模型 太和殿",
+      "category": "家居生活",
+      "tags": [
+        "非遗手作",
+        "国风",
+        "建筑",
+        "拼插模型",
+        "摆件"
+      ],
+      "price": 199.0,
+      "stock": 150,
+      "image_url": "/images/prod_10393.jpg"
+    },
+    {
+      "sku_id": "10394",
+      "title": "立邦 墙面翻新净味乳胶漆 5L 白色",
+      "category": "家居生活",
+      "tags": [
+        "墙面翻新漆",
+        "乳胶漆",
+        "净味",
+        "DIY"
+      ],
+      "price": 199.0,
+      "stock": 150,
+      "image_url": "/images/prod_10394.jpg"
+    },
+    {
+      "sku_id": "10395",
+      "title": "无印良品 壁挂式折叠桌 省空间",
+      "category": "家居生活",
+      "tags": [
+        "省空间家具",
+        "折叠桌",
+        "壁挂",
+        "小户型"
+      ],
+      "price": 399.0,
+      "stock": 150,
+      "image_url": "/images/prod_10395.jpg"
+    },
+    {
+      "sku_id": "10396",
+      "title": "太力 真空压缩袋 特大号 10件套",
+      "category": "家居生活",
+      "tags": [
+        "极致收纳",
+        "压缩袋",
+        "省空间",
+        "衣物"
+      ],
+      "price": 49.9,
+      "stock": 150,
+      "image_url": "/images/prod_10396.jpg"
+    },
+    {
+      "sku_id": "10397",
+      "title": "3M 防水防霉密封胶 透明 300ml",
+      "category": "家居生活",
+      "tags": [
+        "防潮防霉",
+        "密封胶",
+        "厨卫",
+        "翻新"
+      ],
+      "price": 29.9,
+      "stock": 150,
+      "image_url": "/images/prod_10397.jpg"
+    },
+    {
+      "sku_id": "10398",
+      "title": "阿迪达斯 日本国家队 2026 主场球衣 球迷版",
+      "category": "运动户外",
+      "tags": [
+        "日本队球衣",
+        "世界杯",
+        "球迷",
+        "运动"
+      ],
+      "price": 499.0,
+      "stock": 150,
+      "image_url": "/images/prod_10398.jpg"
+    },
+    {
+      "sku_id": "10399",
+      "title": "东鹏特饮 维生素功能饮料 250ml×24罐",
+      "category": "食品饮料",
+      "tags": [
+        "熬夜提神饮料",
+        "功能饮料",
+        "能量",
+        "看球"
+      ],
+      "price": 89.0,
+      "stock": 150,
+      "image_url": "/images/prod_10399.jpg"
+    },
+    {
+      "sku_id": "10400",
+      "title": "周黑鸭 锁鲜卤鸭脖 180g×3盒",
+      "category": "休闲零食",
+      "tags": [
+        "看球零食",
+        "卤味",
+        "聚会"
+      ],
+      "price": 49.9,
+      "stock": 150,
+      "image_url": "/images/prod_10400.jpg"
+    },
+    {
+      "sku_id": "10401",
+      "title": "良品铺子 看球零食大礼包 1.2kg",
+      "category": "休闲零食",
+      "tags": [
+        "看球零食",
+        "礼包",
+        "聚会",
+        "膨化"
+      ],
+      "price": 79.0,
+      "stock": 150,
+      "image_url": "/images/prod_10401.jpg"
+    },
+    {
+      "sku_id": "10402",
+      "title": "小米 净水器RO反渗透滤芯 600G通用",
+      "category": "家居生活",
+      "tags": [
+        "净水器滤芯",
+        "小米",
+        "通用",
+        "更换"
+      ],
+      "price": 299.0,
+      "stock": 150,
+      "image_url": "/images/prod_10402.jpg"
+    },
+    {
+      "sku_id": "10403",
+      "title": "小米 天然气报警器 家用 联动网关",
+      "category": "家居生活",
+      "tags": [
+        "燃气报警器",
+        "家用",
+        "安全",
+        "联动"
+      ],
+      "price": 149.0,
+      "stock": 150,
+      "image_url": "/images/prod_10403.jpg"
+    },
+    {
+      "sku_id": "10404",
+      "title": "汉斯格雅 家用自来水增压泵 静音 90W",
+      "category": "家居生活",
+      "tags": [
+        "家用增压泵",
+        "水压",
+        "静音",
+        "安装"
+      ],
+      "price": 268.0,
+      "stock": 150,
+      "image_url": "/images/prod_10404.jpg"
+    },
+    {
+      "sku_id": "10405",
+      "title": "联塑 PPR冷热水管 4分管 20mm×3米",
+      "category": "家居生活",
+      "tags": [
+        "PPR水管",
+        "家装",
+        "管材"
+      ],
+      "price": 15.9,
+      "stock": 150,
+      "image_url": "/images/prod_10405.jpg"
+    },
+    {
+      "sku_id": "10406",
+      "title": "商务印书馆 新华字典 第12版 双色本",
+      "category": "母婴用品",
+      "tags": [
+        "新华字典",
+        "工具书",
+        "学生",
+        "语文"
+      ],
+      "price": 32.9,
+      "stock": 150,
+      "image_url": "/images/prod_10406.jpg"
+    },
+    {
+      "sku_id": "10407",
+      "title": "商务印书馆 现代汉语词典 第7版",
+      "category": "母婴用品",
+      "tags": [
+        "儿童词典",
+        "工具书",
+        "语文",
+        "学生"
+      ],
+      "price": 109.0,
+      "stock": 150,
+      "image_url": "/images/prod_10407.jpg"
+    },
+    {
+      "sku_id": "10408",
+      "title": "海豚传媒 性别平等绘本 全套6册",
+      "category": "母婴用品",
+      "tags": [
+        "性别平等绘本",
+        "儿童",
+        "早教"
+      ],
+      "price": 79.0,
+      "stock": 150,
+      "image_url": "/images/prod_10408.jpg"
+    },
+    {
+      "sku_id": "10409",
+      "title": "中信出版社 抗日战争全记录 精装 2册",
+      "category": "母婴用品",
+      "tags": [
+        "抗战历史书籍",
+        "二战纪实",
+        "历史",
+        "精装"
+      ],
+      "price": 168.0,
+      "stock": 150,
+      "image_url": "/images/prod_10409.jpg"
+    },
+    {
+      "sku_id": "10410",
+      "title": "人民出版社 二战全史 珍藏版",
+      "category": "母婴用品",
+      "tags": [
+        "二战纪实",
+        "历史",
+        "军事",
+        "珍藏"
+      ],
+      "price": 128.0,
+      "stock": 150,
+      "image_url": "/images/prod_10410.jpg"
+    },
+    {
+      "sku_id": "10411",
+      "title": "故宫文创 和平鸽纪念徽章 礼盒装",
+      "category": "家居生活",
+      "tags": [
+        "爱国主义文创",
+        "和平",
+        "纪念",
+        "故宫"
+      ],
+      "price": 59.0,
+      "stock": 150,
+      "image_url": "/images/prod_10411.jpg"
+    },
+    {
+      "sku_id": "10412",
+      "title": "得到App 电子书卡 年卡 畅读4万册",
+      "category": "数码电器",
+      "tags": [
+        "技能提升课",
+        "电子书",
+        "课程",
+        "副业",
+        "学习"
+      ],
+      "price": 365.0,
+      "stock": 150,
+      "image_url": "/images/prod_10412.jpg"
+    },
+    {
+      "sku_id": "10413",
+      "title": "Moleskine 职业规划笔记本 A5 硬面",
+      "category": "家居生活",
+      "tags": [
+        "简历优化",
+        "笔记本",
+        "职场",
+        "规划"
+      ],
+      "price": 128.0,
+      "stock": 150,
+      "image_url": "/images/prod_10413.jpg"
+    },
+    {
+      "sku_id": "10414",
+      "title": "网易云课堂 简历优化与面试指南 电子资料卡",
+      "category": "家居生活",
+      "tags": [
+        "技能提升课",
+        "简历优化",
+        "课程",
+        "面试"
+      ],
+      "price": 49.0,
+      "stock": 150,
+      "image_url": "/images/prod_10414.jpg"
+    },
+    {
+      "sku_id": "10415",
+      "title": "野兽派 减压香薰蜡烛 柑橘调 200g",
+      "category": "美妆护肤",
+      "tags": [
+        "减压香薰",
+        "蜡烛",
+        "职场",
+        "柑橘"
+      ],
+      "price": 89.0,
+      "stock": 150,
+      "image_url": "/images/prod_10415.jpg"
+    },
+    {
+      "sku_id": "10416",
+      "title": "摩飞 便携气泡水机 无线 USB充电",
+      "category": "家居生活",
+      "tags": [
+        "气泡水机",
+        "便携",
+        "无线",
+        "DIY"
+      ],
+      "price": 299.0,
+      "stock": 150,
+      "image_url": "/images/prod_10416.jpg"
+    },
+    {
+      "sku_id": "10417",
+      "title": "霜山 硅胶冰块模具 大号冰块6格",
+      "category": "家居生活",
+      "tags": [
+        "冰块模具",
+        "硅胶",
+        "大号"
+      ],
+      "price": 25.0,
+      "stock": 150,
+      "image_url": "/images/prod_10417.jpg"
+    },
+    {
+      "sku_id": "10418",
+      "title": "寿全斋 老北京酸梅汤原料包 150g×10",
+      "category": "食品饮料",
+      "tags": [
+        "酸梅汤料包",
+        "消暑",
+        "DIY",
+        "乌梅"
+      ],
+      "price": 39.9,
+      "stock": 150,
+      "image_url": "/images/prod_10418.jpg"
+    },
+    {
+      "sku_id": "10419",
+      "title": "MUJI 冷泡茶壶 耐热玻璃 1L",
+      "category": "家居生活",
+      "tags": [
+        "冷泡茶包",
+        "冷泡壶",
+        "玻璃",
+        "茶具"
+      ],
+      "price": 68.0,
+      "stock": 150,
+      "image_url": "/images/prod_10419.jpg"
     }
   ]
 }

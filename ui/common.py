@@ -2240,8 +2240,8 @@ def _render_recommendations(recs):
             render_product_card(r.get('product', {}), r.get('reason'))
 
 
-# 「AI 推荐」页的场景胶囊（label / 场景标签 / 匹配关键词）
-AI_RECOMMEND_SCENES = [
+# 「AI 推荐」页的默认场景胶囊（当 scenarios.json 为空或不可用时使用）
+_AI_RECOMMEND_FALLBACK = [
     {"label": "🏕️ 露营",     "scene_tag": "露营经济场景", "keywords": ["露营", "帐篷", "户外", "野营", "烧烤"]},
     {"label": "🏃 户外运动", "scene_tag": "户外运动场景", "keywords": ["运动", "跑步", "健身", "徒步", "骑行"]},
     {"label": "⚽ 看球聚会", "scene_tag": "赛事聚会场景", "keywords": ["啤酒", "世界杯", "看球", "聚会", "零食"]},
@@ -2253,63 +2253,154 @@ AI_RECOMMEND_SCENES = [
 ]
 
 
+def _load_scene_capsules():
+    """从 scenarios.json 按 source_detail 聚合生成场景胶囊（按场景数降序）。
+    若文件不存在或为空，返回 None（调用方回退到 _AI_RECOMMEND_FALLBACK）。
+    """
+    try:
+        with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                               "data", "scenarios.json"), "r", encoding="utf-8") as f:
+            scenes = json.load(f)
+    except Exception:
+        return None
+    if not isinstance(scenes, list) or len(scenes) == 0:
+        return None
+
+    groups = {}
+    for s in scenes:
+        key = s.get('scene_name') or ''
+        key = key.strip()
+        if not key:
+            continue
+        groups.setdefault(key, {'keywords': set(), 'cnt': 0})
+        for kw in (s.get('potential_keywords') or []):
+            if isinstance(kw, str) and kw.strip():
+                groups[key]['keywords'].add(kw.strip())
+        groups[key]['cnt'] += 1
+
+    sorted_groups = sorted(groups.items(), key=lambda x: x[1]['cnt'], reverse=True)
+    capsules = []
+    for name, info in sorted_groups:
+        capsules.append({
+            "label": name,
+            "scene_tag": f"{name}场景",
+            "keywords": list(info['keywords'])[:8],
+        })
+    return capsules if capsules else None
+
+
 def render_ai_recommend():
-    """渲染「AI 推荐」页面：顶部场景筛选胶囊 + 下方垂直商品卡片列表"""
+    """渲染「AI 推荐」页面：先选用户画像 → 动态场景胶囊(2×4+下拉) → 画像驱动推荐"""
+    recommender = get_service().get_recommender()
+
     st.markdown("""
     <div style="text-align:center; padding:0.5rem 0 0.25rem 0;">
         <h1 style="font-size:1.8rem; font-weight:700; background:linear-gradient(135deg,#3b82f6,#8b5cf6);
            -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:0;">🎯 AI 推荐 · 场景化选品</h1>
-        <p style="color:#6b7280; margin-top:0.4rem;">选择一个场景，AI 结合商品属性与场景为你精选好物，并提炼产品亮点与推荐理由</p>
     </div>
     """, unsafe_allow_html=True)
 
+    # ===== 第一步：选择用户 =====
+    if not st.session_state.get('ai_rec_user'):
+        users = recommender.list_users()
+        st.markdown("#### 👋 先选择你的身份，AI 将根据你的偏好为你精选好物")
+        cols = st.columns(len(users)) if users else [st.container()]
+        for col, u in zip(cols, users):
+            with col:
+                st.markdown(f'''
+                <div class="persona-card">
+                    <div style="font-size:3rem; text-align:center;">{u.get('avatar_emoji','🙂')}</div>
+                    <h3 style="text-align:center; margin:0.5rem 0; color:#1f2937;">{u.get('name')}</h3>
+                    <p style="text-align:center; color:#6b7280; font-size:0.82rem; min-height:3rem;">{u.get('persona','')}</p>
+                    <div style="text-align:center; margin-top:0.5rem;">{" ".join(f'<span class="keyword-tag">{it}</span>' for it in u.get('interests',[])[:4])}</div>
+                </div>
+                ''', unsafe_allow_html=True)
+                if st.button(f"以 {u.get('name')} 登录", key=f"airec_login_{u.get('user_id')}", type="primary", use_container_width=True):
+                    st.session_state.ai_rec_user = u.get('user_id')
+                    st.session_state.pop('ai_rec_scene', None)
+                    st.session_state.pop('ai_rec_cache', None)
+                    st.rerun()
+        return
+
+    # 加载用户画像
+    user_id = st.session_state.ai_rec_user
+    profile = recommender.get_profile(user_id)
+    user_name = (profile.get('name') or user_id) if profile else user_id
+
+    # 切换用户按钮
+    if st.button(f"🔄 切换用户（当前：{user_name}）", key="airec_switch_user"):
+        st.session_state.pop('ai_rec_user', None)
+        st.rerun()
+
+    # ===== 第二步：加载场景胶囊（scenarios.json → 回退到默认）=====
+    capsules = _load_scene_capsules() or _AI_RECOMMEND_FALLBACK
     # 默认选中第一个场景
     if 'ai_rec_scene' not in st.session_state:
-        st.session_state.ai_rec_scene = AI_RECOMMEND_SCENES[0]['label']
+        st.session_state.ai_rec_scene = capsules[0]['label']
 
-    # 顶部场景筛选胶囊（每行 4 个）
+    # 顶部场景筛选：2 行 × 4 列，前 7 格放胶囊，第 8 格放"更多"下拉
     st.markdown("#### 🏷️ 选择场景")
-    for i in range(0, len(AI_RECOMMEND_SCENES), 4):
-        row = AI_RECOMMEND_SCENES[i:i + 4]
-        cols = st.columns(len(row))
-        for col, sc in zip(cols, row):
-            selected = st.session_state.ai_rec_scene == sc['label']
-            if col.button(
-                sc['label'],
-                key=f"scene_capsule_{sc['label']}",
-                use_container_width=True,
-                type="primary" if selected else "secondary",
-            ):
-                st.session_state.ai_rec_scene = sc['label']
-                st.rerun()
+    capsules_shown = capsules[:7]     # 前 7 个
+    capsules_rest = capsules[7:]      # 剩余放入下拉
 
-    current = next(s for s in AI_RECOMMEND_SCENES if s['label'] == st.session_state.ai_rec_scene)
+    for row_idx in (0, 1):
+        cols = st.columns(4)
+        for col_idx in range(4):
+            idx = row_idx * 4 + col_idx
+            with cols[col_idx]:
+                if idx < 7 and idx < len(capsules_shown):
+                    sc = capsules_shown[idx]
+                    sel = st.session_state.ai_rec_scene == sc['label']
+                    if st.button(
+                        sc['label'], key=f"scene_cap_{sc['label']}",
+                        use_container_width=True, type="primary" if sel else "secondary",
+                    ):
+                        st.session_state.ai_rec_scene = sc['label']
+                        st.rerun()
+                elif idx == 7 and capsules_rest:
+                    more_label = st.selectbox(
+                        "🔽 更多场景",
+                        ["点击选择更多场景"] + [c['label'] for c in capsules_rest],
+                        key="scene_more_select", label_visibility="collapsed",
+                    )
+                    if more_label and more_label != "点击选择更多场景":
+                        st.session_state.ai_rec_scene = more_label
+                        st.session_state.pop('scene_more_select', None)
+                        st.rerun()
 
-    st.markdown('<div style="height:1px; background:linear-gradient(90deg,transparent,#e5e7eb,transparent); margin:1.25rem 0 0.5rem 0;"></div>', unsafe_allow_html=True)
-    st.markdown(f"##### 🔍 {current['label']} · 场景标签 `#{current['scene_tag']}` 为你精选")
+    current = next((s for s in capsules if s['label'] == st.session_state.ai_rec_scene), capsules[0])
 
-    # 先渲染 chrome（标题/胶囊/副标题），再初始化推荐引擎并拉取
-    recommender = get_service().get_recommender()
+    st.markdown('<div style="height:1px; background:linear-gradient(90deg,transparent,#e5e7eb,transparent); margin:1rem 0 0.5rem 0;"></div>', unsafe_allow_html=True)
+    st.markdown(f"##### 🔍 {current['label']} · `#{current['scene_tag']}` · 为你精选")
+
+    # ===== 第三步：画像驱动推荐（场景关键词 + 用户偏好品类）=====
+    scene_kws = list(current.get('keywords', []))
+    profile_kws = []
+    if profile:
+        profile_kws = (profile.get('preferences', {}).get('favorite_categories', []) +
+                       profile.get('interests', []))
+    combined_kws = scene_kws + [kw for kw in profile_kws if kw not in scene_kws]
+
+    # ---- 推荐区 ----
     cache = st.session_state.setdefault('ai_rec_cache', {})
 
     if current['label'] not in cache:
-        # ── 暗色终端日志面板（与热点/时节/提报一致）──
         log_area = st.empty()
-        loading_spacer = st.empty()   # 撑满视口，覆盖旧页残留（拉取完成后清除）
+        loading_spacer = st.empty()
         with log_area.container():
-            st.markdown(f'<div class="log-status">⏳ 正在分析场景…</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="log-status">⏳ 正在分析场景与画像…</div>', unsafe_allow_html=True)
             st.markdown(
                 f'<div class="log-panel">'
                 f'<div class="log-step">📌 场景：{current["label"]}（{current["scene_tag"]}）</div>'
-                f'<div class="log-llm">🤖 LLM 正在结合商品属性与场景标签精选好物、提炼亮点与推荐理由…</div>'
-                f'<div class="log-detail">关键词：{", ".join(current["keywords"][:5])}</div>'
+                f'<div class="log-llm">👤 用户：{user_name} · 偏好品类：{", ".join(profile_kws[:4]) if profile_kws else "综合"}</div>'
+                f'<div class="log-detail">关键词：{", ".join(combined_kws[:6])}</div>'
                 f'</div>',
                 unsafe_allow_html=True,
             )
         loading_spacer.markdown('<div style="min-height:55vh"></div>', unsafe_allow_html=True)
         try:
             cache[current['label']] = recommender.recommend_by_scene(
-                current['label'], current['scene_tag'], current['keywords'], top_n=6
+                current['label'], current['scene_tag'], combined_kws, top_n=6,
             )
         except Exception as e:
             cache[current['label']] = []
@@ -2318,22 +2409,23 @@ def render_ai_recommend():
             return
 
         recs = cache.get(current['label'], [])
-        loading_spacer.empty()   # 清除占位，卡片接替填入
+        loading_spacer.empty()
         with log_area.container():
             st.markdown(f'<div class="log-status">✅ 完成</div>', unsafe_allow_html=True)
             st.markdown(
                 f'<div class="log-panel">'
-                f'<div class="log-step">📌 场景：{current["label"]}（{current["scene_tag"]}）</div>'
-                f'<div class="log-success">✅ 已生成 {len(recs)} 张推荐卡片，含亮点提炼与推荐理由</div>'
-                f'<div class="log-detail">示例：{recs[0]["product"]["title"] if recs else ""}</div>'
+                f'<div class="log-success">✅ 已生成 {len(recs)} 张推荐卡片</div>'
+                f'<div class="log-detail">示例：{recs[0]["product"]["title"] if recs else "暂无匹配"}</div>'
                 f'</div>',
                 unsafe_allow_html=True,
             )
 
-    # 数据就绪：渲染商品卡片列表
     cards = cache.get(current['label'], [])
     if not cards:
-        st.info("该场景暂无匹配商品，试试其他场景～")
+        st.info("未找到符合该场景的商品，您可以进入 AI 对话页面和机器人进一步描述您的需求。")
+        st.markdown("")
+        if st.button("💬 前往 AI 对话", key="airec_goto_chat", use_container_width=True):
+            st.switch_page("pages/6_ai_chat.py")
     else:
         for c in cards:
             render_scene_product_card(
@@ -2343,7 +2435,7 @@ def render_ai_recommend():
                 highlights=c.get('highlights'),
                 reason=c.get('reason'),
             )
-            st.markdown("")  # 卡片间留白
+            st.markdown("")
 
 
 def render_chatbot():

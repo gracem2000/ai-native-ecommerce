@@ -2,6 +2,7 @@
 服务层模块
 统一的服务入口，协调各模块完成业务流程
 """
+import re
 from typing import Dict, List, Optional, Callable
 from src.hot_perception import HotPerception
 from src.scene_mining import SceneMining
@@ -9,6 +10,18 @@ from src.product_matching import ProductMatching
 from src.llm_client import GLMClient
 from src.seasonal_perception import SeasonalPerception
 from src.config import Config
+
+# 政治/敏感关键词（命中任一则跳过，不送入 LLM）
+_POLITICAL_FILTER = re.compile(
+    r'习近平|李克强|政治局|常委|中纪委|中央军|国务院|外交部|抗议|制裁|台独|藏独|疆独|'
+    r'领土|主权|侵略|武装|军事|军队|战争|冲突|屠杀|血腥|暴力|恐怖|分裂|抗议游行|'
+    r'文革|六四|天安门|法轮功|民运|港独|占中|颜色革命'
+)
+
+
+def _is_political(text: str) -> bool:
+    """检查文本是否含政治/敏感内容"""
+    return bool(_POLITICAL_FILTER.search(text))
 
 
 class ScenarioService:
@@ -61,9 +74,11 @@ class ScenarioService:
         # 2. 获取合并后的热点标题（按热度排序）
         hot_titles = [t['title'] for t in hot_data.get('all_hot', [])]
 
+        # 过滤政治/敏感条目
+        hot_titles = [t for t in hot_titles if not _is_political(t)]
         if not hot_titles:
-            print("⚠️  未获取到热点信息，流程终止")
-            return self._empty_result()
+            print("⚠️  过滤后无可用热点信息，流程终止")
+            return self._empty_result(hot_data=hot_data)
 
         # 3. 场景挖掘
         print(f"\n【步骤 2/3】场景挖掘 (处理 {min(len(hot_titles), scene_limit)} 条热点)...")
@@ -150,9 +165,11 @@ class ScenarioService:
         # 获取热点标题
         hot_titles = [t['title'] for t in hot_data.get('all_hot', [])]
 
+        # 过滤政治/敏感条目
+        hot_titles = [t for t in hot_titles if not _is_political(t)]
         if not hot_titles:
             if progress_callback:
-                progress_callback('error', '未获取到热点信息')
+                progress_callback('error', '过滤后无可用热点信息')
             return self._empty_result(hot_data=hot_data)
 
         # 步骤2: 逐个处理热点
