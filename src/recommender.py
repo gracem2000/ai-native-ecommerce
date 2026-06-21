@@ -293,6 +293,91 @@ class Recommender:
             for s in scenes
         ]
 
+    # ==================== 场景化选品（功能二·AI推荐页） ====================
+
+    def recommend_by_scene(self, scene_label: str, scene_tag: str,
+                           keywords: List[str], top_n: int = 6) -> List[Dict]:
+        """基于场景的商品推荐（无用户画像）：为每个商品生成 AI 亮点、属性标签与推荐理由
+
+        Args:
+            scene_label: 场景显示名（如 "露营"）
+            scene_tag: 场景标签（如 "露营经济场景"）
+            keywords: 场景关键词，用于在商品库中匹配候选
+            top_n: 返回商品数
+
+        Returns:
+            [{"product", "scene_tag", "attr_tags", "highlights", "reason"}, ...]
+        """
+        candidates = self.product_matching.match_products(
+            keywords, top_k=max(top_n * 2, 8), group_by_category=False
+        )
+        candidates = candidates[:top_n]
+        if not candidates:
+            return []
+
+        insights = self._llm_scene_insights(scene_label, scene_tag, candidates)
+
+        cards = []
+        for p in candidates:
+            sku = str(p.get('sku_id'))
+            ins = insights.get(sku, {})
+            cards.append({
+                'product': p,
+                'scene_tag': scene_tag,
+                'attr_tags': ins.get('attr_tags') or (p.get('tags') or [])[:3],
+                'highlights': ins.get('highlights') or [],
+                'reason': ins.get('reason') or '',
+            })
+        return cards
+
+    def _llm_scene_insights(self, scene_label: str, scene_tag: str,
+                            products: List[Dict]) -> Dict[str, Dict]:
+        """调用 LLM 批量为商品生成 {attr_tags, highlights, reason}（结合场景）
+
+        复用 llm_client._parse_json_array_response 解析 JSON 数组。
+        """
+        catalog = "\n".join(
+            f"- sku={p.get('sku_id')} | {p.get('title')} | {p.get('category')} | "
+            f"{','.join((p.get('tags') or [])[:4])} | ¥{p.get('price')}"
+            for p in products
+        )
+        prompt = f"""你是资深电商导购专家。当前场景：{scene_label}（{scene_tag}）。
+
+候选商品：
+{catalog}
+
+请为每个商品输出：
+1) attr_tags：2-3 个「属性/人群标签」，体现适用人群或使用属性（如 亲子家庭、轻量化、送礼、熬夜党）。
+2) highlights：2-3 条「产品亮点」，基于商品属性与信息，简短有力。
+3) reason：1-2 句「推荐理由」，结合该商品属性、亮点以及【{scene_label}】场景，说明为什么适合这个场景。
+
+严格只返回 JSON 数组（不要 markdown、不要多余文字），每项格式：
+[{{"sku_id": "...", "attr_tags": ["..."], "highlights": ["..."], "reason": "..."}}]
+只能引用上述候选 sku_id。"""
+        messages = [
+            {"role": "system", "content": "你是电商导购专家，擅长提炼商品亮点、属性标签与场景化推荐理由。只返回 JSON。"},
+            {"role": "user", "content": prompt},
+        ]
+        content = self.llm_client.chat(messages, temperature=0.7, max_tokens=2200)
+        if not content:
+            return {}
+        raw = self.llm_client._parse_json_array_response(content)
+        if not isinstance(raw, list):
+            return {}
+        valid_skus = {str(p.get('sku_id')) for p in products}
+        result = {}
+        for item in raw:
+            if not isinstance(item, dict):
+                continue
+            sku = str(item.get('sku_id', '')).strip()
+            if sku and sku in valid_skus:
+                result[sku] = {
+                    'attr_tags': [str(t) for t in (item.get('attr_tags') or [])][:3],
+                    'highlights': [str(h) for h in (item.get('highlights') or [])][:3],
+                    'reason': (item.get('reason') or '').strip(),
+                }
+        return result
+
 
 if __name__ == "__main__":
     # 冒烟测试：打印画像 + 活跃场景 + 候选库，并在有 API Key 时模拟一轮对话

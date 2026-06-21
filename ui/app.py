@@ -225,7 +225,7 @@ def render_homepage():
         </div>
         ''', unsafe_allow_html=True)
         if st.button("→ 开始AI推荐", key="home_ai_recommend", type="primary", use_container_width=True):
-            st.session_state.current_page = 'chatbot'
+            st.session_state.current_page = 'ai_recommend'
             st.rerun()
 
     with ai_col2:
@@ -366,6 +366,10 @@ def render_sidebar():
 
         if st.button("🤖 AI购物助手", use_container_width=True, key="nav_chatbot"):
             st.session_state.current_page = 'chatbot'
+            st.rerun()
+
+        if st.button("🎯 AI推荐", use_container_width=True, key="nav_ai_recommend"):
+            st.session_state.current_page = 'ai_recommend'
             st.rerun()
 
         st.markdown("---")
@@ -780,6 +784,57 @@ def render_product_card(product, reason=None):
             <div class="product-title">{product.get('title', '')}</div>
             <div class="product-price">¥{product.get('price', '')}</div>
             <div class="product-tags">{tags_html}</div>
+            {reason_html}
+        </div>
+    </div>
+    ''', unsafe_allow_html=True)
+
+
+def render_scene_product_card(product, scene_tag=None, attr_tags=None, highlights=None, reason=None):
+    """渲染「AI 推荐」页的场景化商品卡片
+
+    结构（从上到下）：
+      1) 商品信息区 Header —— 与对话页商品卡片一致（品类 emoji + 渐变封面 + 标题/价格/标签）
+      2) 场景标签（浅绿）+ 属性标签（浅蓝）
+      3) 💡 AI 提炼产品亮点（列表）
+      4) 🎯 AI 推荐理由（样式与对话页推荐理由一致）
+    """
+    emoji, gradient = _category_cover(product.get("category", ""))
+    tags = product.get("tags") or []
+    tags_html = "".join(f'<span class="keyword-tag">{t}</span>' for t in tags[:3])
+
+    scene_html = f'<span class="scene-tag">#{scene_tag}</span>' if scene_tag else ""
+    attr_html = "".join(f'<span class="attr-tag">#{t}</span>' for t in (attr_tags or [])[:4])
+    tag_row_html = f'<div class="tag-row">{scene_html}{attr_html}</div>' if (scene_html or attr_html) else ""
+
+    if highlights:
+        hl_items = "".join(f"<li>{h}</li>" for h in highlights)
+        highlights_html = (
+            f'<div class="ai-highlights">'
+            f'<span class="ai-section-title">💡 AI 提炼产品亮点</span>'
+            f'<ul>{hl_items}</ul></div>'
+        )
+    else:
+        highlights_html = ""
+
+    reason_html = (
+        f'<div class="ai-reason">'
+        f'<span class="ai-section-title">🎯 AI 推荐理由</span>'
+        f'<div>{reason}</div></div>'
+    ) if reason else ""
+
+    st.markdown(f'''
+    <div class="product-card rec-card scene-rec-card">
+        <div class="product-cover" style="background:{gradient};">
+            <span class="product-cover-emoji">{emoji}</span>
+            <span class="product-cover-cat">{product.get('category', '')}</span>
+        </div>
+        <div class="product-card-body">
+            <div class="product-title">{product.get('title', '')}</div>
+            <div class="product-price">¥{product.get('price', '')}</div>
+            <div class="product-tags">{tags_html}</div>
+            {tag_row_html}
+            {highlights_html}
             {reason_html}
         </div>
     </div>
@@ -2150,6 +2205,83 @@ def _render_recommendations(recs):
             render_product_card(r.get('product', {}), r.get('reason'))
 
 
+# 「AI 推荐」页的场景胶囊（label / 场景标签 / 匹配关键词）
+AI_RECOMMEND_SCENES = [
+    {"label": "🏕️ 露营",     "scene_tag": "露营经济场景", "keywords": ["露营", "帐篷", "户外", "野营", "烧烤"]},
+    {"label": "🏃 户外运动", "scene_tag": "户外运动场景", "keywords": ["运动", "跑步", "健身", "徒步", "骑行"]},
+    {"label": "⚽ 看球聚会", "scene_tag": "赛事聚会场景", "keywords": ["啤酒", "世界杯", "看球", "聚会", "零食"]},
+    {"label": "💄 护肤美容", "scene_tag": "颜值经济场景", "keywords": ["护肤", "面膜", "美妆", "精华", "防晒"]},
+    {"label": "📱 数码生活", "scene_tag": "数码生活场景", "keywords": ["数码", "耳机", "手机", "智能", "音箱"]},
+    {"label": "🍼 母婴亲子", "scene_tag": "母婴亲子场景", "keywords": ["婴儿", "母婴", "纸尿裤", "奶粉", "玩具"]},
+    {"label": "🍜 居家美食", "scene_tag": "居家美食场景", "keywords": ["零食", "火锅", "方便面", "美食", "调料"]},
+    {"label": "🧹 居家生活", "scene_tag": "居家生活场景", "keywords": ["收纳", "清洁", "家居", "扫地"]},
+]
+
+
+def render_ai_recommend():
+    """渲染「AI 推荐」页面：顶部场景筛选胶囊 + 下方垂直商品卡片列表"""
+    recommender = get_service().get_recommender()
+
+    st.markdown("""
+    <div style="text-align:center; padding:0.5rem 0 0.25rem 0;">
+        <h1 style="font-size:1.8rem; font-weight:700; background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+           -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:0;">🎯 AI 推荐 · 场景化选品</h1>
+        <p style="color:#6b7280; margin-top:0.4rem;">选择一个场景，AI 结合商品属性与场景为你精选好物，并提炼产品亮点与推荐理由</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # 默认选中第一个场景
+    if 'ai_rec_scene' not in st.session_state:
+        st.session_state.ai_rec_scene = AI_RECOMMEND_SCENES[0]['label']
+
+    # 顶部场景筛选胶囊（每行 4 个）
+    st.markdown("#### 🏷️ 选择场景")
+    for i in range(0, len(AI_RECOMMEND_SCENES), 4):
+        row = AI_RECOMMEND_SCENES[i:i + 4]
+        cols = st.columns(len(row))
+        for col, sc in zip(cols, row):
+            selected = st.session_state.ai_rec_scene == sc['label']
+            if col.button(
+                sc['label'],
+                key=f"scene_capsule_{sc['label']}",
+                use_container_width=True,
+                type="primary" if selected else "secondary",
+            ):
+                st.session_state.ai_rec_scene = sc['label']
+                st.rerun()
+
+    current = next(s for s in AI_RECOMMEND_SCENES if s['label'] == st.session_state.ai_rec_scene)
+
+    st.markdown('<div style="height:1px; background:linear-gradient(90deg,transparent,#e5e7eb,transparent); margin:1.25rem 0 0.5rem 0;"></div>', unsafe_allow_html=True)
+    st.markdown(f"##### 🔍 {current['label']} · 场景标签 `#{current['scene_tag']}` 为你精选")
+
+    # 按场景缓存推荐结果，避免每次 rerun 都调用 LLM
+    cache = st.session_state.setdefault('ai_rec_cache', {})
+    if current['label'] not in cache:
+        with st.spinner(f'正在为「{current["label"]}」生成 AI 选品与亮点…'):
+            try:
+                cache[current['label']] = recommender.recommend_by_scene(
+                    current['label'], current['scene_tag'], current['keywords'], top_n=6
+                )
+            except Exception as e:
+                cache[current['label']] = []
+                st.error(f'生成失败：{e}')
+
+    cards = cache[current['label']]
+    if not cards:
+        st.info("该场景暂无匹配商品，试试其他场景～")
+    else:
+        for c in cards:
+            render_scene_product_card(
+                c.get('product', {}),
+                scene_tag=c.get('scene_tag'),
+                attr_tags=c.get('attr_tags'),
+                highlights=c.get('highlights'),
+                reason=c.get('reason'),
+            )
+            st.markdown("")  # 卡片间留白
+
+
 def render_chatbot():
     """渲染 AI 购物助手页面：登录(Marla/Steve) + 多轮对话 + 个性化商品卡片推荐"""
     service = get_service()
@@ -2416,6 +2548,10 @@ def main():
     elif current_page == 'chatbot':
         # AI 购物助手对话页面（自带标题，不使用通用 header）
         render_chatbot()
+
+    elif current_page == 'ai_recommend':
+        # AI 推荐：场景化选品页面（自带标题）
+        render_ai_recommend()
 
     else:
         # 首页展示

@@ -1,6 +1,6 @@
 # ⚡ 时空场景自动供给系统
 
-[![Version](https://img.shields.io/badge/version-1.1.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue)](CHANGELOG.md)
 [![Python](https://img.shields.io/badge/python-3.10+-green)](https://python.org)
 [![License](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
 
@@ -14,12 +14,22 @@
 
 ### 核心能力
 
+系统由**两大功能**组成：
+
+**功能一 · 场景供给中心**（后端供给演示）
+
 - **🔥 热点感知**: 自动抓取百度热搜等外部热点信息
 - **📅 季节感知**: 基于时间、节日自动生成季节性购物场景
 - **🎯 场景挖掘**: LLM 将非结构化的新闻转化为结构化的购物场景
 - **🛍️ 商品匹配**: 基于场景关键词自动关联商品库
 - **🔄 智能去重**: 基于内容相似度自动过滤重复场景
 - **📚 场景管理**: 统一的场景库管理界面
+
+**功能二 · AI 购物助手**（面向用户的前端体验）
+
+- **🤖 对话式导购**: 用户以 Marla / Steve 身份登录，与 AI 助手多轮自然对话
+- **🎯 个性化推荐**: 结合用户画像、历史兴趣与当下时节/热点场景，生成带推荐理由的商品推荐
+- **🃏 商品卡片**: 推荐结果以品类图标 + 渐变封面的卡片形式呈现
 
 ---
 
@@ -28,22 +38,25 @@
 ```
 .
 ├── data/
-│   ├── mock_products.json          # 模拟商品库
+│   ├── mock_products.json          # 模拟商品库 (300 个商品)
 │   ├── hot_topics.json              # 热搜数据缓存
 │   ├── scenarios.json               # 生成的场景数据
-│   └── festivals.json               # 节日数据
+│   ├── festivals.json               # 节日数据
+│   └── user_profiles.json           # 虚拟用户画像 (Marla / Steve)
 ├── src/
 │   ├── __init__.py
 │   ├── config.py                    # 配置管理
 │   ├── hot_perception.py            # 热点采集模块
 │   ├── seasonal_perception.py       # 季节性感知模块
-│   ├── llm_client.py                # GLM-5.1 客户端封装
+│   ├── llm_client.py                # GLM-5.1 客户端封装（场景生成 + 通用对话）
 │   ├── scene_mining.py              # 场景挖掘模块
 │   ├── product_matching.py          # 商品匹配模块
+│   ├── recommender.py               # 个性化推荐引擎（对话式导购）
 │   └── service.py                   # 服务层统一入口
 ├── ui/
 │   ├── __init__.py
-│   └── app.py                       # Streamlit 前端应用
+│   ├── app.py                       # Streamlit 前端应用
+│   └── style.css                    # 全局样式
 ├── requirements.txt
 └── README.md
 ```
@@ -116,12 +129,21 @@
 
 ### 界面功能
 
-应用首页展示三大场景来源入口：
+应用首页分为三大区块（从上到下）：**三大场景来源**、**AI 场景导购**、**核心能力**，对应系统的两大功能。
+
+**功能一 · 场景供给中心**
 
 - **📅 时节场景** - 基于传统节日、二十四节气自动生成周期性购物场景（支持多场景生成）
 - **🔥 热点追踪** - 实时抓取百度热搜，LLM 自动转化为购物场景（自动保存）
 - **✍️ 人工提报** - 手动提报场景主题，系统自动生成多个场景（如端午送礼、端午出游等）
 - **📚 场景库管理** - 统一管理所有场景，支持编辑、删除、筛选
+
+**功能二 · AI 购物助手**（AI 场景导购入口 → 登录后进入对话页）
+
+- 以 **Marla** 或 **Steve** 身份登录，进入专属对话界面
+- 与 AI 购物助手多轮自然对话，侧栏展示当前用户画像与"本次推荐参考的场景"
+- 系统结合用户画像、历史兴趣与当下时节/热点场景，给出带**推荐理由**的个性化商品推荐
+- 推荐结果以品类图标 + 渐变封面的商品卡片形式呈现，支持切换用户与清空对话
 
 ### 时节场景
 
@@ -187,6 +209,16 @@ save_result = service.save_scenes_batch(scenes)
 # 获取统计数据
 source_stats = service.get_source_statistics()
 seasonal_stats = service.get_seasonal_statistics()
+
+# 功能二：AI 购物助手（对话式个性化推荐）
+recommender = service.get_recommender()
+result = recommender.chat(
+    user_id="marla",
+    history=[{"role": "user", "content": "周末想出游，推荐点东西"}],
+)
+print(result["reply"])              # 助手回复
+for r in result["recommendations"]: # 带理由的推荐商品
+    print(r["product"]["title"], "->", r["reason"])
 ```
 
 ---
@@ -221,7 +253,15 @@ seasonal_stats = service.get_seasonal_statistics()
 
 - 多维度匹配：标题、标签、类别
 - 相关性排序：按匹配度排序返回结果
-- 商品库：30 个示例商品，覆盖多个品类
+- 商品库：300 个示例商品，覆盖 12+ 个品类
+
+### 5. 个性化推荐引擎 (Recommender) —— 功能二核心
+
+- **对话式导购**：基于 LLM 多轮对话，复用 `GLMClient.chat()` 通用对话能力
+- **上下文组装**：融合用户画像（基础/偏好/兴趣/历史购买）+ 当前活跃时节/热点场景 + 按偏好品类过滤的候选商品库
+- **约束选品**：LLM 只能从候选商品库的 `sku_id` 中推荐，并通过 `get_product_by_sku` 还原完整商品，杜绝幻觉商品
+- **推荐理由**：每件推荐商品都附带结合画像兴趣与当下场景的理由
+- 数据来源：`data/user_profiles.json`（Marla / Steve 两位虚拟用户）
 
 ---
 
@@ -318,7 +358,6 @@ MIT License
 
 - [智谱 AI](https://open.bigmodel.cn/) - 提供 GLM-5.1 API
 - [Streamlit](https://streamlit.io/) - 前端框架
-- [Anthropic](https://www.anthropic.com/) - Claude API SDK
 
 ---
 
